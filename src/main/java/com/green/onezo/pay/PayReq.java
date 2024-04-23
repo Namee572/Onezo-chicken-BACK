@@ -17,7 +17,6 @@ public class PayReq {
 
     private PayType payType;
     private Long amount;
-    private OrderNameType orderName;
     private String customerEmail;
     private String customerName;
 
@@ -26,7 +25,6 @@ public class PayReq {
                 .orderId(UUID.randomUUID().toString())
                 .payType(payType)
                 .amount(amount)
-                .orderName(orderName)
                 .customerEmail(customerEmail)
                 .customerName(customerName)
                 .paySuccessYn("Y")
