@@ -1,3 +1,4 @@
+# 내 컴 돌릴때
 spring:
   messages:
     basename: messages
