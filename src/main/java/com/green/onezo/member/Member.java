@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "members")
-
 public class Member {
 
     @Id

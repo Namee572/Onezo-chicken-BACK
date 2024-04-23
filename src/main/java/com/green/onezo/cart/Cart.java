@@ -30,8 +30,4 @@ public class Cart {
 
     @Enumerated(EnumType.STRING)
     private TakeInOut takeInOut;
-
-
-
-
 }

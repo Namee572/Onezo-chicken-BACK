@@ -16,8 +16,6 @@ public class Menu {
     @JoinColumn(name = "store_id")
     private Store store;
 
-
-
     private String menuName;
     private String price;
     //private String imagePath;

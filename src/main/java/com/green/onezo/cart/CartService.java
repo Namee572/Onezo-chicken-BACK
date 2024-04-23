@@ -17,40 +17,40 @@ public class CartService {
 
     private final CartRepository cartRepository;
 
-    public void addCart(Member member, Store store, Menu menu, int quantity, TakeInOut takeInOut) {
-        // 재고 확인
-        if (!checkStock(menu, quantity)) {
-            throw new RuntimeException("InsufficientStockException" + menu.getId());
-        }
-
-        // 장바구니에 있는 메뉴인지 확인
-
-        Cart cartItem = new Cart();
-        cartItem.setMember(member);
-        cartItem.setStore(store);
-        cartItem.setMenu(menu);
-        cartItem.setQuantity(quantity);
-        cartItem.setTakeInOut(takeInOut);
-        cartRepository.save(cartItem);
-    }
-
-    public void updateCartItem(Long cartId, int quantity) {
-        Optional<Cart> optionalCartItem = cartRepository.findById(cartId);
-        optionalCartItem.ifPresent(cartItem -> {
-            cartItem.setQuantity(quantity);
-            cartRepository.save(cartItem);
-        });
-    }
-
-    public void deleteCartItem(Long cartId) {
-        cartRepository.deleteById(cartId);
-    }
-
-    // 재고 확인
-    private boolean checkStock(Menu menu, int requestedQuantity) {
-        return menu.getStock() >= requestedQuantity;
-
-    }
+//    public void addCart(Member member, Store store, Menu menu, int quantity, TakeInOut takeInOut) {
+//        // 재고 확인
+//        if (!checkStock(menu, quantity)) {
+//            throw new RuntimeException("InsufficientStockException" + menu.getId());
+//        }
+//
+//        // 장바구니에 있는 메뉴인지 확인
+//
+//        Cart cartItem = new Cart();
+//        cartItem.setMember(member);
+//        cartItem.setStore(store);
+//        cartItem.setMenu(menu);
+//        cartItem.setQuantity(quantity);
+//        cartItem.setTakeInOut(takeInOut);
+//        cartRepository.save(cartItem);
+//    }
+//
+//    public void updateCartItem(Long cartId, int quantity) {
+//        Optional<Cart> optionalCartItem = cartRepository.findById(cartId);
+//        optionalCartItem.ifPresent(cartItem -> {
+//            cartItem.setQuantity(quantity);
+//            cartRepository.save(cartItem);
+//        });
+//    }
+//
+//    public void deleteCartItem(Long cartId) {
+//        cartRepository.deleteById(cartId);
+//    }
+//
+//    // 재고 확인
+//    private boolean checkStock(Menu menu, int requestedQuantity) {
+//        return menu.getStock() >= requestedQuantity;
+//
+//    }
 
 }
 
