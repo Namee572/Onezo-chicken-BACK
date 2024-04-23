@@ -6,8 +6,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +44,7 @@ public class PayService {
     public PayRes requestPay(PayReq payReq) {
         Long amount = payReq.getAmount();
         String payType = payReq.getPayType().name();
-        String customerEmail = payReq.getCustomerEmail();
+        String ID = payReq.getID();
 
 
         if (amount == null) {
@@ -59,7 +57,7 @@ public class PayService {
         try {
             System.out.println("일러오나");
             Pay pay = payReq.toEntity();
-            memberRepository.findByEmail(customerEmail)
+            memberRepository.findByID(ID)
                     .ifPresentOrElse(
                             M -> {
                                 M.addPay(pay);

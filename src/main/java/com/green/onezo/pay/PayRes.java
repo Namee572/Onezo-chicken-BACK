@@ -17,7 +17,7 @@ public class PayRes {
     private Long amount;
     private String orderId;
     private String orderName;
-    private String customerEmail;
+    private String ID;
     private String customerName;
     private String successUrl;
     private String failUrl;
