@@ -6,9 +6,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.boot.configurationprocessor.json.JSONException;
-//import org.springframework.boot.configurationprocessor.json.JSONObject;
-//import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,16 +47,13 @@ public class PayService {
         Long amount = payReq.getAmount();
         String payType = payReq.getPayType().name();
         String customerEmail = payReq.getCustomerEmail();
-        String orderName = payReq.getOrderName().name();
+
 
         if (amount == null) {
             throw new RuntimeException("금액을 입력하세요");
         }
         if (!payType.equals("CARD") && !payType.equals("POINT")) {
             throw new RuntimeException("결제방법을 다시 입력하세요.");
-        }
-        if (!orderName.equals(OrderNameType.chicken.name())) {
-            throw new RuntimeException("주문명을 다시 입력하세요.");
         }
         PayRes payRes;
         try {

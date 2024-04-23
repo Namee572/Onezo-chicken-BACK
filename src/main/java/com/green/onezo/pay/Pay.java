@@ -25,8 +25,6 @@ public class Pay {
     @Column(nullable = false)
     private String orderId;
     @Column(nullable = false)
-    private OrderNameType orderName;
-    @Column(nullable = false)
     private String customerEmail;
     @Column(nullable = false)
     private String customerName;
@@ -52,7 +50,6 @@ public class Pay {
                 .payType(payType.name())
                 .amount(amount)
                 .orderId(orderId)
-                .orderName(orderName.name())
                 .customerEmail(customerEmail)
                 .customerName(customerName)
                 .createDate(LocalDateTime.now())

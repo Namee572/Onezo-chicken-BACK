@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>결제하기</title>
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+</head>
+<body>
+<section>
+    <span>총금액</span>
+    <span>3000원</span>
+    <button id="payment-button">3000원 결제하기</button>
+</section>
+<script>
+    var success = ""
+    var clientKey = "test_ck_4yKeq5bgrp5m5N6vb0oL8GX0lzW6"
+    var tossPayments = TossPayments(clientKey)
+    var button = document.getElementById("payment-button")
+    button.addEventListener('click', function() {
+        tossPayments.requestPayment('CARD', {
+            amount: 3000,
+            orderId: '556673ed-c260-4e9a-95ff-e2a71bcc4af1',
+            orderName: 'chicken',
+            customerName: "홍길동",
+            customerEmail: "ddd@naver.com",
+            successUrl: 'http://localhost:8080/v1/api/payment/success',
+            failUrl: 'http://localhost:8080/v1/api/payment/fail',
+        }).then(function () {
+            window.location.href(successUrl);
+        }).catch(function (error) {
+            console.error('결제오류', error)
+        })
+
+    })
+</script>
+
+</body>
+</html>
