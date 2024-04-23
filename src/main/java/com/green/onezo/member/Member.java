@@ -1,17 +1,19 @@
 package com.green.onezo.member;
 
+import jakarta.persistence.*;
+import lombok.Data;
 import com.green.onezo.pay.Pay;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "members")
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   
     @Column(name = "member_id", nullable = false)
     private Long id;
 
@@ -24,6 +26,5 @@ public class Member {
         pays.add(pay);
         pay.setMember(this);
     }
-
 
 }

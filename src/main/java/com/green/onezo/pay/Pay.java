@@ -15,8 +15,9 @@ import java.time.LocalDateTime;
 public class Pay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Pay_id")
+    @Column(name = "pay_id")
     private Long id;
+
     @Column(nullable = false)
     private Long amount;
     @Enumerated(EnumType.STRING)

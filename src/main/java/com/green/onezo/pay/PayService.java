@@ -2,6 +2,7 @@ package com.green.onezo.pay;
 
 import com.green.onezo.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
@@ -100,7 +101,7 @@ public class PayService {
     }
 
     @Transactional
-    public ResponseEntity<JSONObject> requestFinalPayment(String paymentKey, String orderId, Long amount) throws JSONException, IOException, ParseException, URISyntaxException {
+    public ResponseEntity<JSONObject> requestFinalPayment(String paymentKey, String orderId, Long amount) throws IOException, ParseException, URISyntaxException {
         // 기본 인증 설정
         secretKey = secretKey + ":";
         String encodedAuth = Base64.getEncoder().encodeToString(secretKey.getBytes(StandardCharsets.UTF_8));
