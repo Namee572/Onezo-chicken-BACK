@@ -2,8 +2,10 @@ package com.green.onezo.jwt;
 
 
 import com.green.onezo.member.Member;
+
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;

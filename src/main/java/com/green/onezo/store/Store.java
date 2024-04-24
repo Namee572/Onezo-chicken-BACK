@@ -29,7 +29,5 @@ public class Store {
     @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
-
-
-    //private String imagePath;
+    
 }

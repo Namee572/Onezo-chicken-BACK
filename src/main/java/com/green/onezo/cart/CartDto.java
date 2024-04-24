@@ -11,7 +11,6 @@ public class CartDto {
     private Store store;
     private Menu menu;
     private int quantity;
-    private TakeInOut takeInOut;
 
 
 }

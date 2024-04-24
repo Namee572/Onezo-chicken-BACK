@@ -1,9 +1,7 @@
 package com.green.onezo.cart;
 
 import com.green.onezo.member.Member;
-import com.green.onezo.member.MemberRepository;
 import com.green.onezo.menu.Menu;
-import com.green.onezo.menu.MenuRepository;
 import com.green.onezo.store.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,23 +15,16 @@ public class CartService {
 
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
-    private final MenuRepository menuRepository;
 
 
     // 장바구니에 아이템 추가
     public void addCart(Member member, Store store, Menu menu, int quantity) {
-        // 해당 매장에 재고 있음?
-        //int menuStock = menuRepository.findStockByStoreAndMenu(store, menu);
-        //if (menuStock < quantity) {
-          //  throw new IllegalArgumentException("품절? 판매 안함?");
-        //}
-
-        // 재고 있으면 장바구니에 아이템 추가
+       
         CartItem cartItem = CartItem.builder()
                 .member(member)
+                .quantity(quantity)
                 .store(store)
                 .menu(menu)
-                .quantity(quantity)
                 .build();
 
         cartItemRepository.save(cartItem);
