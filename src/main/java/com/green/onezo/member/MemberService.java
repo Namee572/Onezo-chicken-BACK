@@ -1,5 +1,9 @@
 package com.green.onezo.member;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+
 
 import com.green.onezo.enum_column.Role;
 import jakarta.transaction.Transactional;
@@ -8,11 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-    //이거 써야되는데 jasypt 쓰고싶다 에라이 ... ...
 //    private PasswordEncoder passwordEncoder;
     //회원가입 signUp
     @Transactional
