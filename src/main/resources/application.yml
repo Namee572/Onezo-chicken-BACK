@@ -22,7 +22,7 @@ spring:
       hibernate:
         format_sql: true
 
-
+#toss 암호화 적용 하기
 toss:
   client:
     id: test_ck_4yKeq5bgrp5m5N6vb0oL8GX0lzW6
@@ -34,3 +34,8 @@ toss:
 jasypt:
   encryptor:
     password: wasdjlkjoIQHNWLIUEOqkA;XDLJakldmaSL
+
+kakao:
+  client:
+    id: ee6034fee6eaca2e42ce04b136729cf7
+    secret: 
