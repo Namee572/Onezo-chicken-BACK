@@ -44,7 +44,7 @@ public class PayService {
     public PayRes requestPay(PayReq payReq) {
         Long amount = payReq.getAmount();
         String payType = payReq.getPayType().name();
-        String ID = payReq.getID();
+        String userId = payReq.getUserId();
 
 
         if (amount == null) {
@@ -57,7 +57,7 @@ public class PayService {
         try {
             System.out.println("일러오나");
             Pay pay = payReq.toEntity();
-            memberRepository.findByID(ID)
+            memberRepository.findByUserId(userId)
                     .ifPresentOrElse(
                             M -> {
                                 M.addPay(pay);

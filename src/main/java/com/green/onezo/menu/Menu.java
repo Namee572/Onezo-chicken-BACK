@@ -16,13 +16,9 @@ public class Menu {
     @Column(name = "menu_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
-
     private String menuName;
 
-    private int price;
+    private double price;
 
     //private String imagePath;
 
@@ -44,5 +40,10 @@ public class Menu {
 
     @OneToMany(mappedBy = "menu")
     private List<CartItem> cart_items = new ArrayList<>();
+
+//    @ManyToOne
+//    @JoinColumn(name = "store_id")
+//    private Store store;
+
 
 }

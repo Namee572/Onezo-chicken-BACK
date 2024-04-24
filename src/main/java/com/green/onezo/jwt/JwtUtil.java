@@ -63,7 +63,7 @@ public class JwtUtil {
 
     public String generateRefreshToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", member.getID());
+        claims.put("id", member.getUserId());
         claims.put("name",member.getName());
         claims.put("phone",member.getPhone());
         claims.put("role", member.getRole());
@@ -81,7 +81,7 @@ public class JwtUtil {
     //Access토큰 생성
     public String generateAccessToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", member.getID());
+        claims.put("id", member.getUserId());
         claims.put("name",member.getName());
         claims.put("phone",member.getPhone());
         claims.put("role", member.getRole());

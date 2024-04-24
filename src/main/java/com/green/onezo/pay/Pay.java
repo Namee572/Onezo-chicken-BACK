@@ -25,7 +25,7 @@ public class Pay {
     @Column(nullable = false)
     private String orderId;
     @Column(nullable = false)
-    private String ID;
+    private String userId;
     @Column(nullable = false)
     private String customerName;
     @Column(nullable = false)
@@ -50,7 +50,7 @@ public class Pay {
                 .payType(payType.name())
                 .amount(amount)
                 .orderId(orderId)
-                .ID(ID)
+                .userId(userId)
                 .customerName(customerName)
                 .createDate(LocalDateTime.now())
                 .build();

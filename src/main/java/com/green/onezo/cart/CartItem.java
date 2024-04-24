@@ -24,7 +24,7 @@ public class CartItem {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
@@ -32,7 +32,7 @@ public class CartItem {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
 

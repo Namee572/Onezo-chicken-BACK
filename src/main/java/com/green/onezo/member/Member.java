@@ -19,14 +19,15 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Member")
+@Table(name = "members")
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    @Column(name = "member_id")
+    private Long id;
 
     @Column(nullable = false, unique = true)
-    private String ID;
+    private String userId;
 
     @JsonIgnore
     private String password;

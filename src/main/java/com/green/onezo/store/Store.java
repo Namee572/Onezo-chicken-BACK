@@ -1,16 +1,17 @@
 package com.green.onezo.store;
 
+import com.green.onezo.menu.Menu;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
-@RequiredArgsConstructor
-
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,14 @@ public class Store {
     private String storePhone;
     private LocalTime openTime;
     private LocalTime closeTime;
+
     @Enumerated(EnumType.STRING)
     private StoreStatus storeStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
+
+
     //private String imagePath;
 }
