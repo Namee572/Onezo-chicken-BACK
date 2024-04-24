@@ -15,14 +15,14 @@ import lombok.ToString;
 @Setter
 @ToString
 //    @Schema(description = "회원 유효성 검사를 위한 객체입니다.")
-public class MemberDTO {
+public class MemberDto {
     //자동증가 키
-    private Long user_id;
+    private Long id;
 
 //        @NotBlank(message = "아이디는 필수 입력 사항입니다.")
 //        @Size(min=2,max=20,message = "아이디는 최소 2자 이상 20자 이하로 입력해야합니다.")
 //        @Schema(description = "사용자 고유 아이디")
-    private String ID;
+    private String userId;
 
 //        @NotBlank(message = "패스워드는 필수 입력 사항입니다.")
 //        @Size(min=4,max = 20,message="패스워드는 최소 4자 이상 20자 이하로 입력해야합니다.")

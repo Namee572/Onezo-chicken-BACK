@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.green.onezo.enum_column.Role;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -20,9 +18,9 @@ public class MemberService {
 //    private PasswordEncoder passwordEncoder;
     //회원가입 signUp
     @Transactional
-    public Member signup(MemberDTO memberDTO) {
+    public Member signup(MemberDto memberDTO) {
         Member member = new Member();
-        member.setID(memberDTO.getID());
+        member.setUserId(memberDTO.getUserId());
         member.setPassword(memberDTO.getPassword());//이거 암호화 진행 시켜야됨 jasypt 개놈새키
         member.setNickname(memberDTO.getNickname());
         member.setName(memberDTO.getName());
@@ -36,6 +34,6 @@ public class MemberService {
 
 
     public Optional<Member> authenticate(String memberId, String password) {
-        return memberRepository.findByIDAndPassword(memberId,password);
+        return memberRepository.findByUserIdAndPassword(memberId,password);
     }
 }

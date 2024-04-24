@@ -26,7 +26,7 @@ public class MemberController {
 
     //회원가입
     @PostMapping("signUp")
-    public ResponseEntity<String> signup(@RequestBody @Valid MemberDTO memberDTO, BindingResult bindingResult){
+    public ResponseEntity<String> signup(@RequestBody @Valid MemberDto memberDTO, BindingResult bindingResult){
             if (bindingResult.hasErrors()){
             StringBuilder errorMessage=new StringBuilder();
             for(FieldError error : bindingResult.getFieldErrors()){
@@ -37,10 +37,11 @@ public class MemberController {
            memberService.signup(memberDTO);
         return  ResponseEntity.ok("회원가입이 완료되었습니다.");
     }
+
     //로그인 기능
     @PostMapping("/login")
-    public ResponseEntity<JwtTokenDto> login(@RequestBody MemberDTO memberDTO){
-        String memberId=memberDTO.getID();
+    public ResponseEntity<JwtTokenDto> login(@RequestBody MemberDto memberDTO){
+        String memberId=memberDTO.getUserId();
         String password=memberDTO.getPassword();
 
         Optional<Member> isAuthenticated = memberService.authenticate(memberId,password);

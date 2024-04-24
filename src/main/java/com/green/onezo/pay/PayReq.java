@@ -17,7 +17,7 @@ public class PayReq {
 
     private PayType payType;
     private Long amount;
-    private String ID;
+    private String userId;
     private String customerName;
 
     public Pay toEntity(){
@@ -25,7 +25,7 @@ public class PayReq {
                 .orderId(UUID.randomUUID().toString())
                 .payType(payType)
                 .amount(amount)
-                .ID(ID)
+                .userId(userId)
                 .customerName(customerName)
                 .paySuccessYn("Y")
                 .createDate(LocalDateTime.now())
