@@ -1,4 +1,4 @@
-package com.green.onezo.order;
+package com.green.onezo.purchase;
 
 
 import com.green.onezo.member.Member;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Order {
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +39,6 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "payRecord_id")
     private PayRecord payRecord;
-
-
-
-
 
 
 }

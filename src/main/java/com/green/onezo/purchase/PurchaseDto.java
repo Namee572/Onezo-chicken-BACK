@@ -1,4 +1,4 @@
-package com.green.onezo.order;
+package com.green.onezo.purchase;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class OrderDto {
+public class PurchaseDto {
     private Long orderId;
     private LocalDateTime orderDate;
     private String orderType;

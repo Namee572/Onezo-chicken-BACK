@@ -1,4 +1,4 @@
-package com.green.onezo.order;
+package com.green.onezo.purchase;
 
 import com.green.onezo.pay.Pay;
 import com.green.onezo.pay.PayRepository;
@@ -11,20 +11,20 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class OrderService {
+public class PurchaseService {
 
     private final PayRepository payRepository;
 
-    public List<OrderDto> getOrderHistory(String userId) {
+    public List<PurchaseDto> getOrderHistory(String userId) {
         List<Pay> orders = payRepository.findTop5ByUserId(userId);
         return mapToDto(orders);
 
     }
 
-    private List<OrderDto> mapToDto(List<Pay> orders) {
-        List<OrderDto> orderDtos = new ArrayList<>();
+    private List<PurchaseDto> mapToDto(List<Pay> orders) {
+        List<PurchaseDto> orderDtos = new ArrayList<>();
         for (Pay pay : orders) {
-            OrderDto orderDto = OrderDto.builder()
+            PurchaseDto orderDto = PurchaseDto.builder()
                     .orderId(pay.getId())
                     .orderDate(pay.getCreateDate())
                     .orderType(pay.getOrderId())
