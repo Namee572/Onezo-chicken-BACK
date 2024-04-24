@@ -21,16 +21,8 @@ public class CartItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
-
-    @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
 
     @ManyToOne
     @JoinColumn(name = "menu_id")
@@ -38,21 +30,18 @@ public class CartItem {
 
     private int quantity;
 
-    private int count; // 카트에 담긴 상품 개수
-
-
-
-    public static CartItem createCartItem(Menu menu, int amount) {
-        CartItem cartItem = new CartItem();
-        cartItem.setMenu(menu);
-        cartItem.setCount(amount);
-        return cartItem;
-    }
-
-    // // 이미 담겨있는 물건 또 담을 경우 수량 증가
-    public void addCount(int count) {
-        this.count += count;
-    }
+//
+//    public static CartItem createCartItem(Menu menu, int amount) {
+//        CartItem cartItem = new CartItem();
+//        cartItem.setMenu(menu);
+//        cartItem.setCount(amount);
+//        return cartItem;
+//    }
+//
+//    // // 이미 담겨있는 물건 또 담을 경우 수량 증가
+//    public void addCount(int count) {
+//        this.count += count;
+//    }
 
 
 }

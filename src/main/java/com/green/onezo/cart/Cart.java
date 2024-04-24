@@ -41,19 +41,13 @@ public class Cart {
 
     private int quantity;
 
-    private int count; // 카트에 담긴 총 상품 개수
-
-    @Enumerated(EnumType.STRING)
-    private TakeInOut takeInOut;
-
     private LocalDateTime createDate;
 
-    public static Cart createCart(Member member) {
-        Cart cart = new Cart();
-        cart.setCount(0);
-        cart.setMember(member);
-        return cart;
-    }
+//    public static Cart createCart(Member member) {
+//        Cart cart = new Cart();
+//        cart.setMember(member);
+//        return cart;
+//    }
 
 
 }
