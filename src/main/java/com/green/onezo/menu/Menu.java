@@ -22,10 +22,6 @@ public class Menu {
 
     //private String imagePath;
 
-    private int count; // 판매 개수
-
-    private int stock; // 재고
-
     private String origin; // 원산지
 
     private String allergyInfo; // 알레르기 정보
@@ -40,6 +36,8 @@ public class Menu {
 
     @OneToMany(mappedBy = "menu")
     private List<CartItem> cart_items = new ArrayList<>();
+
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "store_id")

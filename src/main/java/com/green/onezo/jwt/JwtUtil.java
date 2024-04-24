@@ -2,11 +2,11 @@ package com.green.onezo.jwt;
 
 
 import com.green.onezo.member.Member;
-import com.green.onezo.member.MemberDTO;
+
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.security.Keys;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
