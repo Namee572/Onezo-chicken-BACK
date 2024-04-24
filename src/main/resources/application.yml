@@ -38,4 +38,4 @@ jasypt:
 kakao:
   client:
     id: ee6034fee6eaca2e42ce04b136729cf7
-    secret: 
+    secret:
