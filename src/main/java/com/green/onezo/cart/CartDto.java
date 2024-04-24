@@ -6,11 +6,7 @@ import com.green.onezo.store.Store;
 
 public class CartDto {
 
-    private Long id;
-    private Member member;
-    private Store store;
-    private Menu menu;
-    private int quantity;
+
 
 
 }
