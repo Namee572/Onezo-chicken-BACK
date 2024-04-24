@@ -31,9 +31,6 @@ toss:
     failUrl: "http://localhost:8080/v1/api/payment/fail"
     OriginUrl: "https://api.tosspayments.com/v1/payments/"
 
-
-
-
 jasypt:
   encryptor:
     password: wasdjlkjoIQHNWLIUEOqkA;XDLJakldmaSL

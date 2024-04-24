@@ -7,5 +7,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Long> {
+
+   // int findStockByStoreAndMenu(Store store, Menu menu);
+
     //MenuStockInfo findStockByStoreAndMenu(Store store, Menu menu);
+
 }

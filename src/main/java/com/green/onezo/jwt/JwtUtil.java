@@ -4,7 +4,6 @@ package com.green.onezo.jwt;
 import com.green.onezo.member.Member;
 
 import io.jsonwebtoken.*;
-
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Component;
@@ -14,11 +13,8 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
-import static ch.qos.logback.classic.spi.ThrowableProxyVO.build;
 import static io.jsonwebtoken.security.Keys.hmacShaKeyFor;
 
 
@@ -63,7 +59,7 @@ public class JwtUtil {
 
     public String generateRefreshToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", member.getUserId());
+        claims.put("userId", member.getUserId());
         claims.put("name",member.getName());
         claims.put("phone",member.getPhone());
         claims.put("role", member.getRole());
@@ -81,7 +77,7 @@ public class JwtUtil {
     //Access토큰 생성
     public String generateAccessToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", member.getUserId());
+        claims.put("userId", member.getUserId());
         claims.put("name",member.getName());
         claims.put("phone",member.getPhone());
         claims.put("role", member.getRole());

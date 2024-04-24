@@ -7,8 +7,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,23 +24,25 @@ public class MemberController {
 
     //회원가입
     @PostMapping("signUp")
-    public ResponseEntity<String> signup(@RequestBody @Valid MemberDto memberDTO, BindingResult bindingResult){
-            if (bindingResult.hasErrors()){
-            StringBuilder errorMessage=new StringBuilder();
-            for(FieldError error : bindingResult.getFieldErrors()){
-                errorMessage.append(error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().body(errorMessage.toString());
-        }
-           memberService.signup(memberDTO);
-        return  ResponseEntity.ok("회원가입이 완료되었습니다.");
+    public ResponseEntity<MemberDto> signup(
+            @RequestBody @Valid MemberDto memberDto
+//            BindingResult bindingResult
+    ) {
+//        if(bindingResult.hasErrors()){
+//            // memberDto 유효성이 안맞아서 hasError가 되면
+//            // 프론트 쪽에다가 memberDTO
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(memberDTO);
+//        }
+        memberService.signup(memberDto);
+        return ResponseEntity.ok(new MemberDto());
     }
+
 
     //로그인 기능
     @PostMapping("/login")
-    public ResponseEntity<JwtTokenDto> login(@RequestBody MemberDto memberDTO){
-        String memberId=memberDTO.getUserId();
-        String password=memberDTO.getPassword();
+    public ResponseEntity<JwtTokenDto> login(@RequestBody MemberDto memberDto){
+        String memberId=memberDto.getUserId();
+        String password=memberDto.getPassword();
 
         Optional<Member> isAuthenticated = memberService.authenticate(memberId,password);
 //        return ResponseEntity.of(isAuthenticated);

@@ -18,8 +18,8 @@ public class CartService {
 
 
     // 장바구니에 아이템 추가
-    public void addCart(Member member, Store store, Menu menu,int quantity) {
-
+    public void addCart(Member member, Store store, Menu menu, int quantity) {
+       
         CartItem cartItem = CartItem.builder()
                 .member(member)
                 .quantity(quantity)
