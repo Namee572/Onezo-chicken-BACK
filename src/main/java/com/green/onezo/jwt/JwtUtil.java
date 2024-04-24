@@ -2,10 +2,8 @@ package com.green.onezo.jwt;
 
 
 import com.green.onezo.member.Member;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.green.onezo.member.MemberDTO;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +17,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static ch.qos.logback.classic.spi.ThrowableProxyVO.build;
+import static io.jsonwebtoken.security.Keys.hmacShaKeyFor;
 
 
 @Component
@@ -52,7 +53,7 @@ public class JwtUtil {
     //시크릿 키 생성
     private Key getSigningKey() {
         byte[] keyBytes = SECRET_KEY.getBytes(StandardCharsets.UTF_8);
-        return Keys.hmacShaKeyFor(keyBytes);
+        return hmacShaKeyFor(keyBytes);
     }
 
     //토큰이 만료되었는지 확인
@@ -106,10 +107,22 @@ public class JwtUtil {
 
 
     }
-
-    //토큰 검증
-    public Boolean validatieToken(String token, UserDetails userDetails) {
-        final String member_id = extractId(token);
-        return (member_id.equals(userDetails.getUsername()) && !isTokenExpired(token));
+  //  refresh토큰 검증
+    public Jws<Claims> validateRefreshToken(String refreshToken){
+        Jws<Claims> refreshjws=Jwts.parser()//번역
+                .setSigningKey(hmacShaKeyFor(SECRET_KEY.getBytes()))//비밀번호로
+                .build()//객체 생성 후
+                .parseClaimsJws(refreshToken);//claim 들을 번역해줘 컬렉션타입으로
+        System.out.println(refreshjws);
+        return refreshjws;
+    }
+    //Access토큰 검증
+    public Jws<Claims> validateAccessoken(String accessToken){
+        Jws<Claims> acessjws=Jwts.parser()//번역
+                .setSigningKey(hmacShaKeyFor(SECRET_KEY.getBytes()))//비밀번호로
+                .build()//객체 생성 후
+                .parseClaimsJws(accessToken);//claim 들을 번역해줘 컬렉션타입으로
+        System.out.println(acessjws);
+        return acessjws;
     }
 }
