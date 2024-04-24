@@ -39,14 +39,10 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItemList = new ArrayList<>();
 
+    @Enumerated
+    private TakeInOut takeInOut;
 
     private LocalDateTime createDate;
-
-//    public static Cart createCart(Member member) {
-//        Cart cart = new Cart();
-//        cart.setMember(member);
-//        return cart;
-//    }
 
 
 }
