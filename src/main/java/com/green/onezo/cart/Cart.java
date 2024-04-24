@@ -37,9 +37,8 @@ public class Cart {
     private Menu menu;
 
     @OneToMany(mappedBy = "cart")
-    private List<CartItem> cart_items = new ArrayList<>();
+    private List<CartItem> cartItemList = new ArrayList<>();
 
-    private int quantity;
 
     private LocalDateTime createDate;
 
