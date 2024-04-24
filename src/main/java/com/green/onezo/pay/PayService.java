@@ -6,9 +6,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.boot.configurationprocessor.json.JSONException;
-//import org.springframework.boot.configurationprocessor.json.JSONObject;
-//import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,8 +44,8 @@ public class PayService {
     public PayRes requestPay(PayReq payReq) {
         Long amount = payReq.getAmount();
         String payType = payReq.getPayType().name();
-        String customerEmail = payReq.getCustomerEmail();
-        String orderName = payReq.getOrderName().name();
+        String ID = payReq.getID();
+
 
         if (amount == null) {
             throw new RuntimeException("금액을 입력하세요");
@@ -56,14 +53,11 @@ public class PayService {
         if (!payType.equals("CARD") && !payType.equals("POINT")) {
             throw new RuntimeException("결제방법을 다시 입력하세요.");
         }
-        if (!orderName.equals(OrderNameType.chicken.name())) {
-            throw new RuntimeException("주문명을 다시 입력하세요.");
-        }
         PayRes payRes;
         try {
             System.out.println("일러오나");
             Pay pay = payReq.toEntity();
-            memberRepository.findByEmail(customerEmail)
+            memberRepository.findByID(ID)
                     .ifPresentOrElse(
                             M -> {
                                 M.addPay(pay);
