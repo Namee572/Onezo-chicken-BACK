@@ -1,6 +1,7 @@
 package com.green.onezo.pay;
 
 
+import com.green.onezo.cart.Cart;
 import com.green.onezo.member.Member;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,6 +45,12 @@ public class Pay {
     @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.PERSIST)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
+
+    // 카트 추가
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
+
 
     public PayRes toDto(){
         return PayRes.builder()

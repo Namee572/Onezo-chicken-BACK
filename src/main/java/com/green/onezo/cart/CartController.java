@@ -1,7 +1,6 @@
 package com.green.onezo.cart;
 
 import com.green.onezo.member.Member;
-import com.green.onezo.member.MemberService;
 import com.green.onezo.menu.Menu;
 import com.green.onezo.store.Store;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +17,15 @@ import java.util.List;
 public class CartController {
 
     private final CartService cartService;
-    private final MemberService memberService;
+
+    // @PostMapping() 매장 혹은 포장
+
+
 
     // 장바구니에 아이템 추가 (매장 선택 O)
     @PostMapping("/cart/add/store/{storeId}")
     public ResponseEntity<String> addCart(Member memberId, Store storeId, Menu menuId, int quantity) {
-        cartService.addCart(memberId,storeId,menuId,quantity); // ???
+        cartService.addCart(memberId,storeId,menuId,quantity);
         return new ResponseEntity<>("메뉴 담기 성공", HttpStatus.OK);
     }
 

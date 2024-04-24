@@ -30,18 +30,5 @@ public class CartItem {
 
     private int quantity;
 
-//
-//    public static CartItem createCartItem(Menu menu, int amount) {
-//        CartItem cartItem = new CartItem();
-//        cartItem.setMenu(menu);
-//        cartItem.setCount(amount);
-//        return cartItem;
-//    }
-//
-//    // // 이미 담겨있는 물건 또 담을 경우 수량 증가
-//    public void addCount(int count) {
-//        this.count += count;
-//    }
-
 
 }

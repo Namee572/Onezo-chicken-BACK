@@ -1,7 +1,6 @@
 package com.green.onezo.cart;
 
 import com.green.onezo.member.Member;
-import com.green.onezo.member.MemberRepository;
 import com.green.onezo.menu.Menu;
 import com.green.onezo.menu.MenuRepository;
 import com.green.onezo.store.Store;
@@ -28,13 +27,6 @@ public class CartService {
 
         //  해당되는 메뉴가 없으면 Exception 처리
         Menu dbMenu = menuRepository.findById(menu.getId()).orElseThrow();
-//        CartItem cartItem = CartItem.builder()
-//                .member(member)
-//                .quantity(quantity)
-//                .store(store)
-//                .menu(menu)
-//                .build();
-
 
         Cart cart = Cart.builder()
                 .member(member)
