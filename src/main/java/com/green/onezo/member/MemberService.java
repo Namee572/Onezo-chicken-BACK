@@ -3,8 +3,6 @@ package com.green.onezo.member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
-
 import com.green.onezo.enum_column.Role;
 import jakarta.transaction.Transactional;
 
@@ -18,14 +16,14 @@ public class MemberService {
 //    private PasswordEncoder passwordEncoder;
     //회원가입 signUp
     @Transactional
-    public Member signup(MemberDto memberDTO) {
+    public Member signup(MemberDto memberDto) {
         Member member = new Member();
-        member.setUserId(memberDTO.getUserId());
-        member.setPassword(memberDTO.getPassword());//이거 암호화 진행 시켜야됨 jasypt 개놈새키
-        member.setNickname(memberDTO.getNickname());
-        member.setName(memberDTO.getName());
-        member.setResign_yn(memberDTO.getResign_yn());
-        member.setPhone(memberDTO.getPhone());
+        member.setUserId(memberDto.getUserId());
+        member.setPassword(memberDto.getPassword());//이거 암호화 진행 시켜야됨 jasypt 개놈새키
+        member.setNickname(memberDto.getNickname());
+        member.setName(memberDto.getName());
+        member.setResign_yn(memberDto.getResign_yn());
+        member.setPhone(memberDto.getPhone());
         //유저 권한을 부여.
         member.setRole(Role.USER);
 
@@ -33,7 +31,7 @@ public class MemberService {
     }
 
 
-    public Optional<Member> authenticate(String memberId, String password) {
-        return memberRepository.findByUserIdAndPassword(memberId,password);
+    public Optional<Member> authenticate(String userId, String password) {
+        return memberRepository.findByUserIdAndPassword(userId,password);
     }
 }

@@ -23,10 +23,10 @@ public class CartService {
     // 장바구니에 아이템 추가
     public void addCart(Member member, Store store, Menu menu, int quantity) {
         // 해당 매장에 재고 있음?
-        int menuStock = menuRepository.findStockByStoreAndMenu(store, menu);
-        if (menuStock < quantity) {
-            throw new IllegalArgumentException("품절? 판매 안함?");
-        }
+        //int menuStock = menuRepository.findStockByStoreAndMenu(store, menu);
+        //if (menuStock < quantity) {
+          //  throw new IllegalArgumentException("품절? 판매 안함?");
+        //}
 
         // 재고 있으면 장바구니에 아이템 추가
         CartItem cartItem = CartItem.builder()
