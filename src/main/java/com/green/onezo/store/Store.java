@@ -16,6 +16,7 @@ public class Store {
     private Long id;
     private String storeName;
     private String address;
+    private String addressOld;
     private String storePhone;
     private LocalTime openTime;
     private LocalTime closeTime;

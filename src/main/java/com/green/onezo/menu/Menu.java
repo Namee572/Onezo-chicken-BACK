@@ -41,7 +41,7 @@ public class Menu {
 
     @ManyToOne
     @JoinColumn(name = "nutrient_id")
-    private nutrient nutrient;
+    private Nutrient nutrient;
 
 
 
