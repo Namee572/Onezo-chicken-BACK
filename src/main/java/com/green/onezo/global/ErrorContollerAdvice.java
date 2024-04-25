@@ -22,7 +22,6 @@ public class ErrorContollerAdvice extends ResponseEntityExceptionHandler {
                                                                   HttpHeaders headers,
                                                                   HttpStatusCode status,
                                                                   WebRequest request) {
-
         java.util.List<FieldError> list = ex.getFieldErrors();
         String errorMessage = "";
 

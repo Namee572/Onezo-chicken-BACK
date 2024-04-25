@@ -36,8 +36,13 @@ public class Purchase {
     @JoinColumn(name = "member_id")
     private Member member;
 
+<<<<<<< HEAD
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
+=======
+
+    @ManyToOne
+>>>>>>> 6977126 (240425)
     @JoinColumn(name = "payRecord_id")
     private PayRecord payRecord;
 

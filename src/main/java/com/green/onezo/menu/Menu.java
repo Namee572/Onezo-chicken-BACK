@@ -1,5 +1,10 @@
 package com.green.onezo.menu;
 
+<<<<<<< HEAD
+=======
+
+import com.green.onezo.store.Store;
+>>>>>>> 6977126 (240425)
 import jakarta.persistence.*;
 import lombok.Data;
 

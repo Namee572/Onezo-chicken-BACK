@@ -35,10 +35,14 @@ public class Cart {
 
     private int quantity;
 
+<<<<<<< HEAD
     private LocalDateTime createDate;
 
     @Enumerated(EnumType.STRING)
     private OrderType orderType;
+=======
+
+>>>>>>> 6977126 (240425)
 
     @OneToMany(mappedBy = "cart")
     private List<Pay> pays = new ArrayList<>();
