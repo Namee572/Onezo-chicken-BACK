@@ -35,7 +35,9 @@ jasypt:
   encryptor:
     password: wasdjlkjoIQHNWLIUEOqkA;XDLJakldmaSL
 
+#이거 꼭 자시프트 해서 깃허브에 올리기
+#프론트쪽에 client_id restapi 키 넣어줘야됨
 kakao:
   client:
     id: ee6034fee6eaca2e42ce04b136729cf7
-    secret:
+    secret: i25c2321Aa5A9Jy1r6AgrOj2SihPO0Jn

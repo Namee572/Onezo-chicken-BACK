@@ -16,6 +16,4 @@ public class PurchaseDto {
     private String menuName;
     private int totalPrice;
 
-
-
 }
