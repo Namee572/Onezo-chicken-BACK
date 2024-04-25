@@ -1,6 +1,5 @@
 package com.green.onezo.purchase;
 
-
 import com.green.onezo.cart.OrderType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
@@ -12,6 +11,12 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class PurchaseDto {
+
+    private Long orderId;
+    private LocalDateTime orderDate;
+    private String orderType;
+    private String menuName;
+    //private String menuImage;
 
 
     private Long orderId;

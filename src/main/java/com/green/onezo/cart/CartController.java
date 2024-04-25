@@ -20,8 +20,6 @@ public class CartController {
 
     // @PostMapping() 매장 혹은 포장
 
-<<<<<<< HEAD
-
 
 //    // 장바구니에 아이템 추가 (매장 선택 O)
 //    @PostMapping("/cart/add/store/{storeId}")
@@ -36,14 +34,15 @@ public class CartController {
 //        cartService.addCart(memberId,null,menuId,quantity);
 //        return new ResponseEntity<>("메뉴 담기 성공", HttpStatus.OK);
 //    }
-=======
-    // 장바구니에 아이템 추가 (매장 선택 O)
-    @PostMapping("/cart/add/store/{storeId}")
-    public ResponseEntity<String> addCart(Member memberId, Store storeId, Menu menuId, int quantity) {
-        cartService.addCart(memberId,storeId,menuId,quantity);
-        return new ResponseEntity<>("메뉴 담기 성공", HttpStatus.OK);
-    }
->>>>>>> 6977126 (240425)
+
+//    장바구니에 아이템 추가 (매장 선택 O)
+//    @PostMapping("/cart/add/store/{storeId}")
+//    public ResponseEntity<String> addCart(Member memberId, Store storeId, Menu menuIdint.   
+//    quantity) {
+//    cartService.addCart(memberId,storeId,menuId,quantity);
+//    return new ResponseEntity<>("메뉴 담기 성공", HttpStatus.OK);
+//    }
+
 
 //
 //    // 장바구니 아이템 조회
@@ -53,14 +52,15 @@ public class CartController {
 //        return new ResponseEntity<>(cartItems,HttpStatus.OK);
 //    }
 
-//    // 장바구니 아이템 수량 조절
+//     장바구니 아이템 수량 조절
 //    @PutMapping("/update/{cartItemId}")
-//    public ResponseEntity<String> updateQuantity(@PathVariable Long cartItemId, int quantity) {
+//    public ResponseEntity<String> updateQuantity(@PathVariable Long cartItemId, int quantity)  
+// {
 //        cartService.updateQuantity(cartItemId, quantity);
 //        return new ResponseEntity<>("수량 업뎃 성공", HttpStatus.OK);
 //    }
 
-//    // 장바구니 아이템 삭제
+//     장바구니 아이템 삭제
 //    @DeleteMapping("/delete/{cartItemId}")
 //    public ResponseEntity<String> deleteItem(@PathVariable Long cartItemId) {
 //        cartService.deleteCartItem(cartItemId);
@@ -73,7 +73,7 @@ public class CartController {
 //        int totalPay = cartService.totalPay(memberId);
 //        return new ResponseEntity<>(totalPay,HttpStatus.OK);
 //    }
-}
+// }
 
 
 
