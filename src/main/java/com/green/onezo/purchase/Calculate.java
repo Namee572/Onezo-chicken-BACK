@@ -1,4 +1,4 @@
-package com.green.onezo.order;
+package com.green.onezo.purchase;
 
 
 import jakarta.persistence.*;
@@ -23,5 +23,6 @@ public class Calculate {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Purchase order;
+
 }
