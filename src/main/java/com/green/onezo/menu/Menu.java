@@ -1,6 +1,6 @@
 package com.green.onezo.menu;
 
-import com.green.onezo.cart.CartItem;
+
 import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -28,8 +28,6 @@ public class Menu {
     @Enumerated(EnumType.STRING)
     private MenuStatus menuStatus; // 메뉴 상태
 
-    @OneToMany(mappedBy = "menu")
-    private List<CartItem> cart_items = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "store_id")

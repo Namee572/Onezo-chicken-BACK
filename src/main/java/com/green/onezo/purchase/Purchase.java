@@ -32,9 +32,6 @@ public class Purchase {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
 
     @ManyToOne
     @JoinColumn(name = "payRecord_id")

@@ -37,8 +37,7 @@ public class Cart {
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
-    @OneToMany(mappedBy = "cart")
-    private List<CartItem> cartItemList = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "cart")
     private List<Pay> pays = new ArrayList<>();

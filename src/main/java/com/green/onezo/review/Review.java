@@ -40,8 +40,5 @@ public class Review {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Purchase order;
 
 }
