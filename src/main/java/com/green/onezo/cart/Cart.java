@@ -49,7 +49,7 @@ public class Cart {
     }
 
     @Enumerated
-    private OrderType takeInOut;
+    private TakeInOut takeInOut;
 
     private LocalDateTime createDate;
 
