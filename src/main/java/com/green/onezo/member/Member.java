@@ -46,5 +46,4 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
 }
