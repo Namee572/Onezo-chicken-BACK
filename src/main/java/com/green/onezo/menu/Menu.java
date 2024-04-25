@@ -1,6 +1,7 @@
 package com.green.onezo.menu;
 
 import com.green.onezo.cart.CartItem;
+import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,10 +22,6 @@ public class Menu {
 
     private String origin; // 원산지
 
-    private String allergyInfo; // 알레르기 정보
-
-    private String nutrient; // 영양성분 정보
-
     @Enumerated(EnumType.STRING)
     private MenuCategory menuCategory;
 
@@ -33,6 +30,20 @@ public class Menu {
 
     @OneToMany(mappedBy = "menu")
     private List<CartItem> cart_items = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    @ManyToOne
+    @JoinColumn(name = "menuInfo_id")
+    private MenuInfo menuInfo;
+
+    @ManyToOne
+    @JoinColumn(name = "nutrient_id")
+    private nutrient nutrient;
+
+
 
 
 }
