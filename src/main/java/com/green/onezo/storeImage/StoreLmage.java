@@ -1,6 +1,6 @@
-package com.green.onezo.purchase;
+package com.green.onezo.storeImage;
 
-
+import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,21 +8,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Calculate {
-
+@Data
+public class StoreLmage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "calculate_id")
+    @Column(name = "storeLmageId")
     private Long id;
 
-    private float charge;
+
+    private String image;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Purchase order;
+    @JoinColumn(name = "store_id")
+    private Store store;
+
 
 }

@@ -1,5 +1,4 @@
-package com.green.onezo.purchase;
-
+package com.green.onezo.menu;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,17 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Calculate {
+public class MenuInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "calculate_id")
+    @Column(name = "menuInfoId")
     private Long id;
 
-    private float charge;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Purchase order;
+    private String allergy;
+    private String origin;
 
 }

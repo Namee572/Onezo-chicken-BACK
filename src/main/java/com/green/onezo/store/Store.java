@@ -23,8 +23,5 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private StoreStatus storeStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
-    
+
 }

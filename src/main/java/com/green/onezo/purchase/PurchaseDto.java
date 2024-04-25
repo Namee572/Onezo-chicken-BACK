@@ -1,5 +1,7 @@
 package com.green.onezo.purchase;
 
+
+import com.green.onezo.cart.OrderType;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,8 +12,8 @@ import java.time.LocalDateTime;
 public class PurchaseDto {
     private Long orderId;
     private LocalDateTime orderDate;
-    private String orderType;
+    private OrderType orderType;
     private String menuName;
-    //private String menuImage;
+    private int totalPrice;
 
 }
