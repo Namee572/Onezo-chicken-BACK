@@ -1,5 +1,6 @@
 package com.green.onezo.purchase;
 
+
 import com.green.onezo.cart.OrderType;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +15,7 @@ public class PurchaseDto {
     private OrderType orderType;
     private String menuName;
     private int totalPrice;
+
+
 
 }

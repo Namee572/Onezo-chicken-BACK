@@ -40,7 +40,6 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItemList = new ArrayList<>();
 
-
     @OneToMany(mappedBy = "cart")
     private List<Pay> pays = new ArrayList<>();
 

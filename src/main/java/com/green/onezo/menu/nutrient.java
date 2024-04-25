@@ -1,5 +1,4 @@
-package com.green.onezo.purchase;
-
+package com.green.onezo.menu;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,20 +8,20 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Calculate {
+public class nutrient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "calculate_id")
+    @Column(name = "nutrientId")
     private Long id;
 
-    private float charge;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Purchase order;
-
+    private int Kcal;
+    private int na;
+    private int carb;
+    private int suger;
+    private int fat;
+    private int protein;
 }

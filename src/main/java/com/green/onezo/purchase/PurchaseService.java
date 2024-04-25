@@ -15,16 +15,4 @@ public class PurchaseService {
 
     private final PayRepository payRepository;
 
-//    public List<PurchaseDto> getOrderHistory(String userId) {
-//        List<Pay> orders = payRepository.findTop5ByUserId(userId);
-//        return mapToDto(orders);
-//
-//    }
-
-//    private PurchaseDto mapToDto(Pay pay) {
-//        return PurchaseDto.builder()
-//                .orderId(pay.getId())
-//                .build();
-//
-//    }
 }
