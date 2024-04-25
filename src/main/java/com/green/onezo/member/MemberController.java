@@ -59,6 +59,6 @@ public class MemberController {
     @GetMapping("oauth/kakao/callback")
     public String kakaoCallback(String code){
         System.out.println("code="+code);
-        return "kakao";
+        return code;
     }
 }
