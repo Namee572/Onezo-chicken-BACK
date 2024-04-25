@@ -26,19 +26,19 @@ public class Cart {
     private Long id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="member_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
+    private int quantity;
 
-    @OneToMany(mappedBy = "cart")
-    private List<CartItem> cartItemList = new ArrayList<>();
+    private LocalDateTime createDate;
+
+    @Enumerated(EnumType.STRING)
+    private OrderType orderType;
 
     @OneToMany(mappedBy = "cart")
     private List<Pay> pays = new ArrayList<>();
@@ -47,11 +47,4 @@ public class Cart {
         pays.add(pay);
         pay.setCart(this);
     }
-
-    @Enumerated
-    private OrderType takeInOut;
-
-    private LocalDateTime createDate;
-
-
 }

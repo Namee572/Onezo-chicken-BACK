@@ -1,6 +1,7 @@
 package com.green.onezo.purchase;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.onezo.member.Member;
 import com.green.onezo.payRecord.PayRecord;
 import com.green.onezo.store.Store;
@@ -25,18 +26,18 @@ public class Purchase {
     private Long id;
 
     private String menu;
+
     private int quantity;
+
     private LocalDateTime payDate;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
-
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payRecord_id")
     private PayRecord payRecord;
 

@@ -13,6 +13,5 @@ public class StoreDto {
     private String storePhone;
     private LocalTime openTime;
     private LocalTime closeTime;
-    private StoreStatus storeStatus;
 
 }

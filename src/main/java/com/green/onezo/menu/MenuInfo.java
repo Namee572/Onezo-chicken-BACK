@@ -18,6 +18,9 @@ public class MenuInfo {
     @Column(name = "menuInfoId")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
     private String allergy;
     private String origin;
