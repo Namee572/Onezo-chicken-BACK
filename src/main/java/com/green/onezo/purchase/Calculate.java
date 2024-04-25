@@ -23,6 +23,6 @@ public class Calculate {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Purchase order;
+    private Purchase purchase;
 
 }

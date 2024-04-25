@@ -14,7 +14,6 @@ public class CartDto {
     private Long cartId;
     private Member member;
     private Store store;
-    private Menu menu;
     private int quantity;
 
 }

@@ -46,7 +46,6 @@ public class Pay {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    // 카트 추가
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;

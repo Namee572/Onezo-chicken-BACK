@@ -17,59 +17,57 @@ import java.util.Optional;
 public class CartService {
 
     private final CartRepository cartRepository;
-    private final CartItemRepository cartItemRepository;
     private final MenuRepository menuRepository;
 
+//
+//    // 장바구니에 아이템 추가
+//    @Transactional
+//    public void addCart(Member member, Store store, Menu menu, int quantity) {
+//
+//        //  해당되는 메뉴가 없으면 Exception 처리
+//        Menu dbMenu = menuRepository.findById(menu.getId()).orElseThrow();
 
-    // 장바구니에 아이템 추가
-    @Transactional
-    public void addCart(Member member, Store store, Menu menu, int quantity) {
+//        Cart cart = Cart.builder()
+//                .member(member)
+//                .store(store)
+//                .cartItemList(
+//                        Arrays.asList(
+//                        CartItem.builder()
+//                                .quantity(10)
+//                                .menu(dbMenu)
+//                            .build())
+//                        )
+//                .build();
 
-        //  해당되는 메뉴가 없으면 Exception 처리
-        Menu dbMenu = menuRepository.findById(menu.getId()).orElseThrow();
+//        cartRepository.save(cart);
+//    }
 
-        Cart cart = Cart.builder()
-                .member(member)
-                .store(store)
-                .menu(menu)
-                .cartItemList(
-                        Arrays.asList(
-                        CartItem.builder()
-                                .quantity(10)
-                                .menu(dbMenu)
-                            .build())
-                        )
-                .build();
+//    // 장바구니 아이템 조회
+//    public List<CartItem> getCartItems(Member member) {
+//        return cartRepository.findByMember(member);
+//    }
+//
+//    // 장바구니 아이템 수량 조절
+//    public void updateQuantity(Long cartItemId, int quantity) {
+//        Optional<CartItem> optionalCartItem = cartItemRepository.findById(cartItemId);
+//        optionalCartItem.ifPresent(cartItem -> {
+//            cartItem.setQuantity(quantity);
+//            cartItemRepository.save(cartItem);
+//        });
+//    }
 
-        cartRepository.save(cart);
-    }
+//    // 장바구니 아이템 삭제
+//    public void deleteCartItem(Long cartItemId) {
+//        cartRepository.deleteById(cartItemId);
+//    }
 
-    // 장바구니 아이템 조회
-    public List<CartItem> getCartItems(Member member) {
-        return cartRepository.findByMember(member);
-    }
-
-    // 장바구니 아이템 수량 조절
-    public void updateQuantity(Long cartItemId, int quantity) {
-        Optional<CartItem> optionalCartItem = cartItemRepository.findById(cartItemId);
-        optionalCartItem.ifPresent(cartItem -> {
-            cartItem.setQuantity(quantity);
-            cartItemRepository.save(cartItem);
-        });
-    }
-
-    // 장바구니 아이템 삭제
-    public void deleteCartItem(Long cartItemId) {
-        cartRepository.deleteById(cartItemId);
-    }
-
-    // 장바구니 총 결제 금액 계산
-    public int totalPay(Member member) {
-        List<CartItem> cartItems = cartRepository.findByMember(member);
-        int totalPay = 0;
-        for (CartItem cartItem : cartItems) {
-            totalPay += cartItem.getMenu().getPrice() * cartItem.getQuantity();
-        }
-        return totalPay;
-    }
+//    // 장바구니 총 결제 금액 계산
+//    public int totalPay(Member member) {
+//        List<CartItem> cartItems = cartRepository.findByMember(member);
+//        int totalPay = 0;
+//        for (CartItem cartItem : cartItems) {
+//            totalPay += cartItem.getMenu().getPrice() * cartItem.getQuantity();
+//        }
+//        return totalPay;
+//    }
 }

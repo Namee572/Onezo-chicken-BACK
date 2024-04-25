@@ -18,9 +18,6 @@ public class StoreService {
                 .storeName(store.getStoreName())
                 .address(store.getAddress())
                 .storePhone(store.getStorePhone())
-                .openTime(store.getOpenTime())
-                .closeTime(store.getCloseTime())
-                .storeStatus(store.getStoreStatus())
                 .build();
     }
 }
