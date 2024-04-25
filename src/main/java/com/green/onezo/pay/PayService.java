@@ -1,5 +1,6 @@
 package com.green.onezo.pay;
 
+import com.green.onezo.cart.CartRepository;
 import com.green.onezo.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
@@ -23,7 +24,7 @@ import java.util.Base64;
 public class PayService {
 
     private final PayRepository payRepository;
-    private final MemberRepository memberRepository;
+    private final CartRepository cartRepository;
 
     @Value("${toss.client.id}")
     private String clientId;
@@ -57,7 +58,7 @@ public class PayService {
         try {
             System.out.println("일러오나");
             Pay pay = payReq.toEntity();
-            memberRepository.findByUserId(userId)
+            cartRepository.findByMember_UserId(userId)
                     .ifPresentOrElse(
                             M -> {
                                 M.addPay(pay);

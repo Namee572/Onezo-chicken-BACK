@@ -2,7 +2,7 @@ package com.green.onezo.review;
 
 
 import com.green.onezo.member.Member;
-import com.green.onezo.order.Order;
+import com.green.onezo.purchase.Purchase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
@@ -35,7 +34,7 @@ public class Review {
     private LocalDateTime reviewUpDate;
 
     @Enumerated(EnumType.STRING)
-    private Delete delete;
+    private ReviewStatus reviewStatus;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -43,6 +42,6 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Purchase order;
 
 }

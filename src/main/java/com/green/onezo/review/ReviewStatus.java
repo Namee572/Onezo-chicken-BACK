@@ -1,5 +1,5 @@
 package com.green.onezo.review;
 
-public enum Delete {
+public enum ReviewStatus {
     Y,N
 }
