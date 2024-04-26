@@ -18,14 +18,14 @@ public class Nutrient {
     @Column(name = "nutrient_id")
     private Long id;
 
+
     @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
-    private int Kcal;
-    private int na;
-    private int carb;
-    private int suger;
-    private int fat;
-    private int protein;
+    private Float kcal;
+    private Float na;
+    private Float sugars;
+    private Float fat;
+    private Float protein;
 }

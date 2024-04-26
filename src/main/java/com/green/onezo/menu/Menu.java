@@ -22,8 +22,6 @@ public class Menu {
 
     private double price;
 
-    private String origin; // 원산지
-
     @Enumerated(EnumType.STRING)
     private MenuCategory menuCategory;
 

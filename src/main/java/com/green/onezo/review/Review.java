@@ -40,9 +40,4 @@ public class Review {
     private LocalDateTime reviewUpDate;
 
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
-
-
 }

@@ -39,8 +39,6 @@ public class Purchase {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-
-    @ManyToOne
     @JoinColumn(name = "payRecord_id")
     private PayRecord payRecord;
 
