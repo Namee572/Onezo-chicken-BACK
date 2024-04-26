@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 //    @Schema(description = "회원 유효성 검사를 위한 객체입니다.")
 public class MemberDto {
-    //자동증가 키
+
     private Long id;
 
     @NotBlank(message = "아이디는 필수 입력 사항입니다.")

@@ -1,4 +1,4 @@
-package com.green.onezo.global;
+package com.green.onezo.global.error;
 
 
 import org.springframework.http.HttpHeaders;
@@ -30,7 +30,7 @@ public class ErrorContollerAdvice extends ResponseEntityExceptionHandler {
             errorMessage += error.getDefaultMessage() + "\n";
         }
 
-        com.green.onezo.global.ErrorResponse errorResponse = com.green.onezo.global.ErrorResponse
+        ErrorResponse errorResponse = ErrorResponse
                 .builder()
                 .errorCode(HttpStatus.BAD_REQUEST.toString())
                 .errorMessage( errorMessage )

@@ -1,9 +1,11 @@
 package com.green.onezo.purchase;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.onezo.member.Member;
 import com.green.onezo.payRecord.PayRecord;
 import com.green.onezo.store.Store;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Schema(description = "주문")
 public class Purchase {
 
     @Id
@@ -28,15 +31,13 @@ public class Purchase {
     private int quantity;
     private LocalDateTime payDate;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
-
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payRecord_id")
     private PayRecord payRecord;
 
