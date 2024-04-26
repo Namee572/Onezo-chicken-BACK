@@ -4,6 +4,7 @@ import com.green.onezo.member.Member;
 import com.green.onezo.menu.Menu;
 import com.green.onezo.pay.Pay;
 import com.green.onezo.store.Store;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Schema(description = "장바구니")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,18 +35,9 @@ public class Cart {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    private int quantity;
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<CartItem> cartItemList = new ArrayList<>();
 
-    private LocalDateTime createDate;
 
-    @Enumerated(EnumType.STRING)
-    private OrderType orderType;
-
-    @OneToMany(mappedBy = "cart")
-    private List<Pay> pays = new ArrayList<>();
-
-    public void addPay(Pay pay) {
-        pays.add(pay);
-        pay.setCart(this);
-    }
 }

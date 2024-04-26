@@ -11,9 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartDto {
-    private Long cartId;
-    private Member member;
-    private Store store;
+
+    private Long id;
+    private Long member_id;
     private int quantity;
+    private Long store_id;
+    private Long menu_id;
 
 }
