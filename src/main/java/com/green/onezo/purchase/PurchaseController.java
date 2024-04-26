@@ -16,10 +16,8 @@ public class PurchaseController {
 
     private final PurchaseService purchaseService;
 
-    @GetMapping("")
+    @GetMapping("/record")
     public Optional<Purchase> getOrder(@RequestParam Long id) {
-        System.out.println("일로오나");
-        System.out.println(id);
         return purchaseService.getOrder(id);
 
     }

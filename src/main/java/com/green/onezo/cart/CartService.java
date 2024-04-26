@@ -33,7 +33,6 @@ public class CartService {
         int quantity = cartDto.getQuantity();
 
         if(cart.isPresent()){
-            System.out.println("cart existing");
             Cart existingCart =cart.get();
             existingCart.getCartItemList().add(
                     CartItem.builder()
@@ -45,7 +44,6 @@ public class CartService {
 
             cartRepository.save(existingCart);
         }else{
-            System.out.println("cart new");
             Cart newcart = Cart.builder()
                     .member(member)
                     .store(store)
@@ -66,6 +64,8 @@ public class CartService {
     }
 
 //    // 카트 아이템 조회
+  
+
 //    public List<CartItem> getAllCartItems(Long cartId) {
 //        Optional<Cart> cartOptional = cartRepository.findById(cartId);
 //        return cartRepository.findById(cartId);

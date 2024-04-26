@@ -11,11 +11,12 @@ import java.time.LocalDateTime;
 public class PurchaseDto {
 
 
-    private Long orderId;
+    private Long id;
 
     private String menu;
-
     private int quantity;
-
     private LocalDateTime payDate;
+    //private Long orderId;
+
+
 }

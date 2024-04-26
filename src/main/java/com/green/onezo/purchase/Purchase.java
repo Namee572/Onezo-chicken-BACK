@@ -28,9 +28,7 @@ public class Purchase {
     private Long id;
 
     private String menu;
-
     private int quantity;
-
     private LocalDateTime payDate;
 
     @JsonIgnore
