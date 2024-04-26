@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,7 +22,5 @@ public class PurchaseService {
     public Optional<Purchase> getOrder(Long id){
         return purchaseRepository.findByPayRecord_id(id);
     }
-
-
 
 }

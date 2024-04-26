@@ -1,4 +1,4 @@
-package com.green.onezo.global;
+package com.green.onezo.global.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

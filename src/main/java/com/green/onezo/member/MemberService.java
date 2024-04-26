@@ -34,4 +34,13 @@ public class MemberService {
     public Optional<Member> authenticate(String userId, String password) {
         return memberRepository.findByUserIdAndPassword(userId,password);
     }
+
+
+
+
+
+
+
+
+
 }

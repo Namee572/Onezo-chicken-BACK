@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.onezo.member.Member;
 import com.green.onezo.payRecord.PayRecord;
 import com.green.onezo.store.Store;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Schema(description = "주문")
 public class Purchase {
 
     @Id
@@ -26,9 +28,7 @@ public class Purchase {
     private Long id;
 
     private String menu;
-
     private int quantity;
-
     private LocalDateTime payDate;
 
     @JsonIgnore

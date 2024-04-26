@@ -50,7 +50,6 @@ public class Pay {
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
-
     public PayRes toDto(){
         return PayRes.builder()
                 .payType(payType.name())
