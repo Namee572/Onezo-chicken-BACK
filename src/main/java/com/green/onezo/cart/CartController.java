@@ -13,9 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/cart")
 @RequiredArgsConstructor
-
 public class CartController {
-
     private final CartService cartService;
 
     // @PostMapping() 매장 혹은 포장
@@ -73,7 +71,7 @@ public class CartController {
 //        int totalPay = cartService.totalPay(memberId);
 //        return new ResponseEntity<>(totalPay,HttpStatus.OK);
 //    }
-// }
+ }
 
 
 
