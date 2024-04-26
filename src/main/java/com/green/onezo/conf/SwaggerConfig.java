@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(
-        info = @Info( title = "결제 api ",
-                description = "토스 결제",
+        info = @Info( title = "주문결제 시스템 ",
+                description = "주문결제 시스템",
                 version = "v1.0.0"
         )
 )
