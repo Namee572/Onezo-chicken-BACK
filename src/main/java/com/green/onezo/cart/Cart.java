@@ -35,25 +35,13 @@ public class Cart {
 
     private int quantity;
 
-
     private LocalDateTime createDate;
 
     @Enumerated(EnumType.STRING)
-    private OrderType orderType;
-
-    @OneToMany(mappedBy = "cart")
-    private List<Pay> pays = new ArrayList<>();
-
-    public void addPay(Pay pay) {
-        pays.add(pay);
-        pay.setCart(this);
-    }
+    private TakeInOut orderType;
 
 
-    @Enumerated
-    private TakeInOut takeInOut;
 
-    private LocalDateTime createDate;
 
 
 }

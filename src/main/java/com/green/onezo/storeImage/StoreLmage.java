@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class StoreLmage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "storeLmageId")

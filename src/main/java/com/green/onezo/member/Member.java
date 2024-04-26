@@ -21,6 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "member")
 public class Member {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
@@ -45,6 +46,15 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+
+    @OneToMany(mappedBy = "member")
+    private List<Pay> pays = new ArrayList<>();
+
+    public void addPay(Pay pay) {
+        pays.add(pay);
+        pay.setMember(this);
+    }
 
 
 }

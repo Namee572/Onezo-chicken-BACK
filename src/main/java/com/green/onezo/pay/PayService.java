@@ -24,7 +24,7 @@ import java.util.Base64;
 public class PayService {
 
     private final PayRepository payRepository;
-    private final CartRepository cartRepository;
+    private final MemberRepository memberRepository;
 
     @Value("${toss.client.id}")
     private String clientId;
@@ -58,7 +58,7 @@ public class PayService {
         try {
             System.out.println("일러오나");
             Pay pay = payReq.toEntity();
-            cartRepository.findByMember_UserId(userId)
+            memberRepository.findByUserId(userId)
                     .ifPresentOrElse(
                             M -> {
                                 M.addPay(pay);
