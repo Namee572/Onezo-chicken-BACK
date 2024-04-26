@@ -27,8 +27,19 @@ public class Menu {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @ManyToOne
+    @JoinColumn(name = "menuInfo_id")
+    private MenuInfo menuInfo;
+
+    @ManyToOne
+    @JoinColumn(name = "nutrient_id")
+    private Nutrient nutrient;
+
+
+
 //    @OneToMany(mappedBy = "menu")
 //    private List<CartItem> cart_items = new ArrayList<>();
+
 
 
 }

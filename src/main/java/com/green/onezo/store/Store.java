@@ -22,6 +22,7 @@ public class Store {
 
     private String storeName;
     private String address;
+    private String addressOld;
     private String storePhone;
     private String openClose;
 
