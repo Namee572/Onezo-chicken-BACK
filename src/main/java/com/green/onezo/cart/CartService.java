@@ -1,75 +1,79 @@
 package com.green.onezo.cart;
 
 import com.green.onezo.member.Member;
+import com.green.onezo.member.MemberRepository;
 import com.green.onezo.menu.Menu;
 import com.green.onezo.menu.MenuRepository;
 import com.green.onezo.store.Store;
+import com.green.onezo.store.StoreRepostitory;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class CartService {
 
     private final CartRepository cartRepository;
-    private final CartItemRepository cartItemRepository;
     private final MenuRepository menuRepository;
+    private final MemberRepository memberRepository;
+    private final StoreRepostitory storeRepostitory;
+    private final CartItemRepository cartItemRepository;
 
-
-    // 장바구니에 아이템 추가
     @Transactional
-    public void addCart(Member member, Store store, Menu menu, int quantity) {
+    public void addCart(CartDto cartDto) {
 
-        //  해당되는 메뉴가 없으면 Exception 처리
-        Menu dbMenu = menuRepository.findById(menu.getId()).orElseThrow();
+        Menu menu = menuRepository.findMenuById(cartDto.getMenu_id());
+        Store store = storeRepostitory.findStoreById(cartDto.getStore_id());
+        Member member = memberRepository.findById(cartDto.getMember_id()).orElseThrow();
 
-        Cart cart = Cart.builder()
-                .member(member)
-                .store(store)
-                .menu(menu)
-                .cartItemList(
-                        Arrays.asList(
-                        CartItem.builder()
-                                .quantity(10)
-                                .menu(dbMenu)
-                            .build())
-                        )
-                .build();
+        Optional<Cart> cart = cartRepository.findByMember_UserId(member.getUserId());
+        int quantity = cartDto.getQuantity();
 
-        cartRepository.save(cart);
-    }
+        if(cart.isPresent()){
+            Cart existingCart =cart.get();
+            existingCart.getCartItemList().add(
+                    CartItem.builder()
+                            .quantity(cartDto.getQuantity())
+                            .menu(menu)
+                            .cart(existingCart)
+                            .build()
+            );
 
-    // 장바구니 아이템 조회
-    public List<CartItem> getCartItems(Member member) {
-        return cartRepository.findByMember(member);
-    }
+            cartRepository.save(existingCart);
+        }else{
+            Cart newcart = Cart.builder()
+                    .member(member)
+                    .store(store)
+                    .build();
 
-    // 장바구니 아이템 수량 조절
-    public void updateQuantity(Long cartItemId, int quantity) {
-        Optional<CartItem> optionalCartItem = cartItemRepository.findById(cartItemId);
-        optionalCartItem.ifPresent(cartItem -> {
-            cartItem.setQuantity(quantity);
-            cartItemRepository.save(cartItem);
-        });
-    }
-
-    // 장바구니 아이템 삭제
-    public void deleteCartItem(Long cartItemId) {
-        cartRepository.deleteById(cartItemId);
-    }
-
-    // 장바구니 총 결제 금액 계산
-    public int totalPay(Member member) {
-        List<CartItem> cartItems = cartRepository.findByMember(member);
-        int totalPay = 0;
-        for (CartItem cartItem : cartItems) {
-            totalPay += cartItem.getMenu().getPrice() * cartItem.getQuantity();
+            if( newcart.getCartItemList()== null){
+                newcart.setCartItemList(new ArrayList<>());
+            }
+            newcart.getCartItemList().add(
+                    CartItem.builder()
+                            .quantity(cartDto.getQuantity())
+                            .menu(menu)
+                            .cart(newcart)
+                            .build()
+            );
+            cartRepository.save(newcart);
         }
-        return totalPay;
     }
+
+//    // 카트 아이템 조회
+  
+
+//    public List<CartItem> getAllCartItems(Long cartId) {
+//        Optional<Cart> cartOptional = cartRepository.findById(cartId);
+//        return cartRepository.findById(cartId);
+//    }
+
+    public void deleteCart(Long cartId) {
+        cartRepository.deleteById(cartId);
+    }
+
+
 }

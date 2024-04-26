@@ -15,13 +15,12 @@ import org.hibernate.annotations.Cache;
 @NoArgsConstructor
 @Builder
 public class PayRecord {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payRecord_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pay_id")
     private Pay pay;
 

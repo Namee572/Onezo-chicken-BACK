@@ -12,13 +12,12 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class StoreDto {
     private Long id;
+
     private String storeName;
     private String address;
     private String addressOld;
     private String storePhone;
-    private LocalTime openTime;
-    private LocalTime closeTime;
-    private StoreStatus storeStatus;
+    private String openClose;
 
     public StoreDto(Object[] data) {
         this.storeName = (String) data[0];

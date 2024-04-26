@@ -13,6 +13,6 @@ Optional<MenuInfo> findByAll();
 
 
 
-
+    Menu findMenuById(Long id);
 }
 

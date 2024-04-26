@@ -3,9 +3,13 @@ package com.green.onezo.cart;
 import com.green.onezo.member.Member;
 import com.green.onezo.menu.Menu;
 import com.green.onezo.store.Store;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,56 +17,38 @@ import java.util.List;
 @RestController
 @RequestMapping("/cart")
 @RequiredArgsConstructor
-
+@Tag(name = "Cart-Controller", description = "장바구니")
 public class CartController {
 
     private final CartService cartService;
 
-    // @PostMapping() 매장 혹은 포장
+    // 장바구니에 아이템 추가
+    @PostMapping("/add")
+    public ResponseEntity<String> addCart(@RequestBody CartDto cartDto) {
 
-
-
-    // 장바구니에 아이템 추가 (매장 선택 O)
-    @PostMapping("/cart/add/store/{storeId}")
-    public ResponseEntity<String> addCart(Member memberId, Store storeId, Menu menuId, int quantity) {
-        cartService.addCart(memberId,storeId,menuId,quantity);
-        return new ResponseEntity<>("메뉴 담기 성공", HttpStatus.OK);
+        // Jwt
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // userId -> memberId
+        try {
+            cartService.addCart(cartDto);
+            return new ResponseEntity<>("메뉴 담기 성공", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("메뉴 담기 실패: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    // 장바구니에 아이템 추가(매장 선택 X)
-    @PostMapping("/cart/add")
-    public ResponseEntity<String> addCart(Member memberId, Menu menuId, int quantity) {
-        cartService.addCart(memberId,null,menuId,quantity);
-        return new ResponseEntity<>("메뉴 담기 성공", HttpStatus.OK);
-    }
+//    // 장바구니 조회
+//    @GetMapping("/{memberId}")
+//    public List<CartItem> getAllCartItems(@PathVariable Long memberId){
+//        List<CartItem> cartItems = cartService.getAllCartItems(memberId);
+//        return cartItems;
+//    }
 
-
-    // 장바구니 아이템 조회
-    @GetMapping("/cart/items")
-    public ResponseEntity<List<CartItem>> getCartItems(Member memberId) {
-        List<CartItem> cartItems = cartService.getCartItems(memberId);
-        return new ResponseEntity<>(cartItems,HttpStatus.OK);
-    }
-
-    // 장바구니 아이템 수량 조절
-    @PutMapping("/update/{cartItemId}")
-    public ResponseEntity<String> updateQuantity(@PathVariable Long cartItemId, int quantity) {
-        cartService.updateQuantity(cartItemId, quantity);
-        return new ResponseEntity<>("수량 업뎃 성공", HttpStatus.OK);
-    }
-
-    // 장바구니 아이템 삭제
-    @DeleteMapping("/delete/{cartItemId}")
-    public ResponseEntity<String> deleteItem(@PathVariable Long cartItemId) {
-        cartService.deleteCartItem(cartItemId);
-        return new ResponseEntity<>("아이템 삭제 성공", HttpStatus.OK);
-    }
-
-    // 장바구니 총 결제 금액 조회
-    @GetMapping("/cart/total-pay")
-    public ResponseEntity<Integer> totalPay(Member memberId) {
-        int totalPay = cartService.totalPay(memberId);
-        return new ResponseEntity<>(totalPay,HttpStatus.OK);
+    // 장바구니 전체 아이템 삭제
+    @DeleteMapping("/delete/{cartId}")
+    public ResponseEntity<String> deleteCart(@PathVariable Long cartId) {
+        cartService.deleteCart(cartId);
+        return new ResponseEntity<>("장바구니 초기화 성공", HttpStatus.OK);
     }
 }
 

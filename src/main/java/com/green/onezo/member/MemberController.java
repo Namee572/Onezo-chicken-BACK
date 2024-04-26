@@ -3,6 +3,7 @@ package com.green.onezo.member;
 
 import com.green.onezo.jwt.JwtTokenDto;
 import com.green.onezo.jwt.JwtUtil;
+import com.green.onezo.kakao.KakaoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ public class MemberController {
     private final JwtUtil jwtUtil;
     private final MemberService memberService;
     private final MemberRepository memberRepository;
+    private final KakaoService kakaoService;
 
     //회원가입
     @PostMapping("signUp")
@@ -55,7 +57,7 @@ public class MemberController {
                     jwtTokenDto);
         }
     }
-    //
+    //카카오 로그인
     @GetMapping("oauth/kakao/callback")
     public String kakaoCallback(String code){
         System.out.println("code="+code);

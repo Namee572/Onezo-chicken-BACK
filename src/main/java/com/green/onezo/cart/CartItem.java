@@ -1,6 +1,5 @@
 package com.green.onezo.cart;
 
-import com.green.onezo.member.Member;
 import com.green.onezo.menu.Menu;
 import com.green.onezo.store.Store;
 import jakarta.persistence.*;
@@ -11,13 +10,14 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cartItem_id")
     private Long id;
 
     @ManyToOne
@@ -29,6 +29,4 @@ public class CartItem {
     private Menu menu;
 
     private int quantity;
-
-
 }
