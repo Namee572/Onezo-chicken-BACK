@@ -33,15 +33,5 @@ public class Cart {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    private int quantity;
-
-    private LocalDateTime createDate;
-
-    @Enumerated(EnumType.STRING)
-    private TakeInOut orderType;
-
-
-
-
 
 }

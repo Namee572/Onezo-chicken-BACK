@@ -4,6 +4,7 @@ import com.green.onezo.store.Store;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import net.sf.jsqlparser.statement.select.Fetch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,10 @@ public class Menu {
 
     @Enumerated(EnumType.STRING)
     private MenuCategory menuCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
 //    @OneToMany(mappedBy = "menu")
 //    private List<CartItem> cart_items = new ArrayList<>();
