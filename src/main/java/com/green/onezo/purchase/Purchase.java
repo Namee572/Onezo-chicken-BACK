@@ -26,26 +26,12 @@ public class Purchase {
     @Column(name = "purchase_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
+//    @OneToOne(mappedBy = "purchase")
+//    private PayRecord payRecord;
 
-    @Column(nullable = false)
-    private int quantity;
-
-    @Column(name = "pay_date", nullable = false)
-    private LocalDateTime payDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "pay_record_id")
     private PayRecord payRecord;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id")
-//    private Member member;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "store_id")
-//    private Store store;
 
 }

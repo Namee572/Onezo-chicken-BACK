@@ -3,6 +3,7 @@ package com.green.onezo.review;
 
 import com.green.onezo.member.Member;
 import com.green.onezo.purchase.Purchase;
+import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,10 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id") // 이는 DB의 실제 컬럼 이름
+    private Store store;
 
     @Column(nullable = false)
     private String comment;

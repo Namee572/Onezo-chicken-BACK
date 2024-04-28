@@ -17,7 +17,7 @@ public class StoreDto {
     private String address;
     private String addressOld;
     private String storePhone;
-    private String openClose;
+    private String storeHours;
     private TakeOut takeOut;
 
     public StoreDto(Object[] data) {

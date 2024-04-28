@@ -3,10 +3,13 @@ package com.green.onezo.pay;
 
 import com.green.onezo.cart.Cart;
 import com.green.onezo.member.Member;
+import com.green.onezo.payRecord.PayRecord;
+import com.green.onezo.purchase.Purchase;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -49,6 +52,9 @@ public class Pay {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
+
+    @OneToMany(mappedBy = "pay")
+    private List<PayRecord> payRecords;
 
     public PayRes toDto(){
         return PayRes.builder()

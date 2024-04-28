@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
-   Store findStoreById(Long id);
+    Store findStoreById(Long id);
 
-  @Query("SELECT s.storeName, s.address, s.addressOld FROM Store s")
-   List<Object[]> findByStoreNameAndAddressAndAddressOld(@NotNull String storeName, @NotNull String address, @NotNull String addressOld);
+    @Query("SELECT s.storeName, s.address, s.addressOld FROM Store s")
+    List<Object[]> findByStoreNameAndAddressAndAddressOld(@NotNull String storeName, @NotNull String address, @NotNull String addressOld);
 
 
 }

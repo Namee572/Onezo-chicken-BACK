@@ -11,20 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/review")
-@RequiredArgsConstructor
-@Tag(name = "Review-Controller", description = "리뷰")
-public class ReviewController {
-
-    private final ReviewService reviewService;
-
-    @GetMapping("/store/{storeId}")
-    public ResponseEntity<List<Review>> getAllReviewsByStore(@PathVariable Long storeId) {
-        List<Review> reviews = reviewService.findAllReviewsByStore(storeId);
-        if(reviews.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(reviews, HttpStatus.OK);
-    }
-}
+//@RestController
+//@RequestMapping("/api/review")
+//@RequiredArgsConstructor
+//@Tag(name = "Review-Controller", description = "리뷰")
+//public class ReviewController {
+//
+//    private final ReviewService reviewService;
+//
+//    @GetMapping("/store/{storeId}")
+//    public ResponseEntity<List<Review>> getReviewsByStore(@PathVariable Long storeId) {
+//        List<Review> reviews = reviewService.StoreReviews(storeId);
+//        return ResponseEntity.ok(reviews);
+//    }
+//}

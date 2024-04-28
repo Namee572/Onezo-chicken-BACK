@@ -10,8 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 public class MemberUpdateDto {
 
-    private Long id;
-
     @Size(min = 2, max = 20, message = "아이디는 최소 2자 이상 20자 이하로 입력해야합니다.")
     private String userId;
 

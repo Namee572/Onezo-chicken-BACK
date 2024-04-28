@@ -8,19 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class MenuInfo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_info_id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
+//    @OneToOne
+//    @JoinColumn(name = "menu_id")
+//    private Menu menu;
 
     @Column(nullable = false)
     private String allergy;
