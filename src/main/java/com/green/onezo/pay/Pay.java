@@ -46,6 +46,9 @@ public class Pay {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
 
     public PayRes toDto(){
         return PayRes.builder()

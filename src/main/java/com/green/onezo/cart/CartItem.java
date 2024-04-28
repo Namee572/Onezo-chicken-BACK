@@ -1,5 +1,6 @@
-package com.green.onezo.menu;
+package com.green.onezo.cart;
 
+import com.green.onezo.menu.Menu;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,24 +9,24 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class MenuInfo {
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "menu_info_id")
+    @Column(name = "cart_item_id")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
     @Column(nullable = false)
-    private String allergy;
-
-    @Column(nullable = false)
-    private String origin;
-
+    private int quantity;
 }

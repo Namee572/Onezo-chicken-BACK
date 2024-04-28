@@ -1,7 +1,6 @@
 package com.green.onezo.menu;
 
 import com.green.onezo.store.Store;
-
 import jakarta.persistence.*;
 import lombok.Data;
 import net.sf.jsqlparser.statement.select.Fetch;
@@ -17,11 +16,11 @@ public class Menu {
     @Column(name = "menu_id")
     private Long id;
 
-    private String stock;
-
+    @Column(nullable = false)
     private String menuName;
 
-    private double price;
+    @Column(nullable = false)
+    private int stock;
 
     @Enumerated(EnumType.STRING)
     private MenuCategory menuCategory;
@@ -37,7 +36,20 @@ public class Menu {
 
 
 
+    @Column(nullable = false)
+    private double price;
 
+    @Enumerated(EnumType.STRING)
+    private MenuCategory menuCategory;
+
+    @ManyToMany(mappedBy = "menus")
+    private List<Store> stores = new ArrayList<>();
+
+    @OneToOne(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+    private MenuInfo menuInfo;
+
+    @OneToOne(mappedBy = "nutrient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Nutrient nutrient;
 
 
 }

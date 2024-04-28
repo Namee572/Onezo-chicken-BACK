@@ -47,7 +47,6 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
     @OneToMany(mappedBy = "member")
     private List<Pay> pays = new ArrayList<>();
 
