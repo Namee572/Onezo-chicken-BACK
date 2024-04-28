@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/store")
 @RequiredArgsConstructor
-@Tag(name = "Store-Controller", description = "매장")
+@Tag(name = "store-controller", description = "매장")
 public class StoreController {
     private final StoreService storeService;
 

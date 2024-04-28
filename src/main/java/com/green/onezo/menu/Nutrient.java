@@ -8,18 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Nutrient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "nutrient_id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "menu_id", unique = true)
-    private Menu menu;
+//    @OneToOne
+//    @JoinColumn(name = "menu_id")
+//    private Menu menu;
 
     @Column(nullable = false)
     private int kcal;

@@ -1,4 +1,4 @@
-INSERT INTO store (store_name, address, address_old, store_phone, open_close) VALUES
+INSERT INTO store (store_name, address, address_old, store_phone, store_hours) VALUES
 ('원조치킨 경북대점', '대구 북구  산격로 75 1층', '산격동 1220-10 1층', '053-952-0778', '24시간'),
 ('원조치킨 범어점', '대구 수성구 범어로 73 205동102호', '범어동 2235 205동 102호', '053-753-9934', '24시간'),
 ('원조치킨 성서계명대점', '대구 달서구 선원로 191 1층', '이곡동 1356-17 1층', '053-593-2005', '24시간'),
@@ -283,18 +283,18 @@ INSERT INTO menu (store_id, stock, menu_name, price, menu_category) VALUES
 (14, 'In stock', 'SET 2', 38000, 'SET');
 
 
-INSERT INTO nutrient(menu_id, kcal, na, sugars, fat, protein) VALUES
-(1, 253.73, 408.19, 0.36, 2.86, 18.77),
-(2, 313.01, 541.01, 0.00, 3.84, 17.09),
-(3, 255.84, 533.31, 6.34, 2.52, 20.44),
-(4, 308.86, 529.23, 2.32, 3.57, 21.44),
-(5, 280.63, 478.5, 19.84, 32.84, 19.84),
-(6, 271.30, 644.44, 23.93, 4.07, 17.23),
-(7, 231.33, 630.34, 2.44, 1.51, 2.44),
-(8, 285.00, 470.00, 4.00, 3.00, 3.00),
-(9, 302.09, 39.00, 12.86, 7.87, 20.42),
-(10, 313.01, 541.01, 0.00, 3.84, 17.09),
-(11, 615.89, 937.51, 0.67, 9.99, 20.42);
+INSERT INTO nutrient(menu_id, kcal, na, carb, sugar, fat, protein) VALUES
+(1, 253.73, 408.19, 102.4, 0.36, 2.86, 18.77),
+(2, 313.01, 541.01, 132.43, 0.00, 3.84, 17.09),
+(3, 255.84, 533.31, 329.74, 6.34, 2.52, 20.44),
+(4, 308.86, 529.23, 228.3, 2.32, 3.57, 21.44),
+(5, 280.63, 478.5, 155.34, 19.84, 32.84, 19.84),
+(6, 271.30, 644.44, 452.1, 23.93, 4.07, 17.23),
+(7, 231.33, 630.34, 174.2, 2.44, 1.51, 2.44),
+(8, 285.00, 470.00, 373.2, 4.00, 3.00, 3.00),
+(9, 302.09, 39.00, 12.85, 12.86, 7.87, 20.42),
+(10, 313.01, 541.01, 92.33, 0.00, 3.84, 17.09),
+(11, 615.89, 937.51, 529.12, 0.67, 9.99, 20.42);
 
 INSERT INTO menu_info(menu_id, allergy, origin) VALUES
 (1, '우유 대두 밀 계란 닭고기 조개류(굴) 쇠고기 새우 땅콩', '국내산'),
@@ -308,3 +308,24 @@ INSERT INTO menu_info(menu_id, allergy, origin) VALUES
 (9, '우유, 대두, 밀, 계란', '국내산'),
 (10, '대두, 밀, 계란, 닭고기, 조개류(굴), 땅콩', '국내산'),
 (11, '우유, 대두, 밀, 계란, 닭고기, 토마토, 쇠고기, 돼지고기', '국내산');
+
+INSERT INTO member(user_id, password, name, nickname, phone,  resign_yn ) VALUES
+('ssumin08@naver.com', 'qweqwe123', '권수민', '권감', '010-4444-1234', 'N'),
+('goodboy11@naver.com', 'asdasd123', '고찬우', '굿굿', '010-6666-5678', 'N'),
+('soyeon2@naver.com', 'zxczxc123', '박소연', '소연님', '010-4949-7890', 'N'),
+('jjunjjun@naver.com', 'zxczxc543', '박준재', '헤이쭌', '010-1111-1111', 'N'),
+('40ejej@naver.com', 'dherw123', '사공은진', '은진님', '010-2222-2222', 'N'),
+('shinn88@naver.com', 'qzwrewt123', '신지훈', '먹짱', '010-3333-3333', 'N'),
+('hee0510@naver.com', 'gzwtwfdsxc123', '정은희', '희야', '010-4444-4444', 'N'),
+('jinbird12@naver.com', 'fzxsefczxc123', '조정진', '진조', '010-5555-5555', 'N'),
+('ejejej123@naver.com', 'gszxghczexc123', '최은재', '실버재', '010-6666-6666', 'N')
+
+
+INSERT INTO pay (amount, create_date,customer_name, order_id, pay_success_yn, pay_type, payment_key, user_id,cart_id,member_id) VALUES
+(42000, '2024-04-10 16:30:53','사용자', '100132', 'y', 'CARD', 'paymentKey', 'qweqwe12@naver.copaym', 1,1)
+
+
+INSERT INTO review(comment, star, member_id, store_id ) VALUES
+('굿굿', 5, 1, 1),
+('흠...', 3, 2, 1),
+('호호', 4, 3, 1)

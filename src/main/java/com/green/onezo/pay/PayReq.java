@@ -1,6 +1,10 @@
 package com.green.onezo.pay;
 
 
+import com.green.onezo.cart.Cart;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

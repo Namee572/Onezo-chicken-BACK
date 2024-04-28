@@ -30,13 +30,11 @@ public class CartService {
         Store store = storeRepository.findStoreById(cartDto.getStoreId());
         Member member = memberRepository.findById(cartDto.getMemberId()).orElseThrow();
 
-        if (menu.getStock() < cartDto.getQuantity()) {
+        if (menu.getStock().equals("Out of stock")) {
             throw new RuntimeException("재고가 부족합니다.");
         }
-        menuRepository.decreaseStock(cartDto.getMenuId(), cartDto.getQuantity()); // 재고 감소
 
         Optional<Cart> cart = cartRepository.findByMember_UserId(member.getUserId());
-        //int quantity = cartDto.getQuantity();
 
         if (cart.isPresent()) {
             Cart existingCart = cart.get();
@@ -47,8 +45,7 @@ public class CartService {
                             .cart(existingCart)
                             .build()
             );
-
-            cartRepository.save(existingCart);
+         cartRepository.save(existingCart);
         } else {
             Cart newcart = Cart.builder()
                     .member(member)
@@ -76,7 +73,6 @@ public class CartService {
         List<Long> menuIds = cart.getCartItemList().stream()
                 .map(item -> item.getMenu().getId())
                 .collect(Collectors.toList());
-        // 메뉴 ID와 수량을 각각 리스트로 추출
         List<Integer> quantities = cart.getCartItemList().stream()
                 .map(CartItem::getQuantity)
                 .collect(Collectors.toList());
@@ -84,15 +80,35 @@ public class CartService {
         return new CartDto(cart.getId(), memberId, quantities.get(0), cart.getStore().getId(), menuIds.get(0));
     }
 
+    public void deleteCartItem(Long memberId, Long cartItemId) {
+        Cart cart = cartRepository.findByMemberId(memberId)
+                .orElseThrow(() -> new RuntimeException("장바구니가 존재하지 않습니다."));
 
-    public void deleteCartItem(Long cartItemId) {
-        cartItemRepository.deleteById(cartItemId);
+        CartItem deleteItem = cart.getCartItemList().stream()
+                .filter(item -> item.getId().equals(cartItemId))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("장바구니에 해당 아이템이 없습니다."));
+
+        cart.getCartItemList().remove(deleteItem);
+        cartItemRepository.delete(deleteItem);
     }
 
+    public void updateCartItemQuantity(Long memberId, Long cartItemId, int newQuantity) {
+        if (newQuantity <= 0) {
+            deleteCartItem(memberId, cartItemId);
+            return;
+        }
 
-    public void deleteCart(Long cartId) {
-        cartRepository.deleteById(cartId);
+        Cart cart = cartRepository.findByMemberId(memberId)
+                .orElseThrow(() -> new RuntimeException("장바구니가 존재하지 않습니다."));
+
+        CartItem itemToUpdate = cart.getCartItemList().stream()
+                .filter(item -> item.getId().equals(cartItemId))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("장바구니에 해당 아이템이 없습니다."));
+
+        itemToUpdate.setQuantity(newQuantity);
+        cartItemRepository.save(itemToUpdate);
     }
-
 
 }

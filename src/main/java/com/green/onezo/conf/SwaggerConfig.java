@@ -7,8 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(
-        info = @Info( title = "결제 api ",
-                description = "토스 결제",
+        info = @Info(
+                title = "Onezo API Documentation",
+                description = "OnezoChicken: 장바구니, 회원, 메뉴, 결제, 주문내역, 매장",
                 version = "v1.0.0"
         )
 )
@@ -24,5 +25,7 @@ public class SwaggerConfig {
                 .pathsToMatch(paths)
                 .build();
     }
+
+
 
 }
