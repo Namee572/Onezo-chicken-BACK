@@ -15,14 +15,17 @@ public class MenuInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "menuInfoId")
+    @Column(name = "menu_info_id")
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
+    @Column(nullable = false)
     private String allergy;
+
+    @Column(nullable = false)
     private String origin;
 
 }

@@ -3,6 +3,7 @@ package com.green.onezo.purchase;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.onezo.member.Member;
+import com.green.onezo.menu.Menu;
 import com.green.onezo.payRecord.PayRecord;
 import com.green.onezo.store.Store;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,26 +20,32 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Schema(description = "주문")
 public class Purchase {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "purchase_id")
     private Long id;
 
-    private String menu;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
+
+    @Column(nullable = false)
     private int quantity;
+
+    @Column(name = "pay_date", nullable = false)
     private LocalDateTime payDate;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payRecord_id")
+    @JoinColumn(name = "pay_record_id")
     private PayRecord payRecord;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "store_id")
+//    private Store store;
 
 }

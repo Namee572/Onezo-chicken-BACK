@@ -25,19 +25,21 @@ public class Review {
     @Column(name = "review_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    private String review;
+    @Column(nullable = false)
+    private String comment;
 
+    @Column(nullable = false)
     private int star;
 
-    @CreationTimestamp
-    private LocalDateTime reviewRegDate;
-
-    @UpdateTimestamp
-    private LocalDateTime reviewUpDate;
+//    @CreationTimestamp
+//    private LocalDateTime reviewRegDate;
+//
+//    @UpdateTimestamp
+//    private LocalDateTime reviewUpDate;
 
 
 

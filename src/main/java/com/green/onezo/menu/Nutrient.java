@@ -12,20 +12,30 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Nutrient {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "nutrient_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
+    @OneToOne
+    @JoinColumn(name = "menu_id", unique = true)
     private Menu menu;
 
-    private int Kcal;
+    @Column(nullable = false)
+    private int kcal;
+
+    @Column(nullable = false)
     private int na;
+
+    @Column(nullable = false)
     private int carb;
-    private int suger;
+
+    @Column(nullable = false)
+    private int sugar;
+
+    @Column(nullable = false)
     private int fat;
+
+    @Column(nullable = false)
     private int protein;
 }

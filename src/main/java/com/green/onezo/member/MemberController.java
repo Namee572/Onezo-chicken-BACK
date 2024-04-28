@@ -63,4 +63,16 @@ public class MemberController {
         System.out.println("code="+code);
         return code;
     }
+
+    @PutMapping("/update/{memberId}")
+    public ResponseEntity<?> updateMember(@Valid @RequestBody MemberUpdateDto updateDto) {
+            Member updatedMember = memberService.memberUpdate(updateDto);
+            return ResponseEntity.ok(updatedMember);
+    }
+
+    @PutMapping("/resign/{memberId}")
+    public ResponseEntity<?> resignMember(@Valid @RequestBody MemberResignDto resignDto) {
+        Member resignMember = memberService.memberResign(resignDto);
+        return ResponseEntity.ok(resignMember);
+    }
 }
