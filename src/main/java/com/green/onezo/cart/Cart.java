@@ -1,17 +1,13 @@
 package com.green.onezo.cart;
 
 import com.green.onezo.member.Member;
-import com.green.onezo.menu.Menu;
-import com.green.onezo.pay.Pay;
 import com.green.onezo.store.Store;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Schema(description = "장바구니")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +30,7 @@ public class Cart {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<CartItem> cartItemList = new ArrayList<>();
 

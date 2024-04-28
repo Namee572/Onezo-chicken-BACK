@@ -1,21 +1,16 @@
 package com.green.onezo.cart;
 
-import com.green.onezo.member.Member;
-import com.green.onezo.menu.Menu;
-import com.green.onezo.store.Store;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/api/cart")
 @RequiredArgsConstructor
 @Tag(name = "Cart-Controller", description = "장바구니")
 public class CartController {
@@ -23,7 +18,7 @@ public class CartController {
     private final CartService cartService;
 
     // 장바구니에 아이템 추가
-    @PostMapping("/add")
+    @PostMapping("/add/{memberId}/{storeId}/{menuId}")
     public ResponseEntity<String> addCart(@RequestBody CartDto cartDto) {
 
         // Jwt
@@ -37,18 +32,22 @@ public class CartController {
         }
     }
 
-//    // 장바구니 조회
-//    @GetMapping("/{memberId}")
-//    public List<CartItem> getAllCartItems(@PathVariable Long memberId){
-//        List<CartItem> cartItems = cartService.getAllCartItems(memberId);
-//        return cartItems;
-//    }
+    @GetMapping("/cartItem/{memberId}")
+    public ResponseEntity<CartDto> getCart(@PathVariable Long memberId) {
+        CartDto cart = cartService.getCart(memberId);
+        return ResponseEntity.ok(cart);
+    }
 
-    // 장바구니 전체 아이템 삭제
-    @DeleteMapping("/delete/{cartId}")
-    public ResponseEntity<String> deleteCart(@PathVariable Long cartId) {
+    @DeleteMapping("/{cartItemId}")
+    public ResponseEntity<Void> deleteCartItem(@PathVariable Long cartItemId) {
+        cartService.deleteCartItem(cartItemId);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{cartId}")
+    public ResponseEntity<Void> deleteCart(@PathVariable Long cartId) {
         cartService.deleteCart(cartId);
-        return new ResponseEntity<>("장바구니 초기화 성공", HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 }
 

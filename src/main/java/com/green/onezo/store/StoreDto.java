@@ -18,6 +18,7 @@ public class StoreDto {
     private String addressOld;
     private String storePhone;
     private String openClose;
+    private TakeOut takeOut;
 
     public StoreDto(Object[] data) {
         this.storeName = (String) data[0];

@@ -1,7 +1,6 @@
 package com.green.onezo.cart;
 
 import com.green.onezo.menu.Menu;
-import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +16,7 @@ public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cartItem_id")
+    @Column(name = "cart_item_id")
     private Long id;
 
     @ManyToOne
@@ -28,5 +27,6 @@ public class CartItem {
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
+    @Column(nullable = false)
     private int quantity;
 }

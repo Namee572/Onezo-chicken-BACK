@@ -1,7 +1,6 @@
 package com.green.onezo.menu;
 
 import com.green.onezo.store.Store;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,36 +9,32 @@ import java.util.List;
 
 @Entity
 @Data
-@Schema(description = "메뉴")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
     private Long id;
+
+    @Column(nullable = false)
     private String menuName;
-    private String stock;
+
+    @Column(nullable = false)
+    private int stock;
+
+    @Column(nullable = false)
     private double price;
 
     @Enumerated(EnumType.STRING)
     private MenuCategory menuCategory;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
+    @ManyToMany(mappedBy = "menus")
+    private List<Store> stores = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "menuInfo_id")
+    @OneToOne(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
     private MenuInfo menuInfo;
 
-    @ManyToOne
-    @JoinColumn(name = "nutrient_id")
+    @OneToOne(mappedBy = "nutrient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Nutrient nutrient;
-
-
-
-//    @OneToMany(mappedBy = "menu")
-//    private List<CartItem> cart_items = new ArrayList<>();
-
 
 
 }
