@@ -26,9 +26,6 @@ public class Purchase {
     @Column(name = "purchase_id")
     private Long id;
 
-//    @OneToOne(mappedBy = "purchase")
-//    private PayRecord payRecord;
-
     @ManyToOne
     @JoinColumn(name = "pay_record_id")
     private PayRecord payRecord;

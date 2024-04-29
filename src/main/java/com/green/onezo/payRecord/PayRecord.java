@@ -27,8 +27,5 @@ public class PayRecord {
     @JoinColumn(name = "pay_id")
     private Pay pay;
 
-//    @OneToMany(mappedBy = "payRecord")
-//    private List<Purchase> purchases;
-
 
 }
