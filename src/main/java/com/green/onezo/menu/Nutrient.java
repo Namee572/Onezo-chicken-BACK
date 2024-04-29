@@ -14,9 +14,9 @@ public class Nutrient {
     @Column(name = "nutrient_id")
     private Long id;
 
-//    @OneToOne
-//    @JoinColumn(name = "menu_id")
-//    private Menu menu;
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
     @Column(nullable = false)
     private int kcal;

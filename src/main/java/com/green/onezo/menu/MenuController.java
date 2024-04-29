@@ -12,7 +12,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "menu-controller", description = "메뉴")
-public class MenuController {
+public class  MenuController {
 
 //    private final MenuService menuService;
 //
