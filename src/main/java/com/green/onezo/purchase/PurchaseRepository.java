@@ -1,6 +1,7 @@
 package com.green.onezo.purchase;
 
 import com.green.onezo.payRecord.PayRecord;
+import com.green.onezo.review.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
+    List<Purchase> findByPayRecordId(Long payRecordId);
+    //List<Review> findByStoreId(Long storeId);
 
 
 }

@@ -53,8 +53,6 @@ public class Pay {
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
-    @OneToMany(mappedBy = "pay")
-    private List<PayRecord> payRecords;
 
     public PayRes toDto(){
         return PayRes.builder()
