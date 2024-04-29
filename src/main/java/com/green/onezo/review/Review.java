@@ -26,9 +26,13 @@ public class Review {
     @Column(name = "review_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+//    @ManyToOne
+//    @JoinColumn(name = "member_id")
+//    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "store_id") // 이는 DB의 실제 컬럼 이름

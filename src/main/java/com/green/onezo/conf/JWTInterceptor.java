@@ -41,6 +41,7 @@ public class JWTInterceptor implements HandlerInterceptor {
         ){
             return true;
         }
+        
         //Token이 없거나 Bearer로 시작하지 않는다면 "token이 없습니다." 출력
         if (token==null || !token.startsWith("Bearer")){
             System.out.println("token이 없습니다.");
