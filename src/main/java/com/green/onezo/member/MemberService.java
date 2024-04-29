@@ -78,5 +78,7 @@ public class MemberService {
         member.setResign_yn(Resign_yn.Y);
         memberRepository.save(member); // 변경된 탈퇴 상태를 데이터베이스에 저장
     }
+
+    //아이디 찾기 , 비밀번호 찾기
 }
 
