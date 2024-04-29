@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CartDto {
 
-
     private Long cartId;
     private Member member;
     private Store store;
@@ -26,7 +25,7 @@ public class CartDto {
 
     @NotNull(message = "수량은 필수입니다.")
     @Min(value = 1, message = "수량은 최소 1개 이상이어야 합니다.")
-    private int quantity;
+    private Integer quantity;
 
     @NotNull(message = "매장 ID는 필수입니다.")
     private Long storeId;
@@ -34,4 +33,15 @@ public class CartDto {
     @NotNull(message = "메뉴 ID는 필수입니다.")
     private Long menuId;
 
+
+    public CartDto(Long cartId, Long id, Integer quantity, Long storeId, Long menuId) {
+        this.cartId = cartId;
+        this.member = member;
+        this.store = store;
+        this.id = id;
+        this.memberId = memberId;
+        this.quantity = quantity;
+        this.storeId = storeId;
+        this.menuId = menuId;
+    }
 }

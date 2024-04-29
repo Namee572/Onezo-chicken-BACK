@@ -46,10 +46,4 @@ public class Purchase {
     @JoinColumn(name = "payRecord_id")
     private PayRecord payRecord;
 
-
-    @ManyToOne
-    @JoinColumn(name = "pay_record_id")
-    private PayRecord payRecord;
-
-
 }

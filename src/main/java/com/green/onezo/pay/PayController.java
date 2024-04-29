@@ -2,6 +2,7 @@ package com.green.onezo.pay;
 
 
 import com.green.onezo.pay.response.SingleResult;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class PayController {
 
     private final PayService payService;
     private final ResponseService responseService;
+    @Operation(summary = "결제 요청 ",
+            description = "order_id 얻오는것"
+    )
     @PostMapping("")
     public PayRes requestPay(@ModelAttribute PayReq payReq) {
         try {
@@ -27,6 +31,9 @@ public class PayController {
         }
     }
 
+    @Operation(summary = "웹 페이지에서 요청한 값을 얻어온다.",
+            description = "paymentkey 를 얻을수 있다."
+    )
     @GetMapping("/success")
     public ResponseEntity<JSONObject> requestFinalPayments(@RequestParam String paymentKey,
                                                            @RequestParam String orderId,
@@ -44,6 +51,9 @@ public class PayController {
         }
 
     }
+    @Operation(summary = "결제 환불",
+            description = "결제 환불사유 "
+    )
     @GetMapping("/fail")
     public SingleResult<PaymentResHandleFailDto> requestFinalPaymentsFail(@RequestParam String errorCode,
                                                                           @RequestParam String orderId,

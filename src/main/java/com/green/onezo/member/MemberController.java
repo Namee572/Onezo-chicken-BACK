@@ -22,8 +22,6 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final KakaoService kakaoService;
-
-
     //회원가입
     @Operation(summary = "회원 가입",
             description = "아이디 ,비밀번호 ,이름 ,닉네임 ,연락처를 이용해 회원가입")
@@ -93,8 +91,6 @@ public class MemberController {
                     jwtTokenDto);
         }
     }
-}
-
 
     //카카오 로그인
     @GetMapping("oauth/kakao/callback")
@@ -102,6 +98,7 @@ public class MemberController {
         System.out.println("code=" + code);
         return code;
     }
+
 
     @PutMapping("/update/{memberId}")
     @Operation(summary = "회원 정보 수정")

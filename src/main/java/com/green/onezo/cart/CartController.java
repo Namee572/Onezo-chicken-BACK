@@ -35,7 +35,7 @@ public class CartController {
         }
     }
 
- }
+
     @GetMapping("/cartItem/{memberId}")
     @Operation(summary = "장바구니 조회")
     public ResponseEntity<?> getCart(@PathVariable Long memberId) {

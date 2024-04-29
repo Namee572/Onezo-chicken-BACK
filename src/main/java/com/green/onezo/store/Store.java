@@ -29,7 +29,6 @@ public class Store {
 
     @Column(nullable = false)
     private String address;
-    private String addressOld;
 
     private String addressOld;
 

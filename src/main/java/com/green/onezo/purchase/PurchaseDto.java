@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 
 @Data
 @Builder
@@ -23,14 +25,8 @@ public class PurchaseDto {
     private String orderType;
     private String menuName;
     //private String menuImage;
-
-
-
     private String menu;
-
-
     private Long id;
-    private String menuName;
     private int quantity;
     private LocalDateTime payDate;
     private String storeName;
@@ -38,7 +34,7 @@ public class PurchaseDto {
     private TakeOut takeOut;
     private double price;
     private Long amount; // 지불 금액
-    private String orderId;
+
     //private Long orderId;
 
     private PayRecord payRecord;

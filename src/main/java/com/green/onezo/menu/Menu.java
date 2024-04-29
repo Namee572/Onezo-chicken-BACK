@@ -35,20 +35,10 @@ public class Menu {
 
 //    @OneToMany(mappedBy = "menu")
 //    private List<CartItem> cart_items = new ArrayList<>();
-
-
-
-
-
+    
     @Column(nullable = false)
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id") // 이는 DB의 실제 컬럼 이름
-    private Store store;
-
-    @Enumerated(EnumType.STRING)
-    private MenuCategory menuCategory;
 
 //    @ManyToMany(mappedBy = "menus")
 //    private List<Store> stores = new ArrayList<>();
