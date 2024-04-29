@@ -1,9 +1,13 @@
 package com.green.onezo.menu;
 
+
 import com.green.onezo.store.Store;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import net.sf.jsqlparser.statement.select.Fetch;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +24,7 @@ public class Menu {
     private String menuName;
 
     @Column(nullable = false)
-    private int stock;
+    private String stock;
 
     @Enumerated(EnumType.STRING)
     private MenuCategory menuCategory;
@@ -39,17 +43,21 @@ public class Menu {
     @Column(nullable = false)
     private double price;
 
+    @ManyToOne
+    @JoinColumn(name = "store_id") // 이는 DB의 실제 컬럼 이름
+    private Store store;
+
     @Enumerated(EnumType.STRING)
     private MenuCategory menuCategory;
 
-    @ManyToMany(mappedBy = "menus")
-    private List<Store> stores = new ArrayList<>();
+//    @ManyToMany(mappedBy = "menus")
+//    private List<Store> stores = new ArrayList<>();
 
-    @OneToOne(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-    private MenuInfo menuInfo;
-
-    @OneToOne(mappedBy = "nutrient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Nutrient nutrient;
+//    @OneToOne(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private MenuInfo menuInfo;
+//
+//    @OneToOne(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Nutrient nutrient;
 
 
 }

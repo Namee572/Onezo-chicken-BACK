@@ -2,12 +2,15 @@ package com.green.onezo.payRecord;
 
 
 import com.green.onezo.pay.Pay;
+import com.green.onezo.purchase.Purchase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cache;
+
+import java.util.List;
 
 @Entity
 @Data

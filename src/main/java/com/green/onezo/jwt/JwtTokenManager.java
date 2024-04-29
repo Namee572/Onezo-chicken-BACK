@@ -19,7 +19,7 @@ import static io.jsonwebtoken.security.Keys.hmacShaKeyFor;
 
 
 @Component
-public class JwtUtil {
+public class JwtTokenManager {
     //application.yml에서 가져와야한다.
 //    이거 오류 해결 하기 jasypt
     @Value("${spring.jwt.secret}")
@@ -113,7 +113,7 @@ public class JwtUtil {
         return refreshjws;
     }
     //Access토큰 검증
-    public Jws<Claims> validateAccessoken(String accessToken){
+    public Jws<Claims> validateAccesstoken(String accessToken){
         Jws<Claims> acessjws=Jwts.parser()//번역
                 .setSigningKey(hmacShaKeyFor(SECRET_KEY.getBytes()))//비밀번호로
                 .build()//객체 생성 후

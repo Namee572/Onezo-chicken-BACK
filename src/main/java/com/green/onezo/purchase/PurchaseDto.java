@@ -5,12 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 
 import com.green.onezo.pay.PayType;
 import com.green.onezo.store.TakeOut;
+import com.green.onezo.payRecord.PayRecord;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -40,5 +40,7 @@ public class PurchaseDto {
     private Long amount; // 지불 금액
     private String orderId;
     //private Long orderId;
+
+    private PayRecord payRecord;
 
 }

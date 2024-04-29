@@ -11,7 +11,6 @@ public interface PayRepository extends JpaRepository<Pay,Long> {
 
     Optional<Pay> findByOrderId(String orderId);
 
-    List<Pay> findTop5ByUserId(String userId); // findTop5ByUserIdOrderByIdDesc
 
 
 

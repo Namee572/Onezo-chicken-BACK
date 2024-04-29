@@ -8,9 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Nutrient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +27,8 @@ public class Nutrient {
 
     @OneToOne
     @JoinColumn(name = "menu_id", unique = true)
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
     private Menu menu;
 
     @Column(nullable = false)

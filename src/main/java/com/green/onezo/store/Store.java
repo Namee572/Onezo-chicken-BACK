@@ -1,6 +1,7 @@
 package com.green.onezo.store;
 
 import com.green.onezo.menu.Menu;
+import com.green.onezo.purchase.Purchase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,11 +42,5 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private TakeOut takeOut;
 
-    @ManyToMany
-    @JoinTable(
-            name = "store_menu",
-            joinColumns = @JoinColumn(name = "store_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_id")
-    )
-    private List<Menu> menus = new ArrayList<>();
+    //private List<Menu> menus = new ArrayList<>();
 }

@@ -47,15 +47,9 @@ public class Purchase {
     private PayRecord payRecord;
 
 
+    @ManyToOne
     @JoinColumn(name = "pay_record_id")
     private PayRecord payRecord;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id")
-//    private Member member;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "store_id")
-//    private Store store;
 
 }

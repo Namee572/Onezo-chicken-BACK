@@ -8,17 +8,13 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class MenuInfo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_info_id")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
 

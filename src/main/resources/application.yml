@@ -41,8 +41,6 @@ jasypt:
 
 kakao:
   client:
-    id: ee6034fee6eaca2e42ce04b136729cf7
-    secret: 
-
+    id: ee6034fee6eaca2e42ce04b136729cf7 
     secret: i25c2321Aa5A9Jy1r6AgrOj2SihPO0Jn
     redirect: http://loaclhost:8080/oauth/kakao/callback
