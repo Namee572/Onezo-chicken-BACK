@@ -47,8 +47,8 @@ public class MemberController {
     @Operation(summary = "아이디 중복체크",
             description = "입력한 아이디를 db와 대조한뒤 중복 체크")
     @PostMapping("checkId")
-    public ResponseEntity<String> checkId(@RequestBody Member member) {
-        boolean checkIDDuplicate = memberRepository.existsByUserId(member.getUserId());
+    public ResponseEntity<String> checkId(@RequestBody AuthCheckIdDto authCheckIdDto) {
+        boolean checkIDDuplicate = memberRepository.existsByUserId(authCheckIdDto.getUserId());
 
         if (checkIDDuplicate) {
             return ResponseEntity.ok("중복된 아이디입니다");
