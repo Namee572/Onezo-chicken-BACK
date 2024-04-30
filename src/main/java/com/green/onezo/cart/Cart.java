@@ -36,7 +36,6 @@ public class Cart {
             orphanRemoval = true)
     private List<CartItem> cartItemList = new ArrayList<>();
 
-//    @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Pay pay;
+
 
 }
