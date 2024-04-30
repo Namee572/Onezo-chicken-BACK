@@ -19,8 +19,8 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    @GetMapping("/store/{storeId}")
-    public ResponseEntity<List<Review>> getReviewsByStore(@PathVariable Long storeId) {
+    @GetMapping("/{storeId}")
+    public ResponseEntity<List<Review>> getReviews(@PathVariable Long storeId) {
         List<Review> reviews = reviewService.StoreReviews(storeId);
         return ResponseEntity.ok(reviews);
     }

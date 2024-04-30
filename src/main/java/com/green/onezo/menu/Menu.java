@@ -1,6 +1,7 @@
 package com.green.onezo.menu;
 
 
+import com.green.onezo.cart.CartItem;
 import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,21 +35,8 @@ public class Menu {
     @JoinColumn(name = "store_id")
     private Store store;
 
-//    @OneToMany(mappedBy = "menu")
-//    private List<CartItem> cart_items = new ArrayList<>();
-    
+
     @Column(nullable = false)
     private double price;
-
-
-//    @ManyToMany(mappedBy = "menus")
-//    private List<Store> stores = new ArrayList<>();
-
-//    @OneToOne(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private MenuInfo menuInfo;
-//
-//    @OneToOne(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Nutrient nutrient;
-
 
 }

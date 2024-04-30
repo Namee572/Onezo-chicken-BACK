@@ -26,16 +26,12 @@ public class Review {
     @Column(name = "review_id")
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id")
-//    private Member member;
-
-//    @ManyToOne
-//    @JoinColumn(name = "member_id")
-//    private Member member;
+    @ManyToOne
+    @JoinColumn(name = "nickname")
+    private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "store_id") // 이는 DB의 실제 컬럼 이름
+    @JoinColumn(name = "store_id")
     private Store store;
 
     @Column(nullable = false)
@@ -43,12 +39,5 @@ public class Review {
 
     @Column(nullable = false)
     private int star;
-
-//    @CreationTimestamp
-//    private LocalDateTime reviewRegDate;
-//
-//    @UpdateTimestamp
-//    private LocalDateTime reviewUpDate;
-
 
 }

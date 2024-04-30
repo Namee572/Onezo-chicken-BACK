@@ -26,24 +26,8 @@ public class Purchase {
     @Column(name = "purchase_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
-
-    @Column(nullable = false)
-    private int quantity;
-
-    @Column(name = "pay_date", nullable = false)
-    private LocalDateTime payDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
-
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payRecord_id")
+    @ManyToOne
+    @JoinColumn(name = "pay_record_id")
     private PayRecord payRecord;
 
 }
