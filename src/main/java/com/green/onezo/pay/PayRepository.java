@@ -9,6 +9,8 @@ import java.util.Optional;
 @Repository
 public interface PayRepository extends JpaRepository<Pay,Long> {
 
+
+
     Optional<Pay> findByOrderId(String orderId);
 
 

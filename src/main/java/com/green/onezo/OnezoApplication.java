@@ -12,7 +12,6 @@ public class OnezoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnezoApplication.class, args);
-
 	}
 
 }

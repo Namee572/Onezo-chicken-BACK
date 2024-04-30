@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/api/cart")
 @RequiredArgsConstructor
@@ -35,6 +34,7 @@ public class CartController {
             return new ResponseEntity<>("장바구니에 추가 안되었습니다.", HttpStatus.BAD_REQUEST);
         }
     }
+
 
     @GetMapping("/cartItem/{memberId}")
     @Operation(summary = "장바구니 조회")
@@ -70,6 +70,7 @@ public class CartController {
     }
 
 }
+
 
 
 
