@@ -19,6 +19,22 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PurchaseDto {
 
+    private Long orderId;
+    private LocalDateTime orderDate;
+    private String orderType;
+    private String menuName;
+    //private String menuImage;
+    private String menu;
+    private Long id;
+    private int quantity;
+    private LocalDateTime payDate;
+    private String storeName;
+    private PayType payType;
+    private double price;
+    private Long amount; // 지불 금액
+
+    //private Long orderId;
+
     private PayRecord payRecord;
 
 }
