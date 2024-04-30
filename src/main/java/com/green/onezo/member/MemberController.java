@@ -22,8 +22,6 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final KakaoService kakaoService;
-
-
     //회원가입
     @Operation(summary = "회원 가입",
             description = "아이디 ,비밀번호 ,이름 ,닉네임 ,연락처를 이용해 회원가입")
@@ -47,8 +45,8 @@ public class MemberController {
     @Operation(summary = "아이디 중복체크",
             description = "입력한 아이디를 db와 대조한뒤 중복 체크")
     @PostMapping("checkId")
-    public ResponseEntity<String> checkId(@RequestBody Member member) {
-        boolean checkIDDuplicate = memberRepository.existsByUserId(member.getUserId());
+    public ResponseEntity<String> checkId(@RequestBody AuthCheckIdDto authCheckIdDto) {
+        boolean checkIDDuplicate = memberRepository.existsByUserId(authCheckIdDto.getUserId());
 
         if (checkIDDuplicate) {
             return ResponseEntity.ok("중복된 아이디입니다");
@@ -56,17 +54,36 @@ public class MemberController {
             return ResponseEntity.ok("사용가능한 아이디 입니다");
         }
     }
+    //비밀번호 확인
+    @Operation(summary = "비밀번호 확인",
+                description = "비밀번호 확인과 비밀번호가 일치하는지 확인")
+    @PostMapping("passwordCheck")
+    public ResponseEntity<String> passwordCheck(@RequestBody MemberDto memberDto){
+        String password=memberDto.getPassword();
+        String passwordCheck= memberDto.getPasswordCheck();
+
+        if(password.equals(passwordCheck)) {
+            return ResponseEntity.ok("비밀번호가 일치합니다.");
+        }else {
+            return ResponseEntity.ok("비밀번호가 일치하지 않습니다.");
+        }
+    }
+
 
     @Operation(summary = "닉네임 중복체크",
             description = "입력한 닉네임을 db와 대조한뒤 중복 체크")
     @PostMapping("checkNickname")
-    public ResponseEntity<String> checkNick(@RequestBody Member member) {
-        boolean checkNickDuplicate = memberRepository.existsByNickname(member.getNickname());
+    public ResponseEntity<CheckNickDto.Res> checkNick(@RequestBody CheckNickDto.Req checkNickDtoReq) {
+        boolean checkNickDuplicate = memberRepository.existsByNickname(checkNickDtoReq.getNickname());
 
         if (checkNickDuplicate) {
-            return ResponseEntity.ok("중복된 닉네임 입니다");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(CheckNickDto.Res.builder()
+                            .message("중복된 검사입니다.")
+                    .build());
         } else {
-            return ResponseEntity.ok("사용가능한 닉네임 입니다");
+            return ResponseEntity.status(HttpStatus.OK).body(CheckNickDto.Res.builder()
+                    .message("사용가능한 닉네임입니다.")
+                    .build());
         }
     }
 
@@ -100,6 +117,7 @@ public class MemberController {
         System.out.println("code=" + code);
         return code;
     }
+
 
     @PutMapping("/update/{memberId}")
     @Operation(summary = "회원 정보 수정")

@@ -45,7 +45,7 @@ public class CartService {
                             .cart(existingCart)
                             .build()
             );
-         cartRepository.save(existingCart);
+            cartRepository.save(existingCart);
         } else {
             Cart newcart = Cart.builder()
                     .member(member)
@@ -65,6 +65,7 @@ public class CartService {
             cartRepository.save(newcart);
         }
     }
+
 
     public CartDto getCart(Long memberId) {
 
@@ -109,5 +110,6 @@ public class CartService {
         itemToUpdate.setQuantity(newQuantity);
         cartItemRepository.save(itemToUpdate);
     }
+
 
 }

@@ -26,7 +26,9 @@ public class MemberDto {
     @Size(min = 4, max = 20, message = "패스워드는 최소 4자 이상 20자 이하로 입력해야합니다.")
     private String password;
 
-    // 비번확인은여??
+    @NotBlank(message = "패스워드 확인은 필수 입력 사항입니다.")
+    @Size(min = 4, max = 20, message = "패스워드는 최소 4자 이상 20자 이하로 입력해야합니다.")
+    private String passwordCheck;
 
     @NotBlank
     @Size(max = 10, message = "이름은 10자까지 입력이 가능합니다.")
@@ -37,7 +39,7 @@ public class MemberDto {
     @Schema(description = "사용자의 닉네임")
     private String nickname;
 
-    @Schema(description = "사용자의 전화번호", example = "010-5157-7131")
+    @Schema(description = "사용자의 전화번호", example = "010-0000-0000")
     @Pattern(regexp = "^\\d{2,3}-\\d{3,4}-\\d{4}$", message = "전화번호 양식에 맞지 않습니다. XXX-XXXX-XXXX 형식으로 입력해주세요.")
     @NotBlank(message = "전화번호는 필수 입력 사항입니다.")
     private String phone;

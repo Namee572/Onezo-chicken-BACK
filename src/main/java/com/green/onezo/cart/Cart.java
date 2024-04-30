@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Cart {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
@@ -30,11 +31,11 @@ public class Cart {
     @JoinColumn(name = "store_id")
     private Store store;
 
+
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<CartItem> cartItemList = new ArrayList<>();
 
-//    @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Pay pay;
+
 
 }

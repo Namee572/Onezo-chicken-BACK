@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/api/cart")
 @RequiredArgsConstructor
@@ -21,18 +20,14 @@ public class CartController {
 
     @PostMapping("/add")
     @Operation(summary = "장바구니 상품 추가")
-    public ResponseEntity<String> addCart(
-            @RequestBody CartDto cartDto,
-            @RequestHeader(value = HttpHeaders.AUTHORIZATION,required = false) String auth
-    ) {
-        System.out.println("auth = "+auth);
+    public ResponseEntity<String> addCart(@RequestBody CartDto cartDto) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             cartService.addCart(cartDto);
             return new ResponseEntity<>("장바구니에 추가되었습니다.", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("장바구니에 추가 안되었습니다.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("장바구니에 안추가되었습니다.", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -70,6 +65,7 @@ public class CartController {
     }
 
 }
+
 
 
 

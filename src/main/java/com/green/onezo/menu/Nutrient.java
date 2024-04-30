@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 public class Nutrient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "nutrient_id")
@@ -19,20 +20,19 @@ public class Nutrient {
     private Menu menu;
 
     @Column(nullable = false)
-    private int kcal;
+    private double kcal;
 
     @Column(nullable = false)
-    private int na;
+    private double na;
 
     @Column(nullable = false)
-    private int carb;
+    private double sugar;
 
     @Column(nullable = false)
-    private int sugar;
+    private double fat;
 
     @Column(nullable = false)
-    private int fat;
+    private double protein;
 
-    @Column(nullable = false)
-    private int protein;
+
 }

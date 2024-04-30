@@ -1,6 +1,7 @@
 package com.green.onezo.member;
 
 import com.green.onezo.enum_column.Resign_yn;
+import com.green.onezo.global.error.BizException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +23,11 @@ public class MemberService {
     //회원가입 signUp
     @Transactional
     public Member signup(MemberDto memberDto) {
+
+       Optional<Member> dbmember = memberRepository.findByUserId(memberDto.getUserId());
+       if(dbmember.isPresent()){
+           throw new BizException("아이디 중복입니다.");
+       }
         Member member = new Member();
         member.setUserId(memberDto.getUserId());
         member.setPassword(memberDto.getPassword());//이거 암호화 진행 시켜야됨 jasypt
@@ -78,5 +84,7 @@ public class MemberService {
         member.setResign_yn(Resign_yn.Y);
         memberRepository.save(member); // 변경된 탈퇴 상태를 데이터베이스에 저장
     }
+
+    //아이디 찾기 , 비밀번호 찾기
 }
 

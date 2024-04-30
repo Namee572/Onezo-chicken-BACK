@@ -30,5 +30,4 @@ public class Purchase {
     @JoinColumn(name = "pay_record_id")
     private PayRecord payRecord;
 
-
 }

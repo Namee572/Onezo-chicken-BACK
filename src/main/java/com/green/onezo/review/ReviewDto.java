@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ReviewDto {
 
-    private Long id;
-    private Member member;
+    private Member userId;
+    private Member nickname;
     private String comment;
     private int star;
 }
