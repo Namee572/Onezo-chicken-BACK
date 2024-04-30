@@ -20,14 +20,19 @@ public class Nutrient {
     private Menu menu;
 
     @Column(nullable = false)
-    private int kcal;
+    private double kcal;
 
     @Column(nullable = false)
-    private int na;
+    private double na;
 
-    private Float sugars;
-    private Float fat;
-    private Float protein;
+    @Column(nullable = false)
+    private double sugar;
+
+    @Column(nullable = false)
+    private double fat;
+
+    @Column(nullable = false)
+    private double protein;
 
 
 }

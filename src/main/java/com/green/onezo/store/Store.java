@@ -36,5 +36,4 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private OrderType orderType;
 
-    //private List<Menu> menus = new ArrayList<>();
 }
