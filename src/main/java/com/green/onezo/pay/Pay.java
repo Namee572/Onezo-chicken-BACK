@@ -51,8 +51,6 @@ public class Pay {
 
 
 
-    @OneToMany(mappedBy = "pay")
-    private List<PayRecord> payRecords;
 
     public PayRes toDto(){
         return PayRes.builder()

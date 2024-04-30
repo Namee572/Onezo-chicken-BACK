@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PayRecordRepository extends JpaRepository<PayRecord, Long> {
 
-    //Optional<PayRecord> findById(Long id);
+    Optional<PayRecord> findById(Long id);
     //List<PayRecord> findByPayRecordsId(Long id);
 }

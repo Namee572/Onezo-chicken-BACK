@@ -1,5 +1,6 @@
 package com.green.onezo.purchase;
 
+import com.green.onezo.review.Review;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,15 @@ import java.util.List;
 @RequestMapping("/api/purchase")
 @Tag(name = "purchase-controller", description = "주문 내역")
 public class PurchaseController {
+    private final PurchaseService purchaseService;
     //private final PurchaseService purchaseService;
+
+
+//    @GetMapping("/{payRecordId}")
+//    public ResponseEntity<List<Purchase>> getPurchases(@PathVariable Long payRecordId) {
+//        List<Purchase> purchases = purchaseService.purchaseList(payRecordId);
+//        return ResponseEntity.ok(purchases);
+//    }
 
 //    @GetMapping("/{payRecordId}")
 //    @Operation(summary = "주문 내역 리스트")
