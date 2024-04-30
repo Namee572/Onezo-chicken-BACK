@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 
 
 import com.green.onezo.pay.PayType;
-import com.green.onezo.store.TakeOut;
 import com.green.onezo.payRecord.PayRecord;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +30,6 @@ public class PurchaseDto {
     private LocalDateTime payDate;
     private String storeName;
     private PayType payType;
-    private TakeOut takeOut;
     private double price;
     private Long amount; // 지불 금액
 
