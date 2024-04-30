@@ -18,19 +18,20 @@ public class WebCors implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
-                .addPathPatterns("/**") // 모든 경로에 대해 인터셉터 적용 JWT토큰검사
-                .excludePathPatterns("/token", // 토큰 발급 경로는 인터셉터 적용 제외
-                        "/member/join", // 회원가입 경로는 인터셉터 적용 제외
-                        "/swagger-ui/**", // Swagger UI 관련 경로는 인터셉터 적용 제외
-                        "/swagger-resources/**",
-                        "/swagger-resources/**/**",
-                        "/v2/api-docs",
-                        "/v3/api-docs",
-                        "/h2-console/**",
-                        "/main/**",
-                        "/error",
-                        "index.html",
-                        ""); // 기타 경로는 인터셉터 적용 제외
+                .addPathPatterns("/cart/**","/purchase/**","/pay/**"); // 모든 경로에 대해 인터셉터 적용 JWT토큰검사
+//                .excludePathPatterns("/token", // 토큰 발급 경로는 인터셉터 적용 제외
+//                        "/member/join", // 회원가입 경로는 인터셉터 적용 제외
+//                        "/swagger-ui/**", // Swagger UI 관련 경로는 인터셉터 적용 제외
+//                        "/swagger-resources/**",
+//                        "/swagger-resources/**/**",
+//                        "/v2/api-docs",
+//                        "/v3/api-docs",
+//                        "/h2-console/**",
+//                        "/main/**",
+//                        "/error",
+//                        "/auth/checkNickname",
+//                        "index.html",
+//                        ""); // 기타 경로는 인터셉터 적용 제외
     }
 
     // CORS 설정을 추가

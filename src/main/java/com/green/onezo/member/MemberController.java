@@ -73,13 +73,17 @@ public class MemberController {
     @Operation(summary = "닉네임 중복체크",
             description = "입력한 닉네임을 db와 대조한뒤 중복 체크")
     @PostMapping("checkNickname")
-    public ResponseEntity<String> checkNick(@RequestBody Member member) {
-        boolean checkNickDuplicate = memberRepository.existsByNickname(member.getNickname());
+    public ResponseEntity<CheckNickDto.Res> checkNick(@RequestBody CheckNickDto.Req checkNickDtoReq) {
+        boolean checkNickDuplicate = memberRepository.existsByNickname(checkNickDtoReq.getNickname());
 
         if (checkNickDuplicate) {
-            return ResponseEntity.ok("중복된 닉네임 입니다");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(CheckNickDto.Res.builder()
+                            .message("중복된 검사입니다.")
+                    .build());
         } else {
-            return ResponseEntity.ok("사용가능한 닉네임 입니다");
+            return ResponseEntity.status(HttpStatus.OK).body(CheckNickDto.Res.builder()
+                    .message("사용가능한 닉네임입니다.")
+                    .build());
         }
     }
 

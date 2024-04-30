@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -15,6 +16,14 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class ErrorContollerAdvice extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(BizException.class)
+    public ResponseEntity<ErrorResponse> bizException(BizException e){
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .errorMessage(e.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
 
     // 프론트에서 보내는 데이터가 잘못된 경우
     @Override
