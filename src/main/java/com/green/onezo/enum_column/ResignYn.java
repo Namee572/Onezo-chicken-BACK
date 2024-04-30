@@ -1,5 +1,5 @@
 package com.green.onezo.enum_column;
 
-public enum Resign_yn {
+public enum ResignYn {
     Y,N
 }

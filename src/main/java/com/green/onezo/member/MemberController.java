@@ -1,7 +1,5 @@
 package com.green.onezo.member;
 
-
-import com.green.onezo.enum_column.Resign_yn;
 import com.green.onezo.jwt.JwtTokenDto;
 import com.green.onezo.jwt.JwtTokenManager;
 import com.green.onezo.kakao.KakaoService;
@@ -18,10 +16,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class MemberController {
+
     private final JwtTokenManager jwtUtil;
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final KakaoService kakaoService;
+
     //회원가입
     @Operation(summary = "회원 가입",
             description = "아이디 ,비밀번호 ,이름 ,닉네임 ,연락처를 이용해 회원가입")
@@ -54,6 +54,7 @@ public class MemberController {
             return ResponseEntity.ok("사용가능한 아이디 입니다");
         }
     }
+
     //비밀번호 확인
     @Operation(summary = "비밀번호 확인",
                 description = "비밀번호 확인과 비밀번호가 일치하는지 확인")
@@ -122,6 +123,7 @@ public class MemberController {
     @PutMapping("/update/{memberId}")
     @Operation(summary = "회원 정보 수정")
     public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto updateDto, @PathVariable Long memberId) {
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             memberService.memberUpdate(memberId, updateDto);
             return ResponseEntity.ok("회원 정보가 성공적으로 업데이트되었습니다.");
@@ -133,6 +135,7 @@ public class MemberController {
     @PutMapping("/resign/{memberId}")
     @Operation(summary = "회원 탈퇴")
     public ResponseEntity<String> resignMember(@RequestBody @Valid MemberResignDto resignDto, @PathVariable Long memberId) {
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             memberService.memberResign(memberId, resignDto);
             return ResponseEntity.ok("회원 탈퇴 성공.");
@@ -141,42 +144,4 @@ public class MemberController {
         }
     }
 
-
-    // 회원정보수정
-    public void memberUpdate(Long memberId, MemberUpdateDto updateDto) {
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
-
-        if (updateDto.getPassword() != null && !updateDto.getPassword().isEmpty()) {
-            member.setPassword(updateDto.getPassword());
-        }
-        if (updateDto.getName() != null && !updateDto.getName().isEmpty()) {
-            member.setName(updateDto.getName());
-        }
-
-        if (updateDto.getNickname() != null && !updateDto.getNickname().isEmpty()) {
-            member.setNickname(updateDto.getNickname());
-        }
-
-        if (updateDto.getPhone() != null && !updateDto.getPhone().isEmpty()) {
-            member.setPhone(updateDto.getPhone());
-        }
-
-        memberRepository.save(member);
-    }
-
-
-    // 회원탈퇴
-    public void memberResign(Long memberId, MemberResignDto resignDto) throws Exception {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
-
-        if (!member.getUserId().equals(resignDto.getUserId()) ||
-                !member.getPassword().equals(resignDto.getPassword()) ||
-                !member.getPhone().equals(resignDto.getPhone())) {
-            throw new IllegalArgumentException("제공된 사용자 정보가 일치하지 않습니다.");
-        }
-
-        member.setResign_yn(Resign_yn.Y);
-        memberRepository.save(member); // 변경된 탈퇴 상태를 데이터베이스에 저장
-    }
 }
