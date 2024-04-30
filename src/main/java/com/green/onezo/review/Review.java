@@ -2,7 +2,7 @@
 //
 //
 //import com.green.onezo.member.Member;
-//import com.green.onezo.purchase.Purchase;
+//import com.green.onezo.purchase.PurchaseController.Purchase;
 //import com.green.onezo.store.Store;
 //import jakarta.persistence.*;
 //import lombok.AllArgsConstructor;

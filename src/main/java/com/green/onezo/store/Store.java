@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Store {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
@@ -25,7 +24,8 @@ public class Store {
     @Column(nullable = false)
     private String address;
 
-    private String addressOld;
+    @Column(nullable = false)
+    private String oldAddress;
 
     @Column(nullable = false)
     private String storePhone;
@@ -34,6 +34,6 @@ public class Store {
     private String storeHours;
 
     @Enumerated(EnumType.STRING)
-    private OrderType orderType;
+    private TakeOut takeOut;
 
 }

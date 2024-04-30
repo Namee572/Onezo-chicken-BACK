@@ -1,4 +1,4 @@
-package com.green.onezo.cart;
+package com.green.onezo.order;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class CartService {
-
-    private final CartRepository cartRepository;
-
+public class PurchaseService {
+    private final PurchaseRepository purchaseRepository;
 
 }

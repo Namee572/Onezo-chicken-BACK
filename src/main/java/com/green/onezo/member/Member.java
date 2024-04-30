@@ -3,7 +3,7 @@ package com.green.onezo.member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-import com.green.onezo.enum_column.Resign_yn;
+import com.green.onezo.enum_column.ResignYn;
 import com.green.onezo.enum_column.Role;
 import com.green.onezo.pay.Pay;
 import jakarta.persistence.*;
@@ -11,7 +11,6 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -36,6 +35,9 @@ public class Member {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(unique = true)
     private String nickname;
 
@@ -43,10 +45,7 @@ public class Member {
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    private Resign_yn resign_yn;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private ResignYn resignYn;
 
     @OneToMany(mappedBy = "member")
     private List<Pay> pays = new ArrayList<>();

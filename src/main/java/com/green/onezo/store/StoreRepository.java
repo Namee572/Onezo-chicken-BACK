@@ -1,6 +1,5 @@
 package com.green.onezo.store;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +11,7 @@ import java.util.List;
 public interface StoreRepository extends JpaRepository<Store, Long> {
     Store findStoreById(Long id);
 
-    List<OrderType> findByOrderType(OrderType orderType);
+    List<TakeOut> findByOrderType(TakeOut orderType);
 
     @Query("SELECT s.storeName, s.address, s.addressOld FROM Store s")
     List<Object[]> findByStoreNameAndAddressAndAddressOld(@NotNull String storeName, @NotNull String address, @NotNull String addressOld);
