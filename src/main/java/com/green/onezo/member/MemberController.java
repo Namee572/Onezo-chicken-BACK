@@ -45,8 +45,8 @@ public class MemberController {
     @Operation(summary = "아이디 중복체크",
             description = "입력한 아이디를 db와 대조한뒤 중복 체크")
     @PostMapping("checkId")
-    public ResponseEntity<String> checkId(@RequestBody Member member) {
-        boolean checkIDDuplicate = memberRepository.existsByUserId(member.getUserId());
+    public ResponseEntity<String> checkId(@RequestBody AuthCheckIdDto authCheckIdDto) {
+        boolean checkIDDuplicate = memberRepository.existsByUserId(authCheckIdDto.getUserId());
 
         if (checkIDDuplicate) {
             return ResponseEntity.ok("중복된 아이디입니다");
@@ -54,6 +54,21 @@ public class MemberController {
             return ResponseEntity.ok("사용가능한 아이디 입니다");
         }
     }
+    //비밀번호 확인
+    @Operation(summary = "비밀번호 확인",
+                description = "비밀번호 확인과 비밀번호가 일치하는지 확인")
+    @PostMapping("passwordCheck")
+    public ResponseEntity<String> passwordCheck(@RequestBody MemberDto memberDto){
+        String password=memberDto.getPassword();
+        String passwordCheck= memberDto.getPasswordCheck();
+
+        if(password.equals(passwordCheck)) {
+            return ResponseEntity.ok("비밀번호가 일치합니다.");
+        }else {
+            return ResponseEntity.ok("비밀번호가 일치하지 않습니다.");
+        }
+    }
+
 
     @Operation(summary = "닉네임 중복체크",
             description = "입력한 닉네임을 db와 대조한뒤 중복 체크")
