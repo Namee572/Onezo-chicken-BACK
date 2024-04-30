@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class StoreImage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "storeLmageId")
+    @Column(name = "store_Image_Id")
     private Long id;
-
 
     private String image;
 

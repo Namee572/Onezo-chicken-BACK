@@ -22,7 +22,7 @@ public class PayReq {
     private PayType payType;
     private Long amount;
     private String userId;
-    private String customerName;
+    private CustomerName customerName;
 
     public Pay toEntity(){
         return Pay.builder()

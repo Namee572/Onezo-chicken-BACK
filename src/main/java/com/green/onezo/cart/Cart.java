@@ -31,6 +31,7 @@ public class Cart {
     @JoinColumn(name = "store_id")
     private Store store;
 
+
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<CartItem> cartItemList = new ArrayList<>();

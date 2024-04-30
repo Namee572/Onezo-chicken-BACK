@@ -1,6 +1,7 @@
 package com.green.onezo.member;
 
 
+import com.green.onezo.enum_column.Resign_yn;
 import com.green.onezo.jwt.JwtTokenDto;
 import com.green.onezo.jwt.JwtTokenManager;
 import com.green.onezo.kakao.KakaoService;
@@ -21,11 +22,9 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final KakaoService kakaoService;
-
-
-    //약관동의
-
     //회원가입
+    @Operation(summary = "회원 가입",
+            description = "아이디 ,비밀번호 ,이름 ,닉네임 ,연락처를 이용해 회원가입")
     @PostMapping("signUp")
     public ResponseEntity<String> signup(
             @RequestBody @Valid MemberDto memberDto
@@ -46,8 +45,8 @@ public class MemberController {
     @Operation(summary = "아이디 중복체크",
             description = "입력한 아이디를 db와 대조한뒤 중복 체크")
     @PostMapping("checkId")
-    public ResponseEntity<String> checkId(@RequestBody Member member) {
-        boolean checkIDDuplicate = memberRepository.existsByUserId(member.getUserId());
+    public ResponseEntity<String> checkId(@RequestBody AuthCheckIdDto authCheckIdDto) {
+        boolean checkIDDuplicate = memberRepository.existsByUserId(authCheckIdDto.getUserId());
 
         if (checkIDDuplicate) {
             return ResponseEntity.ok("중복된 아이디입니다");
@@ -55,9 +54,39 @@ public class MemberController {
             return ResponseEntity.ok("사용가능한 아이디 입니다");
         }
     }
+    //비밀번호 확인
+    @Operation(summary = "비밀번호 확인",
+                description = "비밀번호 확인과 비밀번호가 일치하는지 확인")
+    @PostMapping("passwordCheck")
+    public ResponseEntity<String> passwordCheck(@RequestBody MemberDto memberDto){
+        String password=memberDto.getPassword();
+        String passwordCheck= memberDto.getPasswordCheck();
+
+        if(password.equals(passwordCheck)) {
+            return ResponseEntity.ok("비밀번호가 일치합니다.");
+        }else {
+            return ResponseEntity.ok("비밀번호가 일치하지 않습니다.");
+        }
+    }
+
+
+    @Operation(summary = "닉네임 중복체크",
+            description = "입력한 닉네임을 db와 대조한뒤 중복 체크")
+    @PostMapping("checkNickname")
+    public ResponseEntity<String> checkNick(@RequestBody Member member) {
+        boolean checkNickDuplicate = memberRepository.existsByNickname(member.getNickname());
+
+        if (checkNickDuplicate) {
+            return ResponseEntity.ok("중복된 닉네임 입니다");
+        } else {
+            return ResponseEntity.ok("사용가능한 닉네임 입니다");
+        }
+    }
 
 
     //로그인 기능
+    @Operation(summary = "로그인 기능",
+            description = "아이디 ,비밀번호를 DB와 대조해 회원이라면 로그인")
     @PostMapping("/login")
     public ResponseEntity<JwtTokenDto> login(@RequestBody MemberDto memberDto) {
         String memberId = memberDto.getUserId();
@@ -85,6 +114,7 @@ public class MemberController {
         return code;
     }
 
+
     @PutMapping("/update/{memberId}")
     @Operation(summary = "회원 정보 수정")
     public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto updateDto, @PathVariable Long memberId) {
@@ -108,4 +138,41 @@ public class MemberController {
     }
 
 
+    // 회원정보수정
+    public void memberUpdate(Long memberId, MemberUpdateDto updateDto) {
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
+
+        if (updateDto.getPassword() != null && !updateDto.getPassword().isEmpty()) {
+            member.setPassword(updateDto.getPassword());
+        }
+        if (updateDto.getName() != null && !updateDto.getName().isEmpty()) {
+            member.setName(updateDto.getName());
+        }
+
+        if (updateDto.getNickname() != null && !updateDto.getNickname().isEmpty()) {
+            member.setNickname(updateDto.getNickname());
+        }
+
+        if (updateDto.getPhone() != null && !updateDto.getPhone().isEmpty()) {
+            member.setPhone(updateDto.getPhone());
+        }
+
+        memberRepository.save(member);
+    }
+
+
+    // 회원탈퇴
+    public void memberResign(Long memberId, MemberResignDto resignDto) throws Exception {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
+
+        if (!member.getUserId().equals(resignDto.getUserId()) ||
+                !member.getPassword().equals(resignDto.getPassword()) ||
+                !member.getPhone().equals(resignDto.getPhone())) {
+            throw new IllegalArgumentException("제공된 사용자 정보가 일치하지 않습니다.");
+        }
+
+        member.setResign_yn(Resign_yn.Y);
+        memberRepository.save(member); // 변경된 탈퇴 상태를 데이터베이스에 저장
+    }
 }

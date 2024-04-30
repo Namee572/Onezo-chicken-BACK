@@ -25,14 +25,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//openfeign 카카오 로그인
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.1'
 
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
     //토큰 관련
 	implementation 'io.jsonwebtoken:jjwt:0.12.5'
 	// https://mvnrepository.com/artifact/p6spy/p6spy
 	implementation 'p6spy:p6spy:3.9.1'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.1'
 
 	implementation 'io.jsonwebtoken:jjwt-impl:0.12.5'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.5'
