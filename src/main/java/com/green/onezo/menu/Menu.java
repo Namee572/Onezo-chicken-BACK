@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Data
 public class Menu {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
