@@ -27,6 +27,10 @@ public class StoreService {
                 .storePhone(store.getStorePhone())
                 .build();
     }
+    //매장 식사 + 포장 여부
+    public List<OrderType> getOrderType (OrderType orderType) {
+        return storeRepository.findByOrderType(orderType);
+    }
 
     //메장주소 리스트
     public List<StoreDto> findByStoreNameAndAddressAndAddressOld(@NotNull String storeName, @NotNull String address, @NotNull String addressOld) {

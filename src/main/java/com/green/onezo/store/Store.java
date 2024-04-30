@@ -1,15 +1,10 @@
 package com.green.onezo.store;
 
-import com.green.onezo.menu.Menu;
-import com.green.onezo.purchase.Purchase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
@@ -39,7 +34,7 @@ public class Store {
     private String storeHours;
 
     @Enumerated(EnumType.STRING)
-    private TakeOut takeOut;
+    private OrderType orderType;
 
     //private List<Menu> menus = new ArrayList<>();
 }
