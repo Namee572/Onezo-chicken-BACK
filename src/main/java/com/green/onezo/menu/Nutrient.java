@@ -23,9 +23,6 @@ public class Nutrient {
     private float kcal;
 
     @Column(nullable = false)
-    private float carb;
-
-    @Column(nullable = false)
     private float na;
 
     @Column(nullable = false)
