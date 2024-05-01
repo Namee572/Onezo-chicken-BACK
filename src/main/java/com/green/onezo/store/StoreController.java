@@ -43,6 +43,7 @@ public class StoreController {
     @GetMapping("/storeList")
     public ResponseEntity<List<StoreDto>>getStoreAddress(){
         List<StoreDto> storeDtoList = storeService.storeDto();
+
         if (storeDtoList.isEmpty()){
             return ResponseEntity.noContent().build();
         }
