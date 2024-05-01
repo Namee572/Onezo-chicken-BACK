@@ -30,11 +30,11 @@ public class StoreService {
     }
 
     //메장주소 리스트
-    //메장주소 리스트
-    public List<StoreDto> storeDto(Long id, String storeName, String address, String addressOld){
-        List<Store> stores = storeRepository.findByIdAndStoreNameAndAddressAndAddressOld(id, storeName, address, addressOld);
+    public List<StoreDto> storeDto(){
+        List<Store> stores = storeRepository.findAll();
         return stores.stream().map(this::toStoreDto).collect(Collectors.toList());
     }
+
 
     public StoreDto toStoreDto(Store store){
         return StoreDto.builder()
