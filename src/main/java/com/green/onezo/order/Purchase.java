@@ -1,12 +1,6 @@
-package com.green.onezo.purchase;
+package com.green.onezo.order;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.onezo.member.Member;
-import com.green.onezo.menu.Menu;
-import com.green.onezo.payRecord.PayRecord;
-import com.green.onezo.store.Store;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,13 +15,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class Purchase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "purchase_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pay_record_id")
-    private PayRecord payRecord;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
+    @Column(nullable = false)
+    private LocalDateTime payDate;
 }

@@ -1,6 +1,6 @@
 package com.green.onezo.member;
 
-import com.green.onezo.enum_column.Resign_yn;
+import com.green.onezo.enum_column.ResignYn;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -45,7 +45,7 @@ public class MemberDto {
     private String phone;
 
     @Schema(description = "사용자의 탈퇴여부")
-    private Resign_yn resign_yn;
+    private ResignYn resignYn;
 
 }
 

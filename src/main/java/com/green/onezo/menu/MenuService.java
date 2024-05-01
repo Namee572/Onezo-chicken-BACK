@@ -1,6 +1,5 @@
 package com.green.onezo.menu;
 
-import com.green.onezo.store.OrderType;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

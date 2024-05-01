@@ -1,15 +1,11 @@
 package com.green.onezo.pay;
 
 
-import com.green.onezo.cart.Cart;
 import com.green.onezo.member.Member;
-import com.green.onezo.payRecord.PayRecord;
-import com.green.onezo.purchase.Purchase;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
@@ -22,24 +18,30 @@ public class Pay {
     @Column(name = "pay_id")
     private Long id;
 
-    @Column(nullable = false)
-    private Long amount;
     @Enumerated(EnumType.STRING)
     private PayType payType;
+
     @Column(nullable = false)
     private String orderId;
+
     @Column(nullable = false)
-    private String userId;
-    @Column(nullable = false)
-    private CustomerName customerName;
-    @Column(nullable = false)
-    private LocalDateTime createDate;
-    @Column(nullable = false)
-    private String paySuccessYn;
+    private Long amount;
 
     @Column
     @Setter
     private String paymentKey;
+
+    @Column(nullable = false)
+    private String userId;
+
+    @Column(nullable = false)
+    private CustomerName customerName;
+
+    @Column(nullable = false)
+    private LocalDateTime createDate;
+
+    @Column(nullable = false)
+    private String paySuccessYn;
 
     @Column
     private String payFailReason;

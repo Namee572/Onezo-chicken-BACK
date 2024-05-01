@@ -1,11 +1,8 @@
 package com.green.onezo.member;
 
-import com.green.onezo.enum_column.Resign_yn;
+import com.green.onezo.enum_column.ResignYn;
 import com.green.onezo.global.error.BizException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.green.onezo.enum_column.Role;
@@ -33,7 +30,7 @@ public class MemberService {
         member.setPassword(memberDto.getPassword());//이거 암호화 진행 시켜야됨 jasypt
         member.setNickname(memberDto.getNickname());
         member.setName(memberDto.getName());
-        member.setResign_yn(memberDto.getResign_yn());
+        member.setResignYn(memberDto.getResignYn());
         member.setPhone(memberDto.getPhone());
         //유저 권한을 부여.
         member.setRole(Role.USER);
@@ -81,8 +78,8 @@ public class MemberService {
             throw new IllegalArgumentException("제공된 사용자 정보가 일치하지 않습니다.");
         }
 
-        member.setResign_yn(Resign_yn.Y);
-        memberRepository.save(member); // 변경된 탈퇴 상태를 데이터베이스에 저장
+        member.setResignYn(ResignYn.Y);
+        memberRepository.save(member);
     }
 
     //아이디 찾기 , 비밀번호 찾기
