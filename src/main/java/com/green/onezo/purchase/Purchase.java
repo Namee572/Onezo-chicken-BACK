@@ -1,4 +1,4 @@
-package com.green.onezo.order;
+package com.green.onezo.purchase;
 
 import com.green.onezo.member.Member;
 import jakarta.persistence.*;
@@ -21,7 +21,7 @@ public class Purchase {
     @Column(name = "purchase_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 

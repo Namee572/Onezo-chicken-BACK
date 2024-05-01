@@ -1,15 +1,23 @@
-package com.green.onezo.order;
+package com.green.onezo.purchase;
 
 import com.green.onezo.menu.Menu;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-@Getter
-@RequiredArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Builder
 public class PurchaseDetail {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchase_detail_id")
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "purchase_id")

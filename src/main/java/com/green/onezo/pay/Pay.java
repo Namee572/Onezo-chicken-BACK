@@ -35,6 +35,7 @@ public class Pay {
     private String userId;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private CustomerName customerName;
 
     @Column(nullable = false)
@@ -50,9 +51,6 @@ public class Pay {
     @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.PERSIST)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
-
-
-
 
     public PayRes toDto(){
         return PayRes.builder()

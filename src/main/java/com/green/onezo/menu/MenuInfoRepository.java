@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface MenuInfoRepository extends JpaRepository<MenuInfo,Long> {
     Optional<MenuInfo> findById(Long id);
     List<MenuInfo> findAllByMenuId(@Param("menu_id") Long menuId);
+
 }

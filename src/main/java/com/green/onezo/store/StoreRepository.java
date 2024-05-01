@@ -13,7 +13,8 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 
     List<OrderType> findByOrderType(OrderType orderType);
 
-    List<Store> findByIdAndStoreNameAndAddressAndAddressOld(Long id, String storeName, String address, String addressOld);
+
+    List<StoreDto> findByIdAndStoreNameAndAddressAndAddressOld(Long id, String storeName, String address, String addressOld);
 
 
 }

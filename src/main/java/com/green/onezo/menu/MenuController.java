@@ -17,7 +17,16 @@ public class  MenuController {
 
     private final MenuService menuService;
 
-//    //아이디 값으로 메뉴리스트
+    @Operation(summary = "메뉴 정보 보내주기")
+    @GetMapping("/menus/{id}")
+    public ResponseEntity<MenuDetailDto> getMenuDetail(@PathVariable Long id){
+        return menuService.getAllMenuDetails(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
+    //아이디 값으로 메뉴리스트
 //    @GetMapping("/menuList/{id}")
 //    public ResponseEntity<Menu> getMenu(@PathVariable Long id) {
 //        Optional<Menu> menuOptional = menuService.menuId(id);
@@ -39,7 +48,8 @@ public class  MenuController {
 //            return  nutrientOptional.map(ResponseEntity::ok)
 //                    .orElseGet(() -> ResponseEntity.notFound().build());
 //        }
-//    //영양 정보
+
+    //영양 정보
 //    @GetMapping("/menuInfos")
 //    public ResponseEntity<List<MenuInfo>> getMenuInfos(){
 //        List<MenuInfo> menuInfos = menuService.menuInfos();
@@ -51,12 +61,5 @@ public class  MenuController {
 //        List<Nutrient> nutrients = menuService.nutrients();
 //        return ResponseEntity.ok(nutrients);
 //    }
-    @Operation(summary = "메뉴 정보 보내주기")
-    @GetMapping("/menus/{id}")
-    public ResponseEntity<MenuDetailDto> getMenuDetail(@PathVariable Long id){
-        return menuService.getAllMenuDetails(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
     }
 

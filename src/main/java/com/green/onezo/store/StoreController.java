@@ -1,6 +1,5 @@
 package com.green.onezo.store;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,18 +14,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(name = "store-controller", description = "매장")
 public class StoreController {
-
     private final StoreService storeService;
     private final StoreRepository storeRepository;
 
     @GetMapping("/store/{storeId}/detail")
-    public ResponseEntity<StoreDto> getStoreById(@PathVariable Long id) {
-        StoreDto storeDto = storeService.getStoreById(id);
+    public ResponseEntity<StoreDto> getStoreById(@PathVariable Long store) {
+        StoreDto storeDto = storeService.getStoreById(store);
         return new ResponseEntity<>(storeDto, HttpStatus.OK);
     }
 
     //매장 식사 + 포장 여부
-    @Operation(summary = "매장 식사 여부")
     @PostMapping("/orderType")
     public ModelAndView orderType(@RequestParam("orderType") OrderType orderType){
         try{
@@ -43,7 +40,6 @@ public class StoreController {
     }
 
     //매장주소 리스트
-    @Operation(summary = "매장 주소 리스트")
     @GetMapping("/storeList")
     public ResponseEntity<List<StoreDto>>getStoreAddress(){
         List<StoreDto> storeDtoList = storeService.storeDto();

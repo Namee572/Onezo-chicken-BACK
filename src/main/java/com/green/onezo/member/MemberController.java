@@ -24,14 +24,17 @@ public class MemberController {
 
     //회원가입
     @Operation(summary = "회원 가입",
-            description = "아이디 ,비밀번호 ,이름 ,닉네임 ,연락처를 이용해 회원가입")
+            description = "회원 가입")
     @PostMapping("signUp")
-    public ResponseEntity<String> signup(
-            @RequestBody @Valid MemberDto memberDto
+    public ResponseEntity<SignDto.Res> signup(
+            @RequestBody @Valid SignDto.Req signDtoReq
     ) {
-        memberService.signup(memberDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입이 완료되었습니다.");
+        memberService.signup(signDtoReq);
+        return ResponseEntity.status(HttpStatus.CREATED).body(SignDto.Res.builder()
+                .message("회원가입이 완료되었습니다.")
+                .build());
     }
+
     //회원가입 true false로 전달되도록해야하나 ????
 //    @PostMapping("signUp")
 //    public ResponseEntity<Boolean> signup(
