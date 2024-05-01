@@ -16,7 +16,6 @@ import java.util.Optional;
 public class PurchaseController {
     private final PurchaseService purchaseService;
 
-
     @GetMapping("/record")
     public Optional<Purchase> getRecord(@RequestParam Long id){
         return purchaseService.getPurchase(id);
