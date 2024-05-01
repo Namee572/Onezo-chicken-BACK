@@ -1,5 +1,5 @@
 package com.green.onezo.store;
 
-public enum TakeOut {
+public enum OrderType {
     Y,N
 }

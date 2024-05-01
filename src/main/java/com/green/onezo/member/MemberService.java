@@ -17,32 +17,40 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     //    private PasswordEncoder passwordEncoder;
+
     //회원가입 signUp
     @Transactional
-    public Member signup(MemberDto memberDto) {
+    public Member signup(SignDto.Req signDtoReq) {
 
-       Optional<Member> dbmember = memberRepository.findByUserId(memberDto.getUserId());
-       if(dbmember.isPresent()){
-           throw new BizException("아이디 중복입니다.");
-       }
+        Optional<Member> idmember = memberRepository.findByUserId(signDtoReq.getUserId());
+        if(idmember.isPresent()){
+            throw new BizException("아이디 중복입니다.");
+        }
+        Optional<Member> nickmember = memberRepository.findByUserId(signDtoReq.getNickname());
+        if(nickmember.isPresent()){
+            throw new BizException("닉네임 중복입니다.");
+        }
+        Optional<Member> pmember = memberRepository.findByUserId(signDtoReq.getPhone());
+        if(pmember.isPresent()){
+            throw new BizException("핸드폰 번호 중복입니다.");
+        }
+
         Member member = new Member();
-        member.setUserId(memberDto.getUserId());
-        member.setPassword(memberDto.getPassword());//이거 암호화 진행 시켜야됨 jasypt
-        member.setNickname(memberDto.getNickname());
-        member.setName(memberDto.getName());
-        member.setResignYn(memberDto.getResignYn());
-        member.setPhone(memberDto.getPhone());
+        member.setUserId(signDtoReq.getUserId());
+        member.setPassword(signDtoReq.getPassword());//이거 암호화 진행 시켜야됨 jasypt
+        member.setNickname(signDtoReq.getNickname());
+        member.setName(signDtoReq.getName());
+        member.setPhone(signDtoReq.getPhone());
+        member.setResignYn(ResignYn.N);
         //유저 권한을 부여.
         member.setRole(Role.USER);
 
         return memberRepository.save(member);
     }
 
-
     public Optional<Member> authenticate(String userId, String password) {
         return memberRepository.findByUserIdAndPassword(userId, password);
     }
-
 
     // 회원정보수정
     public void memberUpdate(Long memberId, MemberUpdateDto updateDto) {

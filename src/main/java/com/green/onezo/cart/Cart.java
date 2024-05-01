@@ -26,7 +26,7 @@ public class Cart {
     private Store store;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "menu_id")
     private Menu menu;
 
     @ManyToOne

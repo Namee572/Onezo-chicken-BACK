@@ -25,28 +25,30 @@ public class StoreController {
 
     //매장 식사 + 포장 여부
     @PostMapping("/orderType")
-    public ModelAndView orderType(@RequestParam("orderType") TakeOut orderType){
-        try{
+    public ModelAndView orderType(@RequestParam("orderType") OrderType orderType) {
+        try {
             storeRepository.findByOrderType(orderType);
             ModelAndView modelAndView = new ModelAndView("주문 성공");
-            modelAndView.addObject("Order",orderType);
-            modelAndView.addObject("message","주문이 성공적으로 완료 되었습니다.");
+            modelAndView.addObject("Order", orderType);
+            modelAndView.addObject("message", "주문이 성공적으로 완료 되었습니다.");
             return modelAndView;
-        }catch (Exception e){
+        } catch (Exception e) {
             ModelAndView modelAndView = new ModelAndView("주문 실패");
-            modelAndView.addObject("error","주문 처리 중 오류가 발생 했습니다.");
+            modelAndView.addObject("error", "주문 처리 중 오류가 발생 했습니다.");
             return modelAndView;
         }
     }
 
-    //매장주소 리스트
-    @GetMapping("/address")
-    public ResponseEntity<List<StoreDto>>getStoreAddress(
-            @RequestParam(required = false) String storeName,
-            @RequestParam(required = false) String address,
-            @RequestParam(required = false) String addressOld) {
-        List<StoreDto> stores = storeService.findByStoreNameAndAddressAndAddressOld(storeName, address, addressOld);
-        return ResponseEntity.ok(stores);
+    @GetMapping("/storeList")
+    public ResponseEntity<List<StoreDto>> getStoreAddress(StoreDto storeDto) {
+        List<StoreDto> storeDtoList = storeService.storeDto(
+                storeDto.getId(),
+                storeDto.getStoreName(),
+                storeDto.getAddress(),
+                storeDto.getAddressOld());
+        if (storeDtoList.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(storeDtoList);
     }
-
 }

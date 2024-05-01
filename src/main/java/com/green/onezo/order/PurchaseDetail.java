@@ -14,6 +14,11 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PurchaseDetail {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchase_detail_id")
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
