@@ -25,7 +25,7 @@ public class StoreController {
 
     //매장 식사 + 포장 여부
     @PostMapping("/orderType")
-    public ModelAndView orderType(@RequestParam("orderType") TakeOut orderType){
+    public ModelAndView orderType(@RequestParam("orderType") OrderType orderType){
         try{
             storeRepository.findByOrderType(orderType);
             ModelAndView modelAndView = new ModelAndView("주문 성공");
@@ -40,13 +40,17 @@ public class StoreController {
     }
 
     //매장주소 리스트
-    @GetMapping("/address")
-    public ResponseEntity<List<StoreDto>>getStoreAddress(
-            @RequestParam(required = false) String storeName,
-            @RequestParam(required = false) String address,
-            @RequestParam(required = false) String addressOld) {
-        List<StoreDto> stores = storeService.findByStoreNameAndAddressAndAddressOld(storeName, address, addressOld);
-        return ResponseEntity.ok(stores);
+    @GetMapping("/storeList")
+    public ResponseEntity<List<StoreDto>>getStoreAddress(StoreDto storeDto){
+        List<StoreDto> storeDtoList = storeService.storeDto(
+                storeDto.getId(),
+                storeDto.getStoreName(),
+                storeDto.getAddress(),
+                storeDto.getAddressOld());
+        if (storeDtoList.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(storeDtoList);
     }
 
 }
