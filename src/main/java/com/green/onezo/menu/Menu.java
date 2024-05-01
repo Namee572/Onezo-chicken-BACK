@@ -30,6 +30,12 @@ public class Menu {
     @Column(nullable = false)
     private String menuName;
 
+    @ManyToOne
+    private MenuInfo menuInfo;
+
+    @ManyToOne
+    private Nutrient nutrient;
+
 
 
 

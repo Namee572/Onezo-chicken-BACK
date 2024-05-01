@@ -25,16 +25,22 @@ public class StoreService {
                 .build();
     }
     //매장 식사 + 포장 여부
-    public List<TakeOut> getOrderType (TakeOut orderType) {
+    public List<OrderType> getOrderType (OrderType orderType) {
         return storeRepository.findByOrderType(orderType);
     }
 
     //메장주소 리스트
-    public List<StoreDto> findByStoreNameAndAddressAndAddressOld(@NotNull String storeName, @NotNull String address, @NotNull String addressOld) {
+    public List<StoreDto> storeDto(Long id, String storeName, String address, String addressOld){
+        List<Store> stores = storeRepository.findByIdAndStoreNameAndAddressAndAddressOld(id, storeName, address, addressOld);
+        return stores.stream().map(this::toStoreDto).collect(Collectors.toList());
+    }
 
-        List<Object[]> storeData = storeRepository.findByStoreNameAndAddressAndAddressOld(storeName, address, addressOld);
-        return storeData.stream()
-                .map(StoreDto::new)
-                .collect(Collectors.toList());
+    public StoreDto toStoreDto(Store store){
+        return StoreDto.builder()
+                .id(store.getId())
+                .storeName(store.getStoreName())
+                .address(store.getAddress())
+                .addressOld(store.getAddressOld())
+                .build();
     }
 }

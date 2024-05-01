@@ -25,7 +25,7 @@ public class Store {
     private String address;
 
     @Column(nullable = false)
-    private String oldAddress;
+    private String addressOld;
 
     @Column(nullable = false)
     private String storePhone;
@@ -34,6 +34,6 @@ public class Store {
     private String storeHours;
 
     @Enumerated(EnumType.STRING)
-    private TakeOut takeOut;
+    private OrderType orderType;
 
 }

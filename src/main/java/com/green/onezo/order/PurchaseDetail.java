@@ -2,16 +2,13 @@ package com.green.onezo.order;
 
 import com.green.onezo.menu.Menu;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity
-@Data
-@NoArgsConstructor
+
+@Getter
+@RequiredArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
 public class PurchaseDetail {
 
     @ManyToOne
