@@ -36,13 +36,4 @@ public class Menu {
     @ManyToOne
     private Nutrient nutrient;
 
-
-
-
-
-
-
-
-
-
 }
