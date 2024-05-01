@@ -1,5 +1,6 @@
 package com.green.onezo.store;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Builder
@@ -13,8 +14,11 @@ public class StoreDto {
     private String storeName;
     private String address;
     private String addressOld;
+    @JsonIgnore
     private String storePhone;
+    @JsonIgnore
     private String storeHours;
+    @JsonIgnore
     private OrderType orderType;
 
 

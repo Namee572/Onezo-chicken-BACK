@@ -45,12 +45,8 @@ public class StoreController {
     //매장주소 리스트
     @Operation(summary = "매장 주소 리스트")
     @GetMapping("/storeList")
-    public ResponseEntity<List<StoreDto>>getStoreAddress(StoreDto storeDto){
-        List<StoreDto> storeDtoList = storeService.storeDto(
-                storeDto.getId(),
-                storeDto.getStoreName(),
-                storeDto.getAddress(),
-                storeDto.getAddressOld());
+    public ResponseEntity<List<StoreDto>>getStoreAddress(){
+        List<StoreDto> storeDtoList = storeService.storeDto();
         if (storeDtoList.isEmpty()){
             return ResponseEntity.noContent().build();
         }

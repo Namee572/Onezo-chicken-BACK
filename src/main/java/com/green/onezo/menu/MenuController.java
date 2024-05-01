@@ -52,6 +52,7 @@ public class  MenuController {
 //        return ResponseEntity.ok(nutrients);
 //    }
     @Operation(summary = "메뉴 정보 보내주기")
+    @GetMapping("/menus/{id}")
     public ResponseEntity<MenuDetailDto> getMenuDetail(@PathVariable Long id){
         return menuService.getAllMenuDetails(id)
                 .map(ResponseEntity::ok)
