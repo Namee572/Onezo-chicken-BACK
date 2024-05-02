@@ -1,6 +1,7 @@
 package com.green.onezo.pay;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.onezo.member.Member;
 import jakarta.persistence.*;
 import lombok.*;
@@ -49,7 +50,7 @@ public class Pay {
     private String payFailReason;
 
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 

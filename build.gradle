@@ -32,6 +32,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/p6spy/p6spy
 	implementation 'p6spy:p6spy:3.9.1'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.1'
+	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+	implementation 'org.modelmapper:modelmapper:3.2.0'
+
 
 	implementation 'io.jsonwebtoken:jjwt-impl:0.12.5'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.5'
