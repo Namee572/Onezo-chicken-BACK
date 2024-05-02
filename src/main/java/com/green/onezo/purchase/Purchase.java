@@ -19,7 +19,7 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "purchase_id")
-    private Long id;
+    private Long purchaseId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

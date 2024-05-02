@@ -19,11 +19,11 @@ public class PurchaseDetail {
     @Column(name = "purchase_detail_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
