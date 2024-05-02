@@ -20,7 +20,7 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @GetMapping("/record/{purchaseId}")
-    public ResponseEntity<Optional<Purchase>> getRecord(@PathVariable Long purchaseId, @RequestBody PurchaseDto purchaseDto){
+    public ResponseEntity<Optional<Purchase>> getRecord(@PathVariable Long purchaseId){
         Optional<Purchase> result = purchaseService.getPurchase(purchaseId);
         if (result.isEmpty()) {
             ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
@@ -28,7 +28,7 @@ public class PurchaseController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Optional<PurchaseDetail>> getDetail(@PathVariable Long id, @RequestBody PurchaseDetailDto purchaseDetailDto){
+    public ResponseEntity<Optional<PurchaseDetail>> getDetail(@PathVariable Long id){
         Optional<PurchaseDetail> result = purchaseService.getDetail(id);
         if (result.isEmpty()) {
             ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
