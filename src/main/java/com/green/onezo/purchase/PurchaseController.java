@@ -4,11 +4,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -19,25 +19,22 @@ import java.util.Optional;
 public class PurchaseController {
     private final PurchaseService purchaseService;
 
-    @GetMapping("/record")
-    @Operation(summary = "주문 내역 조회", description = "주어진 주문 ID에 해당하는 주문 기록을 조회합니다.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "주문 내역 조회 성공"),
-            @ApiResponse(responseCode = "404", description = "주어진 ID로 주문 내역을 찾을 수 없습니다"),
-            @ApiResponse(responseCode = "500", description = "서버 내부 오류 발생")
-    })
-    public Optional<Purchase> getRecord(@RequestParam Long id){
-        return purchaseService.getPurchase(id);
-    }
 
-    @GetMapping("/detail")
-    @Operation(summary = "주문 상세 조회", description = "주어진 주문 상세 ID로 주문 상세 정보를 조회합니다.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "주문 상세 조회 성공"),
-            @ApiResponse(responseCode = "404", description = "주어진 ID로 주문 상세를 찾을 수 없습니다."),
-            @ApiResponse(responseCode = "500", description = "서버 내부 오류 발생")
-    })
-    public Optional<PurchaseDetail> getDetail(@RequestParam Long id){
-        return purchaseService.getDetail(id);
+    @GetMapping("/record/{purchaseId}")
+    public ResponseEntity<Optional<Purchase>> getRecord(@PathVariable Long purchaseId, @RequestBody PurchaseDto purchaseDto){
+        Optional<Purchase> result = purchaseService.getPurchase(purchaseId);
+        if (result.isEmpty()) {
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Optional<PurchaseDetail>> getDetail(@PathVariable Long id, @RequestBody PurchaseDetailDto purchaseDetailDto){
+        Optional<PurchaseDetail> result = purchaseService.getDetail(id);
+        if (result.isEmpty()) {
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
     }
 }

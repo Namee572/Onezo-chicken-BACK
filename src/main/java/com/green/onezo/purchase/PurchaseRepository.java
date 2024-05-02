@@ -8,6 +8,7 @@ import java.util.Optional;
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
-    Optional<Purchase> findById(Long id);
+    Optional<Purchase> findById(Long purchaseId);
+
 
 }
