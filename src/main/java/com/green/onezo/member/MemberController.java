@@ -1,10 +1,10 @@
 package com.green.onezo.member;
 
+import com.green.onezo.global.error.BizException;
 import com.green.onezo.jwt.JwtTokenDto;
 import com.green.onezo.jwt.JwtTokenManager;
 import com.green.onezo.kakao.KakaoService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -90,9 +90,9 @@ public class MemberController {
     @Operation(summary = "로그인 기능",
             description = "아이디 ,비밀번호를 DB와 대조해 회원이라면 로그인")
     @PostMapping("/login")
-    public ResponseEntity<JwtTokenDto> login(@RequestBody MemberDto memberDto) {
-        String memberId = memberDto.getUserId();
-        String password = memberDto.getPassword();
+    public ResponseEntity<JwtTokenDto> login(@RequestBody @Valid LoginDto.logReq loginDto) {
+        String memberId = loginDto.getUserId();
+        String password = loginDto.getPassword();
 
         Optional<Member> isAuthenticated = memberService.authenticate(memberId, password);
 //        return ResponseEntity.of(isAuthenticated);
@@ -119,29 +119,31 @@ public class MemberController {
 
     @PutMapping ("/update/{memberId}")
     @Operation(summary = "회원 정보 수정",
-            description = "로그인 한 회원의 아이디, 패스워드, 이름, 닉네임, 전화번호를 변경 할 수 있습니다.")
-    @ApiResponse(responseCode = "200", description = "회원 정보가 성공적으로 업데이트되었습니다.")
-    @ApiResponse(responseCode = "500", description = "회원 정보 업데이트 중 문제가 발생했습니다.")
-    public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto updateDto, @PathVariable Long memberId) {
+            description = "로그인 한 회원의 아이디, 패스워드(패스워드확인), 이름, 닉네임, 전화번호를 변경 할 수 있습니다.")
+    public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto.UpdateReq updateReq, @PathVariable Long memberId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
-            memberService.memberUpdate(memberId, updateDto);
+            memberService.memberUpdate(memberId, updateReq);
             return ResponseEntity.ok("회원 정보가 성공적으로 업데이트되었습니다.");
+        } catch (BizException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 정보 업데이트 중 문제가 발생했습니다: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 정보 업데이트 실패: " + e.getMessage());
         }
     }
 
     @PutMapping("/resign/{memberId}")
     @Operation(summary = "회원 탈퇴",
-            description = "로그인 한 회원의 아이디, 패스워드, 전화번호를 입력해 회원탈퇴를 합니다.")
-    @ApiResponse(responseCode = "200", description = "회원 탈퇴가 성공적으로 처리되었습니다.")
-    @ApiResponse(responseCode = "500", description = "회원 탈퇴에 실패했습니다.")
-    public ResponseEntity<String> resignMember(@RequestBody @Valid MemberResignDto resignDto, @PathVariable Long memberId) {
+            description = "로그인 한 회원의 아이디(userId), 패스워드(password), 전화번호(phone)를 입력해 회원탈퇴를 합니다.")
+    public ResponseEntity<String> resignMember(@RequestBody @Valid MemberResignDto.ResignReq resignReq, @PathVariable Long memberId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
-            memberService.memberResign(memberId, resignDto);
+            memberService.memberResign(memberId, resignReq);
             return ResponseEntity.ok("회원 탈퇴가 성공적으로 처리되었습니다.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("잘못된 회원 정보: " + e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원 탈퇴 실패: " + e.getMessage());
         }

@@ -53,43 +53,51 @@ public class MemberService {
 
 
     // 회원정보수정
-    public void memberUpdate(Long memberId, MemberUpdateDto updateDto) {
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
+    @Transactional
+    public void memberUpdate(Long memberId, MemberUpdateDto.UpdateReq updateDtoReq) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 회원아이디를 찾을 수 없습니다."));
 
-        if (updateDto.getPassword() != null && !updateDto.getPassword().isEmpty()) {
-            member.setPassword(updateDto.getPassword());
+        if (updateDtoReq.getPassword() != null && !updateDtoReq.getPassword().isEmpty()) {
+            if (!updateDtoReq.getPassword().equals(updateDtoReq.getPasswordCheck())) {
+                throw new BizException("비밀번호가 일치하지 않습니다.");
+            }
+            member.setPassword(updateDtoReq.getPassword());
         }
-        if (updateDto.getName() != null && !updateDto.getName().isEmpty()) {
-            member.setName(updateDto.getName());
+        if (updateDtoReq.getPassword() != null && !updateDtoReq.getPassword().isEmpty()) {
+            member.setPassword(updateDtoReq.getPassword());
         }
-
-        if (updateDto.getNickname() != null && !updateDto.getNickname().isEmpty()) {
-            member.setNickname(updateDto.getNickname());
+        if (updateDtoReq.getName() != null && !updateDtoReq.getName().isEmpty()) {
+            member.setName(updateDtoReq.getName());
         }
-
-        if (updateDto.getPhone() != null && !updateDto.getPhone().isEmpty()) {
-            member.setPhone(updateDto.getPhone());
+        if (updateDtoReq.getNickname() != null && !updateDtoReq.getNickname().isEmpty()) {
+            if (memberRepository.findByNickname(updateDtoReq.getNickname()).isPresent()) {
+                throw new BizException("닉네임 중복입니다.");
+            }
+            member.setNickname(updateDtoReq.getNickname());
         }
-
+        if (updateDtoReq.getPhone() != null && !updateDtoReq.getPhone().isEmpty()) {
+            if (memberRepository.findByPhone(updateDtoReq.getPhone()).isPresent()) {
+                throw new BizException("전화번호 중복입니다.");
+            }
+            member.setPhone(updateDtoReq.getPhone());
+        }
         memberRepository.save(member);
     }
 
-
     // 회원탈퇴
-    public void memberResign(Long memberId, MemberResignDto resignDto) throws Exception {
+    public void memberResign(Long memberId, MemberResignDto.ResignReq resignReq) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다."));
-        
-        if (!member.getUserId().equals(resignDto.getUserId()) ||
-                !member.getPassword().equals(resignDto.getPassword()) ||
-                !member.getPhone().equals(resignDto.getPhone())) {
-            throw new IllegalArgumentException("제공된 사용자 정보가 일치하지 않습니다.");
+                .orElseThrow(() -> new BizException("해당하는 회원아이디를 찾을 수 없습니다."));
+
+        if (!member.getUserId().equals(resignReq.getUserId()) ||
+                !member.getPassword().equals(resignReq.getPassword()) ||
+                !member.getPhone().equals(resignReq.getPhone())) {
+            throw new BizException("잘못된 회원 정보입니다.");
         }
 
         member.setResignYn(ResignYn.Y);
         memberRepository.save(member);
     }
-
-    //아이디 찾기 , 비밀번호 찾기
 }
 
