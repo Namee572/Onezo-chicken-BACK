@@ -38,15 +38,6 @@ public class MemberController {
                 .build());
     }
 
-    //회원가입 true false로 전달되도록해야하나 ????
-//    @PostMapping("signUp")
-//    public ResponseEntity<Boolean> signup(
-//            @RequestBody @Valid MemberDto memberDto
-//    ) {
-//        boolean success = memberService.signup(memberDto);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(success);
-//    }
-
     //아이디 중복체크
     @Operation(summary = "아이디 중복체크",
             description = "입력한 아이디를 db와 대조한뒤 중복 체크")
