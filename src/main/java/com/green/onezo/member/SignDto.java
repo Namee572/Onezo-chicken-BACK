@@ -15,7 +15,7 @@ public class SignDto {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Req {
+    public static class signReq {
         @Size(min = 2, max = 20, message = "아이디는 최소 2자 이상 20자 이하로 입력해야합니다.")
         @Schema(description = "사용자 고유 아이디")
         private String userId;
@@ -50,7 +50,7 @@ public class SignDto {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Res {
+    public static class signRes {
         private String message;
     }
 

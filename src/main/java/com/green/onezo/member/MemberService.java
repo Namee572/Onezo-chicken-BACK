@@ -18,7 +18,7 @@ public class MemberService {
 
     //    private PasswordEncoder passwordEncoder;
     @Transactional
-    public Member signup(SignDto.Req signDtoReq) {
+    public Member signup(SignDto.signReq signDtoReq) {
 
         Optional<Member> idmember = memberRepository.findByUserId(signDtoReq.getUserId());
         if(idmember.isPresent()){
@@ -47,8 +47,8 @@ public class MemberService {
     }
 
 
-    public Optional<Member> authenticate(String userId, String password) {
-        return memberRepository.findByUserIdAndPassword(userId, password);
+    public Optional<Member> authenticate(String userId,String password) {
+        return memberRepository.findByUserIdAndPassword(userId,password);
     }
 
 

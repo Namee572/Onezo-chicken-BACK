@@ -29,11 +29,11 @@ public class MemberController {
     @Operation(summary = "회원 가입",
             description = "회원 가입")
     @PostMapping("signUp")
-    public ResponseEntity<SignDto.Res> signup(
-            @RequestBody @Valid SignDto.Req signDtoReq
+    public ResponseEntity<SignDto.signRes> signup(
+            @RequestBody @Valid SignDto.signReq signDtoReq
     ) {
         memberService.signup(signDtoReq);
-        return ResponseEntity.status(HttpStatus.CREATED).body(SignDto.Res.builder()
+        return ResponseEntity.status(HttpStatus.CREATED).body(SignDto.signRes.builder()
                 .message("회원가입이 완료되었습니다.")
                 .build());
     }
@@ -42,7 +42,7 @@ public class MemberController {
     @Operation(summary = "아이디 중복체크",
             description = "입력한 아이디를 db와 대조한뒤 중복 체크")
     @PostMapping("checkId")
-    public ResponseEntity<String> checkId(@RequestBody AuthCheckIdDto authCheckIdDto) {
+    public ResponseEntity<String> checkId(@RequestBody @Valid AuthCheckIdDto authCheckIdDto) {
         boolean checkIDDuplicate = memberRepository.existsByUserId(authCheckIdDto.getUserId());
 
         if (checkIDDuplicate) {
@@ -56,9 +56,9 @@ public class MemberController {
     @Operation(summary = "비밀번호 확인",
                 description = "비밀번호 확인과 비밀번호가 일치하는지 확인")
     @PostMapping("passwordCheck")
-    public ResponseEntity<String> passwordCheck(@RequestBody MemberDto memberDto){
-        String password=memberDto.getPassword();
-        String passwordCheck= memberDto.getPasswordCheck();
+    public ResponseEntity<String> passwordCheck(@RequestBody @Valid PwDto.pwReq pwDto){
+        String password=pwDto.getPassword();
+        String passwordCheck= pwDto.getPasswordCheck();
 
         if(password.equals(passwordCheck)) {
             return ResponseEntity.ok("비밀번호가 일치합니다.");
@@ -71,7 +71,7 @@ public class MemberController {
     @Operation(summary = "닉네임 중복체크",
             description = "입력한 닉네임을 db와 대조한뒤 중복 체크")
     @PostMapping("checkNickname")
-    public ResponseEntity<CheckNickDto.Res> checkNick(@RequestBody CheckNickDto.Req checkNickDtoReq) {
+    public ResponseEntity<CheckNickDto.Res> checkNick(@RequestBody @Valid CheckNickDto.Req checkNickDtoReq) {
         boolean checkNickDuplicate = memberRepository.existsByNickname(checkNickDtoReq.getNickname());
 
         if (checkNickDuplicate) {
@@ -85,17 +85,15 @@ public class MemberController {
         }
     }
 
-
     //로그인 기능
     @Operation(summary = "로그인 기능",
             description = "아이디 ,비밀번호를 DB와 대조해 회원이라면 로그인")
     @PostMapping("/login")
-    public ResponseEntity<JwtTokenDto> login(@RequestBody MemberDto memberDto) {
-        String memberId = memberDto.getUserId();
-        String password = memberDto.getPassword();
+    public ResponseEntity<JwtTokenDto> login(@RequestBody @Valid LoginDto.logReq loginDtoReq) {
+        String memberId = loginDtoReq.getUserId();
+        String password = loginDtoReq.getPassword();
 
-        Optional<Member> isAuthenticated = memberService.authenticate(memberId, password);
-//        return ResponseEntity.of(isAuthenticated);
+        Optional<Member> isAuthenticated = memberService.authenticate(memberId,password);
         if (isAuthenticated.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         } else {
