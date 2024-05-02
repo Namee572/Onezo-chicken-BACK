@@ -3,13 +3,31 @@ package com.green.onezo.purchase;
 import com.green.onezo.member.Member;
 import com.green.onezo.menu.Menu;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PurchaseDetailDto {
-    @NotBlank
-    private Menu menu;
-    @NotBlank
-    private Purchase purchase;
-    @NotBlank
-    private int quantity;
+
+    private Long id;
+
+    private Long menuId;
+    private String menuMenuName;
+    private int menuPrice;
+
+
+
+
+
+
+
+
+
+
 
 }
