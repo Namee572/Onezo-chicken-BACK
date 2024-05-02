@@ -120,7 +120,8 @@ public class MemberController {
     @PutMapping ("/update/{memberId}")
     @Operation(summary = "회원 정보 수정",
             description = "로그인 한 회원의 아이디, 패스워드(패스워드확인), 이름, 닉네임, 전화번호를 변경 할 수 있습니다.")
-    public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto.UpdateReq updateReq, @PathVariable Long memberId) {
+    public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto.UpdateReq updateReq,
+                                               @PathVariable Long memberId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             memberService.memberUpdate(memberId, updateReq);
