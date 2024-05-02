@@ -3,6 +3,8 @@ package com.green.onezo.menu;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +21,9 @@ public class  MenuController {
 
     @Operation(summary = "메뉴 정보 보내주기")
     @GetMapping("/menus/{id}")
-    public ResponseEntity<MenuDetailDto> getMenuDetail(@PathVariable Long id){
-        return menuService.getAllMenuDetails(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<MenuDetailDto> getMenuDetails(@PathVariable Long id) {
+        MenuDetailDto menuDetail = menuService.getAllMenuDetails(id);
+        return ResponseEntity.status(HttpStatus.OK).body(menuDetail);
     }
 
 

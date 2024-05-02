@@ -13,7 +13,6 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "cart")
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
