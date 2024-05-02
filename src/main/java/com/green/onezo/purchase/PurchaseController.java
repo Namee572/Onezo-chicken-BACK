@@ -24,18 +24,20 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @GetMapping("/record/{purchaseId}")
+
     public ResponseEntity<PurchaseDto> getRecord(@PathVariable Long purchaseId){
         PurchaseDto result = purchaseService.getPurchase(purchaseId);
         if (result == null) {
             ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         }
         return ResponseEntity.status(HttpStatus.OK).body(result);
-
     }
     @GetMapping("/detail/{id}")
+
     public ResponseEntity<PurchaseDetailDto> getDetail(@PathVariable Long id){
         PurchaseDetailDto result = purchaseService.getDetail(id);
         if (result == null) {
+
             ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         }
         return ResponseEntity.status(HttpStatus.OK).body(result);
