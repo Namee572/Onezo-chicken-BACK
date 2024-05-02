@@ -1,8 +1,11 @@
 package com.green.onezo.menu;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.onezo.menu.Menu;
 import com.green.onezo.menu.MenuInfo;
 import com.green.onezo.menu.Nutrient;
+import com.green.onezo.store.Store;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -10,13 +13,16 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class MenuDetailDto {
 
     private Long id;
+    private Store store;
+    private int price;
+    private String menuName;
+    private List<MenuInfo> menuInfo;
+    private List<Nutrient> nutrient;
 
-    private final Menu menu;
-    private final List<MenuInfo> menuInfos;
-    private final List<Nutrient> nutrients;
+
 }
