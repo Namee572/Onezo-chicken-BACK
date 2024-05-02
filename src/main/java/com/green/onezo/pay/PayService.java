@@ -1,6 +1,5 @@
 package com.green.onezo.pay;
 
-import com.green.onezo.cart.CartRepository;
 import com.green.onezo.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
