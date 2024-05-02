@@ -21,15 +21,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurchaseDto {
-
-
-    
     private Long id;
 
     private Long memberId;
+    @NotBlank(message = "로그인한 유저의 이름")
     private String memberName;
+    @NotBlank(message = "로그인한 유저의 이메일")
     private String memberUserId;
-
     @NotBlank
     private LocalDateTime payDate;
 

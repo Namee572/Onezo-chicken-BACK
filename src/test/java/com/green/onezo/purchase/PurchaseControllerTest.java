@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,20 +25,21 @@ class PurchaseControllerTest {
     PurchaseDetailRepository purchaseDetailRepository;
 
 
+
     @ParameterizedTest
     @DisplayName("구매내역 조회")
     @ValueSource(longs = {1L})
     void getRecord(Long id) {
-        Optional<Purchase> result = purchaseRepository.findById(id);
-        if (result.isEmpty()) {
-            System.out.println(result);
-        }
-        System.out.println(result);
+        PurchaseDto purchaseDto = new PurchaseDto();
+        purchaseDto.setId(id);
+        System.out.println(purchaseDto);
     }
     @ParameterizedTest
+    @DisplayName("구매 상세 내역 조회")
     @ValueSource(longs = {1L})
     void getDetail(Long id) {
-        Optional<PurchaseDetail> result = purchaseDetailRepository.findById(id);
-        System.out.println(result);
+        PurchaseDetailDto purchaseDetailDto = new PurchaseDetailDto();
+        purchaseDetailDto.setId(id);
+        System.out.println(id);
     }
 }
