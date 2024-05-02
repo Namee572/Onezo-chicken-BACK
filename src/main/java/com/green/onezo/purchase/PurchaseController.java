@@ -19,7 +19,6 @@ import java.util.Optional;
 public class PurchaseController {
     private final PurchaseService purchaseService;
 
-
     @GetMapping("/record/{purchaseId}")
     public ResponseEntity<Optional<Purchase>> getRecord(@PathVariable Long purchaseId, @RequestBody PurchaseDto purchaseDto){
         Optional<Purchase> result = purchaseService.getPurchase(purchaseId);
