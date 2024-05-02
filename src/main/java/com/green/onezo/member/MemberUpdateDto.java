@@ -15,6 +15,7 @@ public class MemberUpdateDto {
     @Size(min = 4, max = 20, message = "패스워드는 최소 4자 이상 20자 이하로 입력해야합니다.")
     private String password;
 
+    @Size(min = 4, max = 20, message = "패스워드를 한번 더 입력해 주세요.")
     private String checkPassword;
 
     @Size(max = 10, message = "이름은 10자까지 입력이 가능합니다.")

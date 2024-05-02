@@ -24,11 +24,11 @@ public class MemberService {
         if(idmember.isPresent()){
             throw new BizException("아이디 중복입니다.");
         }
-        Optional<Member> nickmember = memberRepository.findByUserId(signDtoReq.getNickname());
+        Optional<Member> nickmember = memberRepository.findByNickname(signDtoReq.getNickname());
         if(nickmember.isPresent()){
             throw new BizException("닉네임 중복입니다.");
         }
-        Optional<Member> pmember = memberRepository.findByUserId(signDtoReq.getPhone());
+        Optional<Member> pmember = memberRepository.findByPhone(signDtoReq.getPhone());
         if(pmember.isPresent()){
             throw new BizException("핸드폰 번호 중복입니다.");
         }
