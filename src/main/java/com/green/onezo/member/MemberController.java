@@ -122,7 +122,7 @@ public class MemberController {
             description = "로그인 한 회원의 패스워드(패스워드확인), 이름, 닉네임, 전화번호를 변경 할 수 있습니다.")
     public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto.UpdateReq updateReq,
                                                @Parameter(description = "멤버 PK", required = true) @PathVariable Long memberId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             memberService.memberUpdate(memberId, updateReq);
             return ResponseEntity.ok("회원 정보가 성공적으로 업데이트되었습니다.");
@@ -139,7 +139,7 @@ public class MemberController {
     @Operation(summary = "회원 탈퇴",
             description = "로그인 한 회원의 아이디, 패스워드, 전화번호를 입력해 회원탈퇴를 합니다.")
     public ResponseEntity<String> resignMember(@RequestBody @Valid MemberResignDto.ResignReq resignReq, @Parameter(description = "멤버 PK", required = true) @PathVariable Long memberId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             memberService.memberResign(memberId, resignReq);
             return ResponseEntity.ok("회원 탈퇴가 성공적으로 처리되었습니다.");

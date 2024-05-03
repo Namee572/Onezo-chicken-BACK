@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
@@ -37,9 +38,14 @@ public class JWTInterceptor implements HandlerInterceptor {
 //                || request.getRequestURI().contains("error")
                 || request.getRequestURI().contains("common")
                 || request.getRequestURI().contains("main")
-//                || request.getRequestURI().contains("api/cart")
-//                || request.getRequestURI().contains("/auth/resign")
-//                || request.getRequestURI().contains("/auth/update")
+                || request.getRequestURI().contains("api/cart")
+                || request.getRequestURI().contains("auth")
+                        || request.getRequestURI().contains("api/purchase")
+                        || request.getRequestURI().contains("menus")
+                        || request.getRequestURI().contains("api/store")
+                        || request.getRequestURI().contains("v1")
+
+
 
         ){
             return true;

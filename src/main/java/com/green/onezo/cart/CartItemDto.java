@@ -32,8 +32,6 @@ public class CartItemDto {
         @Min(value = 1, message = "수량은 최소 1 이상이어야 합니다.")
         private int quantity; // 업뎃
 
-        
-
 
         //private String menuImage;
 

@@ -7,8 +7,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +21,7 @@ public class CartController {
     @PostMapping("/add")
     @Operation(summary = "장바구니 아이템 추가", description = "요청 데이터: 멤버 PK, 스토어 PK, 메뉴 PK, 수량")
     public ResponseEntity<String> addCartItem(@RequestBody @Valid CartItemDto.CartItemReq cartItemReq) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             CartItem cartItem = cartService.addCartItem(cartItemReq);
             return ResponseEntity.ok("장바구니에 추가되었습니다.");
