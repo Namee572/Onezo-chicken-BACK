@@ -1,6 +1,7 @@
 package com.green.onezo.purchase;
 
 import com.green.onezo.member.Member;
+import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class Purchase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "purchase_id")
@@ -22,6 +24,11 @@ public class Purchase {
     private Member member;
 
     @Column(nullable = false)
-    private LocalDateTime payDate;
+    private LocalDateTime payDate;// 구매한 일자
+
+
+
+
+
 
 }
