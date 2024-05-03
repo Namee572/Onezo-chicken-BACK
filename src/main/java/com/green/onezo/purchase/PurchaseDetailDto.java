@@ -17,7 +17,9 @@ public class PurchaseDetailDto {
     private Long id;
 
     private Long menuId;
+
     private String menuMenuName;
+
     private int menuPrice;
 
 

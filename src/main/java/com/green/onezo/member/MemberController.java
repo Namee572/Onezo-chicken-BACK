@@ -5,6 +5,7 @@ import com.green.onezo.jwt.JwtTokenDto;
 import com.green.onezo.jwt.JwtTokenManager;
 import com.green.onezo.kakao.KakaoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -118,10 +119,10 @@ public class MemberController {
 
     @PutMapping ("/update/{memberId}")
     @Operation(summary = "회원 정보 수정",
-            description = "로그인 한 회원의 아이디, 패스워드(패스워드확인), 이름, 닉네임, 전화번호를 변경 할 수 있습니다.")
+            description = "로그인 한 회원의 패스워드(패스워드확인), 이름, 닉네임, 전화번호를 변경 할 수 있습니다.")
     public ResponseEntity<String> updateMember(@RequestBody @Valid MemberUpdateDto.UpdateReq updateReq,
-                                               @PathVariable Long memberId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                                               @Parameter(description = "멤버 PK", required = true) @PathVariable Long memberId) {
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             memberService.memberUpdate(memberId, updateReq);
             return ResponseEntity.ok("회원 정보가 성공적으로 업데이트되었습니다.");
@@ -136,9 +137,9 @@ public class MemberController {
 
     @PutMapping("/resign/{memberId}")
     @Operation(summary = "회원 탈퇴",
-            description = "로그인 한 회원의 아이디(userId), 패스워드(password), 전화번호(phone)를 입력해 회원탈퇴를 합니다.")
-    public ResponseEntity<String> resignMember(@RequestBody @Valid MemberResignDto.ResignReq resignReq, @PathVariable Long memberId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            description = "로그인 한 회원의 아이디, 패스워드, 전화번호를 입력해 회원탈퇴를 합니다.")
+    public ResponseEntity<String> resignMember(@RequestBody @Valid MemberResignDto.ResignReq resignReq, @Parameter(description = "멤버 PK", required = true) @PathVariable Long memberId) {
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         try {
             memberService.memberResign(memberId, resignReq);
             return ResponseEntity.ok("회원 탈퇴가 성공적으로 처리되었습니다.");
@@ -149,4 +150,36 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/findId/{name}/{phone}")
+    @Operation(summary = "아이디 찾기",
+            description = "회원의 이름과 전화번호를 입력하면 끝 3글자를 제외한 회원 아이디가 반환됩니다.")
+    public ResponseEntity<FindDto.UserIdRes> findUserId(
+            @Parameter(description = "이름", required = true) @PathVariable String name,
+            @Parameter(description = "전화번호", required = true) @PathVariable String phone
+    ) {
+        try {
+            String userId = memberService.findUserId(name, phone);
+            return ResponseEntity.ok(new FindDto.UserIdRes(userId));
+        } catch (BizException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/findPw/{userId}/{nickname}/{phone}")
+    @Operation(summary = "비밀번호 찾기",
+            description = "회원 아이디와 닉네임, 전화번호를 입력하면 비밀번호가 반환됩니다.")
+    public ResponseEntity<FindDto.PasswordRes> findPassword(
+            @Parameter(description = "아이디", required = true) @PathVariable String userId,
+            @Parameter(description = "닉네임", required = true) @PathVariable String nickname,
+            @Parameter(description = "전화번호", required = true) @PathVariable String phone
+    ) {
+        try {
+            String password = memberService.findPassword(userId, nickname, phone);
+            return ResponseEntity.ok(new FindDto.PasswordRes(password));
+        } catch (BizException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
+
+

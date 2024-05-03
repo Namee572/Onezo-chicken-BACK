@@ -30,6 +30,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                                 authorizationManagerRequestMatcherRegistry
+
                                         .anyRequest().permitAll()
 //                                        requestMatcher : 특정경로에 대한 권한 설정
 //                                        .requestMatchers(
@@ -38,6 +39,7 @@ public class SecurityConfig {
 //                                                "/v3/api-docs/**")
 //                                        .permitAll()
 //                                        .anyRequest().authenticated()
+                                     
                 );
         http
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->

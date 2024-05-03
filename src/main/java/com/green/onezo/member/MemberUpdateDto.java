@@ -14,7 +14,7 @@ public class MemberUpdateDto {
     @AllArgsConstructor
     public static class UpdateReq {
 
-        @Size(min = 2, max = 20, message = "아이디는 최소 2자 이상 20자 이하로 입력해야합니다.")
+        @Size(min = 5, max = 20, message = "아이디는 최소 5자 이상 20자 이하로 입력해야합니다.")
         private String userId;
 
         @Size(min = 4, max = 20, message = "패스워드는 최소 4자 이상 20자 이하로 입력해야합니다.")

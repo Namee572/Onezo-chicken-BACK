@@ -1,4 +1,4 @@
-package com.example.jjj.LoginSecond;
+package com.green.onezo;
 
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
