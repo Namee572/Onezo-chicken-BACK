@@ -5,6 +5,9 @@ import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 public class Menu {
@@ -32,11 +35,9 @@ public class Menu {
 
     private String menuImage;
 
-    @ManyToOne
-    private MenuInfo menuInfo;
 
-    @ManyToOne
-    private Nutrient nutrient;
+
+
 
 
 }

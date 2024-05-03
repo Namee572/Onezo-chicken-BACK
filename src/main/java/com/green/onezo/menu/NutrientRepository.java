@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface NutrientRepository extends JpaRepository<Nutrient,Long> {
      List<Nutrient> findAll();
 
-     List<Nutrient> findAllByMenuId(@Param("menu_id") Long menuId);
+     List<Nutrient> findAllByMenuId(@Param("menu_id") Long id);
 
 }

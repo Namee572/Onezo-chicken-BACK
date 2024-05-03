@@ -4,13 +4,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,7 +20,19 @@ public class  MenuController {
     @GetMapping("/menus/{id}")
     public ResponseEntity<MenuDetailDto> getMenuDetails(@PathVariable Long id) {
         MenuDetailDto menuDetail = menuService.getAllMenuDetails(id);
-        return ResponseEntity.status(HttpStatus.OK).body(menuDetail);
+
+        if (menuDetail != null){
+            return ResponseEntity.ok(menuDetail);
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(menuDetail);
+        }
+    }
+
+    @Operation(summary = "메뉴 전체 리스트")
+    @GetMapping("/menuAll")
+    public ResponseEntity<List<Menu>> menuList(){
+        List<Menu> menus = menuService.menuList();
+        return ResponseEntity.ok(menus);
     }
 
 

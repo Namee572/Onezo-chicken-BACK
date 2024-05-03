@@ -8,6 +8,7 @@ import com.green.onezo.store.Store;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,8 +22,8 @@ public class MenuDetailDto {
     private Store store;
     private int price;
     private String menuName;
-    private List<MenuInfo> menuInfo;
-    private List<Nutrient> nutrient;
+    private List<MenuInfo> menuInfo = new ArrayList<>();
+    private List<Nutrient> nutrient = new ArrayList<>();
 
 
 }
