@@ -30,7 +30,7 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String userId;
 
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
 
     private String name;
@@ -38,10 +38,10 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String nickname;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String phone;
 
     @Enumerated(EnumType.STRING)

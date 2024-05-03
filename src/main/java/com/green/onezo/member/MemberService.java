@@ -98,6 +98,22 @@ public class MemberService {
 
         member.setResignYn(ResignYn.Y);
         memberRepository.save(member);
+
+    }
+
+
+    // 아이디찾기
+    public String findUserId(String name, String phone) throws BizException {
+        return memberRepository.findByNameAndPhone(name, phone)
+                .map(member -> member.getUserId().substring(0, member.getUserId().length() - 3) + "***")
+                .orElseThrow(() -> new BizException("해당 이름과 전화번호로 등록된 회원이 없습니다."));
+    }
+
+    // 비밀번호찾기
+    public String findPassword(String userId, String nickname, String phone) throws BizException {
+        return memberRepository.findByUserIdAndNicknameAndPhone(userId, nickname, phone)
+                .map(Member::getPassword)
+                .orElseThrow(() -> new BizException("해당 아이디, 닉네임 및 전화번호로 등록된 회원이 없습니다."));
     }
 }
 
