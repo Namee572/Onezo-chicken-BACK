@@ -35,6 +35,7 @@ public class StoreService {
         return stores.stream().map(this::toStoreDto).collect(Collectors.toList());
     }
 
+
     public StoreDto toStoreDto(Store store){
         return StoreDto.builder()
                 .id(store.getId())
