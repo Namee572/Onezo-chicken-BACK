@@ -1,6 +1,5 @@
 package com.green.onezo.conf;
 
-import com.green.onezo.conf.JWTInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,15 +11,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebCors implements WebMvcConfigurer {
 
-    private final JWTInterceptor jwtInterceptor;
+//    private final JWTInterceptor jwtInterceptor;
 
     // InterceptorRegistry에 인터셉터 추가
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(jwtInterceptor)
-                .addPathPatterns("/api/cart/**","/api/purchase/**","/pay/**","/auth/update/**","/auth/resign/**"); // 모든 경로에 대해 인터셉터 적용 JWT토큰검사
+//        registry.addInterceptor(jwtInterceptor)
+//                .addPathPatterns("/api/cart/**","/api/purchase/**","/pay/**","/auth/update/**","/auth/resign/**"); //인터셉터 적용 JWT토큰검사
 //                .excludePathPatterns("/token", // 토큰 발급 경로는 인터셉터 적용 제외
-//                        "/member/join", // 회원가입 경로는 인터셉터 적용 제외
+//                        "/auth/signUp", // 회원가입 경로는 인터셉터 적용 제외
 //                        "/swagger-ui/**", // Swagger UI 관련 경로는 인터셉터 적용 제외
 //                        "/swagger-resources/**",
 //                        "/swagger-resources/**/**",

@@ -57,22 +57,22 @@ public class JwtTokenManager {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateRefreshToken(Member member) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", member.getUserId());
-        claims.put("name",member.getName());
-        claims.put("phone",member.getPhone());
-        claims.put("role", member.getRole());
-
-        return createAccessToken(claims, "onezo");
-    }
-
-    //RefreshToken --> 한달
-    private String createRefreshToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 31))
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
-    }
+//    public String generateRefreshToken(Member member) {
+//        Map<String, Object> claims = new HashMap<>();
+//        claims.put("userId", member.getUserId());
+//        claims.put("name",member.getName());
+//        claims.put("phone",member.getPhone());
+//        claims.put("role", member.getRole());
+//
+//        return createAccessToken(claims, "onezo");
+//    }
+//
+//    //RefreshToken --> 한달
+//    private String createRefreshToken(Map<String, Object> claims, String subject) {
+//        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+//                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 31))
+//                .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
+//    }
 
     //Access토큰 생성
     public String generateAccessToken(Member member) {
@@ -104,14 +104,14 @@ public class JwtTokenManager {
 
     }
   //  refresh토큰 검증
-    public Jws<Claims> validateRefreshToken(String refreshToken){
-        Jws<Claims> refreshjws=Jwts.parser()//번역
-                .setSigningKey(hmacShaKeyFor(SECRET_KEY.getBytes()))//비밀번호로
-                .build()//객체 생성 후
-                .parseClaimsJws(refreshToken);//claim 들을 번역해줘 컬렉션타입으로
-        System.out.println(refreshjws);
-        return refreshjws;
-    }
+//    public Jws<Claims> validateRefreshToken(String refreshToken){
+//        Jws<Claims> refreshjws=Jwts.parser()//번역
+//                .setSigningKey(hmacShaKeyFor(SECRET_KEY.getBytes()))//비밀번호로
+//                .build()//객체 생성 후
+//                .parseClaimsJws(refreshToken);//claim 들을 번역해줘 컬렉션타입으로
+//        System.out.println(refreshjws);
+//        return refreshjws;
+//    }
     //Access토큰 검증
     public Jws<Claims> validateAccesstoken(String accessToken){
         Jws<Claims> acessjws=Jwts.parser()//번역

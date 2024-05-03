@@ -100,7 +100,7 @@ public class MemberController {
         } else {
             JwtTokenDto jwtTokenDto = JwtTokenDto.builder()
                     .accessToken(jwtUtil.generateAccessToken(isAuthenticated.get()))
-                    .refeshToken(jwtUtil.generateRefreshToken(isAuthenticated.get()))
+//                    .refeshToken(jwtUtil.generateRefreshToken(isAuthenticated.get()))
                     .build();
 
             return ResponseEntity.status(HttpStatus.OK).body(
