@@ -48,7 +48,6 @@ public class ErrorContollerAdvice extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
-    // 다양한 예외를 추가적으로 처리
     @ExceptionHandler({RuntimeException.class, ResponseStatusException.class})
     public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex, WebRequest request) {
         ErrorResponse errorResponse = ErrorResponse.builder()
@@ -60,21 +59,3 @@ public class ErrorContollerAdvice extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }
-
-//        java.util.List<FieldError> list = ex.getFieldErrors();
-//        String errorMessage = "";
-//
-//        for (FieldError error : list) {
-//            errorMessage += error.getDefaultMessage() + "\n";
-//        }
-//
-//        ErrorResponse errorResponse = ErrorResponse
-//                .builder()
-//                .errorCode(HttpStatus.BAD_REQUEST.toString())
-//                .errorMessage( errorMessage )
-//                .errorDateTime(LocalDateTime.now())
-//                .build();
-//
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-//    }
-//}

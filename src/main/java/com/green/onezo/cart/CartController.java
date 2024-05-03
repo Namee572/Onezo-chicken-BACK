@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -37,7 +36,7 @@ public class CartController {
     }
 
     @GetMapping("/{memberId}")
-    @Operation(summary = "회원의 장바구니 아이템 조회", description = "특정 회원의 장바구니 아이템을 조회합니다.")
+    @Operation(summary = "회원 장바구니 조회", description = "특정 회원의 장바구니 아이템을 조회합니다.")
     public ResponseEntity<List<CartItemDto.CartItemRes>> getCartItem(@PathVariable Long memberId) {
         List<CartItemDto.CartItemRes> cartItems = cartService.getCart(memberId);
         return ResponseEntity.ok(cartItems);
@@ -48,7 +47,7 @@ public class CartController {
     public ResponseEntity<String> updateCartItem(@PathVariable Long cartItemId, @PathVariable int quantity) {
         try {
             cartService.updateCartItem(cartItemId, quantity);
-            return ResponseEntity.ok("Cart item updated successfully");
+            return ResponseEntity.ok("장바구니 아이템 수량이 업데이트되었습니다.");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("장바구니 아이템을 찾을 수 없습니다.");
         } catch (Exception e) {

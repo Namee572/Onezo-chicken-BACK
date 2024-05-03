@@ -36,6 +36,7 @@ public class StoreService {
     }
 
 
+
     public StoreDto toStoreDto(Store store){
         return StoreDto.builder()
                 .id(store.getId())

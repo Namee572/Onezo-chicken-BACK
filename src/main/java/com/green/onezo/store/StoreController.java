@@ -39,6 +39,7 @@ public class StoreController {
         }
     }
 
+
     //매장주소 리스트
     @GetMapping("/storeList")
     public ResponseEntity<List<StoreDto>>getStoreAddress(){

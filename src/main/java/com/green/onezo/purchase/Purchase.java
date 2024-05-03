@@ -27,8 +27,4 @@ public class Purchase {
     private LocalDateTime payDate;// 구매한 일자
 
 
-
-
-
-
 }

@@ -93,7 +93,7 @@ public class MemberService {
         if (!member.getUserId().equals(resignReq.getUserId()) ||
                 !member.getPassword().equals(resignReq.getPassword()) ||
                 !member.getPhone().equals(resignReq.getPhone())) {
-            throw new BizException("잘못된 회원 정보입니다.");
+            throw new BizException("회원 정보가 잘못되었습니다.");
         }
 
         member.setResignYn(ResignYn.Y);
