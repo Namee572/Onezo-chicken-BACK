@@ -9,12 +9,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
 //    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -27,14 +30,16 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                                 authorizationManagerRequestMatcherRegistry
-//                                        .anyRequest().permitAll()
-                                        //requestMatcher :특정경로에 대한 권한 설정
-                                        .requestMatchers(
-                                                "/auth/**",
-                                                "/swagger-ui/**",
-                                                "/v3/api-docs/**")
-                                        .permitAll()
-                                        .anyRequest().authenticated()
+
+                                        .anyRequest().permitAll()
+//                                        requestMatcher : 특정경로에 대한 권한 설정
+//                                        .requestMatchers(
+//                                                "/auth/**",
+//                                                "/swagger-ui/**",
+//                                                "/v3/api-docs/**")
+//                                        .permitAll()
+//                                        .anyRequest().authenticated()
+                                     
                 );
         http
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
