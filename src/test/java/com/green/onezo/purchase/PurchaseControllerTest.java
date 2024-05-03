@@ -25,7 +25,6 @@ class PurchaseControllerTest {
     PurchaseDetailRepository purchaseDetailRepository;
 
 
-
     @ParameterizedTest
     @DisplayName("구매내역 조회")
     @ValueSource(longs = {1L})
@@ -34,6 +33,7 @@ class PurchaseControllerTest {
         purchaseDto.setId(id);
         System.out.println(purchaseDto);
     }
+
     @ParameterizedTest
     @DisplayName("구매 상세 내역 조회")
     @ValueSource(longs = {1L})

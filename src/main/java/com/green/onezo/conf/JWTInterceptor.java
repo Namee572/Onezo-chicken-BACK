@@ -37,6 +37,10 @@ public class JWTInterceptor implements HandlerInterceptor {
 //                || request.getRequestURI().contains("error")
                 || request.getRequestURI().contains("common")
                 || request.getRequestURI().contains("main")
+                || request.getRequestURI().contains("cart")
+                        || request.getRequestURI().contains("cart")
+                        || request.getRequestURI().contains("cart")
+
         ){
             return true;
         }

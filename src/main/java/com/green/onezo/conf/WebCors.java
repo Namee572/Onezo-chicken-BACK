@@ -18,6 +18,7 @@ public class WebCors implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
+
                 .addPathPatterns("/api/cart/**","/api/purchase/**","/pay/**","/auth/update/**","/auth/resign/**"); // 모든 경로에 대해 인터셉터 적용 JWT토큰검사
 //                .excludePathPatterns("/token", // 토큰 발급 경로는 인터셉터 적용 제외
 //                        "/member/join", // 회원가입 경로는 인터셉터 적용 제외

@@ -10,14 +10,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/cart")
 @RequiredArgsConstructor
-@Tag(name = "cartItem-controller", description = "장바구니")
-public class CartItemController {
-
+@Tag(name = "cart-controller", description = "장바구니")
+public class CartController {
     private final CartService cartService;
 
     @PostMapping("/add")
@@ -38,7 +38,7 @@ public class CartItemController {
 
     @GetMapping("/{memberId}")
     @Operation(summary = "회원의 장바구니 아이템 조회", description = "특정 회원의 장바구니 아이템을 조회합니다.")
-    public ResponseEntity<List<CartItemDto.CartItemRes>> getCartItemsByMemberId(@PathVariable Long memberId) {
+    public ResponseEntity<List<CartItemDto.CartItemRes>> getCartItem(@PathVariable Long memberId) {
         List<CartItemDto.CartItemRes> cartItems = cartService.getCart(memberId);
         return ResponseEntity.ok(cartItems);
     }
@@ -50,9 +50,9 @@ public class CartItemController {
             cartService.updateCartItem(cartItemId, quantity);
             return ResponseEntity.ok("Cart item updated successfully");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cart item not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("장바구니 아이템을 찾을 수 없습니다.");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 에러: " + e.getMessage());
         }
     }
 
@@ -61,11 +61,12 @@ public class CartItemController {
     public ResponseEntity<String> deleteCartItem(@PathVariable Long cartItemId) {
         try {
             cartService.deleteCartItem(cartItemId);
-            return ResponseEntity.ok("Cart item deleted successfully");
+            return ResponseEntity.ok("장바구니 아이템을 삭제했습니다.");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cart item not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("장바구니 아이템을 찾을 수 없습니다.");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 에러: " + e.getMessage());
         }
     }
+
 }
